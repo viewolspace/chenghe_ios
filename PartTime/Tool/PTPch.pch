@@ -1,0 +1,26 @@
+//
+//  PTPch.pch
+//  PartTime
+//
+//  Created by Mac on 2019/7/22.
+//  Copyright © 2019 Mac. All rights reserved.
+//
+
+#ifndef PTPch_pch
+#define PTPch_pch
+
+
+
+// screen的宽度
+#define WIDTH_OF_SCREEN [[UIScreen mainScreen] bounds].size.width
+// screen的高度
+#define HEIGHT_OF_SCREEN [[UIScreen mainScreen] bounds].size.height
+
+
+
+/* 常用工具引入 */
+#import "PTTool.h"
+#import "UIViewExt.h"
+
+
+#endif /* PTPch_pch */
