@@ -23,6 +23,7 @@
 #import "UIViewExt.h"
 #import "NSString+Java.h"
 #import "NSString+validate.h"
+#import "AFNetworking.h"
 
 
 #endif /* PTPch_pch */

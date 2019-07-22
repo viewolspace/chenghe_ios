@@ -45,4 +45,19 @@
     return result;
 }
 
++ (CAGradientLayer *)customLayer:(UIView *)superView
+                      haveCorner:(BOOL)haveCorner
+{
+    CAGradientLayer *gl = [CAGradientLayer layer];
+    gl.frame = superView.bounds;
+    gl.startPoint = CGPointMake(0, 0);
+    gl.endPoint = CGPointMake(1, 1);
+    gl.colors = @[(__bridge id)[UIColor colorWithRed:88/255.0 green:128/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:81/255.0 green:168/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:85/255.0 green:192/255.0 blue:246/255.0 alpha:1.0].CGColor];
+    gl.locations = @[@(0.0),@(0.6),@(1.0)];
+    if (haveCorner) {
+        gl.cornerRadius = superView.height / 2.0;
+    }
+    return gl;
+}
+
 @end

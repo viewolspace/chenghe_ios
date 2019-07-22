@@ -23,6 +23,8 @@
     
     _testNumber = 60;
    
+    self.testBtn.userInteractionEnabled = NO;
+    self.confirmBtn.userInteractionEnabled = NO;
     self.bgView.layer.masksToBounds = YES;
     self.bgView.layer.cornerRadius  = 5.f;
     
@@ -49,7 +51,6 @@
 }
 
 - (void)stopTimer{
-    
     if (_timer) {
         [_timer invalidate];
         _timer = nil;
@@ -59,13 +60,13 @@
 }
 
 - (void)startTimer{
+    
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeAction:) userInfo:nil repeats:YES];
     }else{
-        [self stopTimer];
+        NSLog(@"已经开始获取验证码了！");
     }
-    
-    
+ 
 }
 
 
@@ -102,6 +103,7 @@
 
 - (IBAction)testAction:(UIButton *)sender {
     [self.view endEditing:YES];
+    [self startTimer];
 }
 
 - (IBAction)confirmAction:(UIButton *)sender {
@@ -149,14 +151,7 @@
 - (CAGradientLayer *)confirmLayer
 {
     if (!_confirmLayer) {
-        CAGradientLayer *gl = [CAGradientLayer layer];
-        gl.frame = self.confirmBtn.bounds;
-        gl.startPoint = CGPointMake(0, 0);
-        gl.endPoint = CGPointMake(1, 1);
-        gl.colors = @[(__bridge id)[UIColor colorWithRed:88/255.0 green:128/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:81/255.0 green:168/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:85/255.0 green:192/255.0 blue:246/255.0 alpha:1.0].CGColor];
-        gl.locations = @[@(0.0),@(0.6),@(1.0)];
-        gl.cornerRadius = self.confirmBtn.height / 2.0;
-        _confirmLayer = gl;
+        _confirmLayer = [PTTool customLayer:self.confirmBtn haveCorner:YES];
     }
     
     return _confirmLayer;

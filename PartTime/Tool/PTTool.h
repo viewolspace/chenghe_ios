@@ -11,11 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTTool : NSObject
-
-
 /** 16进制颜色方法 */
 + (UIColor *)colorFromHexRGB:(NSString *)inColorString;
 
+
+/** 通用的按钮渐变色 */
++ (CAGradientLayer *)customLayer:(UIView *)superView
+                      haveCorner:(BOOL)haveCorner;
 
 @end
 
