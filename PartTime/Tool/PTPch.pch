@@ -21,6 +21,8 @@
 /* 常用工具引入 */
 #import "PTTool.h"
 #import "UIViewExt.h"
+#import "NSString+Java.h"
+#import "NSString+validate.h"
 
 
 #endif /* PTPch_pch */

@@ -39,6 +39,12 @@
 		04E8C3A922E572C500B4FF6D /* PTMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3A722E572C500B4FF6D /* PTMineCell.xib */; };
 		04E8C3AC22E5742400B4FF6D /* rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3AA22E5742400B4FF6D /* rightArrow@2x.png */; };
 		04E8C3AD22E5742400B4FF6D /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3AB22E5742400B4FF6D /* rightArrow@3x.png */; };
+		04E8C3B222E586D500B4FF6D /* PTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3B022E586D500B4FF6D /* PTLoginViewController.m */; };
+		04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3B122E586D500B4FF6D /* PTLoginViewController.xib */; };
+		04E8C3B622E5878300B4FF6D /* 关闭_白色@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3B422E5878300B4FF6D /* 关闭_白色@2x.png */; };
+		04E8C3B722E5878300B4FF6D /* 关闭_白色@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3B522E5878300B4FF6D /* 关闭_白色@3x.png */; };
+		04E8C3BC22E5924B00B4FF6D /* NSString+validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3B822E5924B00B4FF6D /* NSString+validate.m */; };
+		04E8C3BD22E5924B00B4FF6D /* NSString+Java.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3BA22E5924B00B4FF6D /* NSString+Java.m */; };
 		30EBA0BC06BC86DBD4997BD2 /* libPods-PartTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47F2C2593B8D5660AD24D1 /* libPods-PartTime.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +93,15 @@
 		04E8C3A722E572C500B4FF6D /* PTMineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTMineCell.xib; sourceTree = "<group>"; };
 		04E8C3AA22E5742400B4FF6D /* rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@2x.png"; sourceTree = "<group>"; };
 		04E8C3AB22E5742400B4FF6D /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
+		04E8C3AF22E586D500B4FF6D /* PTLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTLoginViewController.h; sourceTree = "<group>"; };
+		04E8C3B022E586D500B4FF6D /* PTLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTLoginViewController.m; sourceTree = "<group>"; };
+		04E8C3B122E586D500B4FF6D /* PTLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTLoginViewController.xib; sourceTree = "<group>"; };
+		04E8C3B422E5878300B4FF6D /* 关闭_白色@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭_白色@2x.png"; sourceTree = "<group>"; };
+		04E8C3B522E5878300B4FF6D /* 关闭_白色@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭_白色@3x.png"; sourceTree = "<group>"; };
+		04E8C3B822E5924B00B4FF6D /* NSString+validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validate.m"; sourceTree = "<group>"; };
+		04E8C3B922E5924B00B4FF6D /* NSString+Java.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Java.h"; sourceTree = "<group>"; };
+		04E8C3BA22E5924B00B4FF6D /* NSString+Java.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Java.m"; sourceTree = "<group>"; };
+		04E8C3BB22E5924B00B4FF6D /* NSString+validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validate.h"; sourceTree = "<group>"; };
 		663C119ACC8EA769B911CC10 /* Pods-PartTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-PartTime/Pods-PartTime.release.xcconfig"; sourceTree = "<group>"; };
 		69078A046E71ECD11CD7531B /* Pods-PartTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartTime/Pods-PartTime.debug.xcconfig"; sourceTree = "<group>"; };
 		6B47F2C2593B8D5660AD24D1 /* libPods-PartTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PartTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +194,7 @@
 		04E8C36322E5477600B4FF6D /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				04E8C3AE22E586BA00B4FF6D /* 登录页面 */,
 				04E8C38822E55CE200B4FF6D /* images */,
 				04E8C37222E5492C00B4FF6D /* PTMineViewController.h */,
 				04E8C37322E5492C00B4FF6D /* PTMineViewController.m */,
@@ -192,6 +208,10 @@
 		04E8C37522E549C300B4FF6D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				04E8C3B922E5924B00B4FF6D /* NSString+Java.h */,
+				04E8C3BA22E5924B00B4FF6D /* NSString+Java.m */,
+				04E8C3BB22E5924B00B4FF6D /* NSString+validate.h */,
+				04E8C3B822E5924B00B4FF6D /* NSString+validate.m */,
 				04E8C39B22E56DA400B4FF6D /* PTPch.pch */,
 				04E8C39C22E56F1A00B4FF6D /* PTTool.h */,
 				04E8C39D22E56F1A00B4FF6D /* PTTool.m */,
@@ -232,6 +252,8 @@
 		04E8C38822E55CE200B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				04E8C3B422E5878300B4FF6D /* 关闭_白色@2x.png */,
+				04E8C3B522E5878300B4FF6D /* 关闭_白色@3x.png */,
 				04E8C3AA22E5742400B4FF6D /* rightArrow@2x.png */,
 				04E8C3AB22E5742400B4FF6D /* rightArrow@3x.png */,
 				04E8C3A122E5710200B4FF6D /* 我的选中.png */,
@@ -242,6 +264,16 @@
 				04E8C39122E55D0700B4FF6D /* 我的@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		04E8C3AE22E586BA00B4FF6D /* 登录页面 */ = {
+			isa = PBXGroup;
+			children = (
+				04E8C3AF22E586D500B4FF6D /* PTLoginViewController.h */,
+				04E8C3B022E586D500B4FF6D /* PTLoginViewController.m */,
+				04E8C3B122E586D500B4FF6D /* PTLoginViewController.xib */,
+			);
+			path = "登录页面";
 			sourceTree = "<group>";
 		};
 		454F5304B63AB1391313F474 /* Pods */ = {
@@ -333,7 +365,10 @@
 				04E8C39A22E55D1700B4FF6D /* 全部.png in Resources */,
 				04E8C38622E55CCE00B4FF6D /* 精选@2x.png in Resources */,
 				04E8C3A922E572C500B4FF6D /* PTMineCell.xib in Resources */,
+				04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */,
+				04E8C3B622E5878300B4FF6D /* 关闭_白色@2x.png in Resources */,
 				04E8C3AD22E5742400B4FF6D /* rightArrow@3x.png in Resources */,
+				04E8C3B722E5878300B4FF6D /* 关闭_白色@3x.png in Resources */,
 				04E8C3A322E5710200B4FF6D /* 我的选中@3x.png in Resources */,
 				04E8C39822E55D1700B4FF6D /* 全部@3x.png in Resources */,
 				04E8C3A422E5710200B4FF6D /* 我的选中.png in Resources */,
@@ -379,13 +414,16 @@
 				04E8C3A822E572C500B4FF6D /* PTMineCell.m in Sources */,
 				04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */,
 				04E8C36E22E5491700B4FF6D /* PTChoiceViewController.m in Sources */,
+				04E8C3BC22E5924B00B4FF6D /* NSString+validate.m in Sources */,
 				04E8C37122E5492200B4FF6D /* PTWholeViewController.m in Sources */,
+				04E8C3BD22E5924B00B4FF6D /* NSString+Java.m in Sources */,
 				04E8C36B22E5482E00B4FF6D /* PTHomePageViewController.m in Sources */,
 				04E8C35A22E5459900B4FF6D /* main.m in Sources */,
 				04E8C37422E5492C00B4FF6D /* PTMineViewController.m in Sources */,
 				04E8C36722E547BD00B4FF6D /* PTTabbarViewController.m in Sources */,
 				04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */,
 				04E8C39E22E56F1A00B4FF6D /* PTTool.m in Sources */,
+				04E8C3B222E586D500B4FF6D /* PTLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

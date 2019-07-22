@@ -8,6 +8,7 @@
 
 #import "PTMineViewController.h"
 #import "PTMineCell.h"
+#import "PTLoginViewController.h"
 
 @interface PTMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UIButton *loginBtn;
@@ -113,7 +114,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%@",self.titleArr[indexPath.row]);
 }
 
 
@@ -144,8 +144,9 @@
         _loginLabel.textColor = [PTTool colorFromHexRGB:@"#f6f6f6"];
         _loginLabel.font = [UIFont systemFontOfSize:13.f];
         _loginLabel.textAlignment = NSTextAlignmentCenter;
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, (WIDTH_OF_SCREEN - 200) / 2.0, 200, height)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH_OF_SCREEN - 200) / 2.0, 0, 200, height)];
         [btn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
+        btn.backgroundColor = [UIColor orangeColor];
         [_loginLabel addSubview:btn];
         
         _loginLabel.userInteractionEnabled = YES;
@@ -182,7 +183,11 @@
 #pragma mark - senderAction -
 - (void)loginAction:(UIButton *)sender
 {
-    NSLog(@"登录！");
+    PTLoginViewController *loginVC = [[PTLoginViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:loginVC animated:YES];
+   
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end
