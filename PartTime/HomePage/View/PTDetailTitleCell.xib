@@ -92,6 +92,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="ptCopyBtn" destination="f9y-Lm-S4c" id="LT1-Tb-WbS"/>
+            </connections>
             <point key="canvasLocation" x="138.40579710144928" y="121.54017857142857"/>
         </tableViewCell>
     </objects>

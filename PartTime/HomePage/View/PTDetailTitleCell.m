@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+   
+    CAGradientLayer *layer = [PTTool customLayer:self.ptCopyBtn haveCorner:YES];
+    [self.ptCopyBtn.layer addSublayer:layer];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

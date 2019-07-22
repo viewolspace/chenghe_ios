@@ -26,9 +26,11 @@
 - (void)viewDidLoad {
      [super viewDidLoad];
     
-   
     [self createTabelView];
+    
     [self confirmBtn];
+    
+    [self setTitle:@"详情"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -117,7 +119,7 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 300.f;
+    return 350.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -148,13 +150,18 @@
     return view;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - getter and setter
 - (UIButton *)confirmBtn
 {
     if (!_confirmBtn) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT_OF_SCREEN - 45, WIDTH_OF_SCREEN, 45)];
+        CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height - 45 - self.navigationController.navigationBar.height - statusRect.size.height, WIDTH_OF_SCREEN, 45)];
         [btn addTarget:self action:@selector(confirmAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
         [self.view addSubview:btn];
         _confirmBtn = btn;
         
