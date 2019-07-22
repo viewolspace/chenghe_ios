@@ -15,20 +15,36 @@
 {
     UITableView *_tableView;
 }
+
+@property (nonatomic,strong)UIButton *confirmBtn;
+@property (nonatomic,strong) CAGradientLayer *confirmLayer;
+@property (nonatomic,strong)UILabel *confirmLabel;
 @end
 
 @implementation PTDetailViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+     [super viewDidLoad];
+    
+   
+    [self createTabelView];
+    [self confirmBtn];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.translucent = NO;
+    
 }
 
 - (void)createTabelView
 {
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, self.view.bounds.size.height - 45) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_tableView];
     
     [self registerAction];
@@ -111,6 +127,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 0.01;
+    }
     return 10.f;
 }
 
@@ -121,9 +140,58 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return nil;
+    }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, 19)];
     view.backgroundColor = [PTTool colorFromHexRGB:@"#f1f3f4"];
     return view;
+}
+
+#pragma mark - getter and setter
+- (UIButton *)confirmBtn
+{
+    if (!_confirmBtn) {
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, HEIGHT_OF_SCREEN - 45, WIDTH_OF_SCREEN, 45)];
+        [btn addTarget:self action:@selector(confirmAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
+        [self.view addSubview:btn];
+        _confirmBtn = btn;
+        
+        [_confirmBtn.layer addSublayer:self.confirmLayer];
+        [self confirmLabel];
+    }
+    
+    return _confirmBtn;
+}
+
+- (UILabel *)confirmLabel
+{
+    if (!_confirmLabel) {
+        _confirmLabel = [[UILabel alloc] initWithFrame:self.confirmBtn.frame];
+        _confirmLabel.text = @"报名参加";
+        _confirmLabel.textColor = [PTTool colorFromHexRGB:@"#ffffff"];
+        _confirmLabel.font = [UIFont boldSystemFontOfSize:18.f];
+        _confirmLabel.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:_confirmLabel];
+    }
+    
+    return _confirmLabel;
+}
+
+- (CAGradientLayer *)confirmLayer
+{
+    if (!_confirmLayer) {
+        _confirmLayer = [PTTool customLayer:self.confirmBtn haveCorner:NO];
+    }
+    
+    return _confirmLayer;
+}
+
+#pragma mark - senderAction -
+- (void)confirmAction:(UIButton *)sender
+{
+    NSLog(@"报名参加");
 }
 
 @end
