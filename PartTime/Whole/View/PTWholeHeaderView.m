@@ -34,6 +34,7 @@
         _topView.backgroundColor = [UIColor yellowColor];
         [self addSubview:_topView];
         
+        NSArray *imagesNameArr = @[@"宅家赚钱",@"简单易做",@"高薪日结"];
         for (int i = 0; i < 3; i ++) {
             
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * width + i * 7.0, 0, width, height)];
@@ -42,6 +43,7 @@
             [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
             btn.backgroundColor = COLOR_RANDOM;
             [_topView addSubview:btn];
+            [btn setImage:[UIImage imageNamed:imagesNameArr[i]] forState:UIControlStateNormal];
         }
     }
     
@@ -61,8 +63,11 @@
         CGFloat bannerWidth = width - 14 * 2.0;
         for (int i = 0; i < 3; i ++) {
             
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(14 + i * WIDTH_OF_SCREEN, 0, bannerWidth, height)];
+            UIButton *view = [[UIButton alloc]initWithFrame:CGRectMake(14 + i * WIDTH_OF_SCREEN, 0, bannerWidth, height)];
             view.backgroundColor = COLOR_RANDOM;
+            [view setImage:[UIImage imageNamed:@"BANNER _ 长图.png"] forState:UIControlStateNormal];
+            [view addTarget:self action:@selector(bannerAction:) forControlEvents:UIControlEventTouchUpInside];
+            view.tag = 200 + i;
             [_bannerScrollView addSubview:view];
             sizeWidth = view.right;
         }
@@ -80,6 +85,11 @@
 - (void)topThreeAction:(UIButton *)sender
 {
     NSLog(@"top: %ld",sender.tag);
+}
+
+- (void)bannerAction:(UIButton *)sender
+{
+    NSLog(@"banner: %ld",sender.tag);
 }
 
 @end

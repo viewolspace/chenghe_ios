@@ -22,6 +22,24 @@
 		0418F40C22E6B07D00B50063 /* PTChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0418F40A22E6B07D00B50063 /* PTChoiceCell.xib */; };
 		0418F41222E6B62F00B50063 /* PTWholeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F41122E6B62F00B50063 /* PTWholeViewController.m */; };
 		0418F41522E6B66000B50063 /* PTWholeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F41422E6B66000B50063 /* PTWholeHeaderView.m */; };
+		0418F41C22E6B93B00B50063 /* BANNER _ 长图@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41622E6B93B00B50063 /* BANNER _ 长图@3x.png */; };
+		0418F41D22E6B93B00B50063 /* 全部_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41722E6B93B00B50063 /* 全部_down@2x.png */; };
+		0418F41E22E6B93B00B50063 /* 全部_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41822E6B93B00B50063 /* 全部_down@3x.png */; };
+		0418F41F22E6B93B00B50063 /* BANNER _ 长图.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41922E6B93B00B50063 /* BANNER _ 长图.png */; };
+		0418F42022E6B93B00B50063 /* 全部_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41A22E6B93B00B50063 /* 全部_down.png */; };
+		0418F42122E6B93B00B50063 /* BANNER _ 长图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F41B22E6B93B00B50063 /* BANNER _ 长图@2x.png */; };
+		0418F42B22E6BA3400B50063 /* 高薪日结.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42222E6BA3300B50063 /* 高薪日结.png */; };
+		0418F42C22E6BA3400B50063 /* 简单易做@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42322E6BA3300B50063 /* 简单易做@2x.png */; };
+		0418F42D22E6BA3400B50063 /* 简单易做.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42422E6BA3300B50063 /* 简单易做.png */; };
+		0418F42E22E6BA3400B50063 /* 高薪日结@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42522E6BA3300B50063 /* 高薪日结@3x.png */; };
+		0418F42F22E6BA3400B50063 /* 宅家赚钱@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42622E6BA3400B50063 /* 宅家赚钱@2x.png */; };
+		0418F43022E6BA3400B50063 /* 宅家赚钱@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42722E6BA3400B50063 /* 宅家赚钱@3x.png */; };
+		0418F43122E6BA3400B50063 /* 高薪日结@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42822E6BA3400B50063 /* 高薪日结@2x.png */; };
+		0418F43222E6BA3400B50063 /* 宅家赚钱.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42922E6BA3400B50063 /* 宅家赚钱.png */; };
+		0418F43322E6BA3400B50063 /* 简单易做@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F42A22E6BA3400B50063 /* 简单易做@3x.png */; };
+		0418F43722E6BAE400B50063 /* 精选_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43422E6BAE400B50063 /* 精选_down@2x.png */; };
+		0418F43822E6BAE400B50063 /* 精选_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43522E6BAE400B50063 /* 精选_down.png */; };
+		0418F43922E6BAE400B50063 /* 精选_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43622E6BAE400B50063 /* 精选_down@3x.png */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
@@ -102,6 +120,24 @@
 		0418F41122E6B62F00B50063 /* PTWholeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTWholeViewController.m; sourceTree = "<group>"; };
 		0418F41322E6B66000B50063 /* PTWholeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTWholeHeaderView.h; sourceTree = "<group>"; };
 		0418F41422E6B66000B50063 /* PTWholeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTWholeHeaderView.m; sourceTree = "<group>"; };
+		0418F41622E6B93B00B50063 /* BANNER _ 长图@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BANNER _ 长图@3x.png"; sourceTree = "<group>"; };
+		0418F41722E6B93B00B50063 /* 全部_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部_down@2x.png"; sourceTree = "<group>"; };
+		0418F41822E6B93B00B50063 /* 全部_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部_down@3x.png"; sourceTree = "<group>"; };
+		0418F41922E6B93B00B50063 /* BANNER _ 长图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BANNER _ 长图.png"; sourceTree = "<group>"; };
+		0418F41A22E6B93B00B50063 /* 全部_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "全部_down.png"; sourceTree = "<group>"; };
+		0418F41B22E6B93B00B50063 /* BANNER _ 长图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BANNER _ 长图@2x.png"; sourceTree = "<group>"; };
+		0418F42222E6BA3300B50063 /* 高薪日结.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "高薪日结.png"; sourceTree = "<group>"; };
+		0418F42322E6BA3300B50063 /* 简单易做@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "简单易做@2x.png"; sourceTree = "<group>"; };
+		0418F42422E6BA3300B50063 /* 简单易做.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "简单易做.png"; sourceTree = "<group>"; };
+		0418F42522E6BA3300B50063 /* 高薪日结@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "高薪日结@3x.png"; sourceTree = "<group>"; };
+		0418F42622E6BA3400B50063 /* 宅家赚钱@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "宅家赚钱@2x.png"; sourceTree = "<group>"; };
+		0418F42722E6BA3400B50063 /* 宅家赚钱@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "宅家赚钱@3x.png"; sourceTree = "<group>"; };
+		0418F42822E6BA3400B50063 /* 高薪日结@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "高薪日结@2x.png"; sourceTree = "<group>"; };
+		0418F42922E6BA3400B50063 /* 宅家赚钱.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "宅家赚钱.png"; sourceTree = "<group>"; };
+		0418F42A22E6BA3400B50063 /* 简单易做@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "简单易做@3x.png"; sourceTree = "<group>"; };
+		0418F43422E6BAE400B50063 /* 精选_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down@2x.png"; sourceTree = "<group>"; };
+		0418F43522E6BAE400B50063 /* 精选_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down.png"; sourceTree = "<group>"; };
+		0418F43622E6BAE400B50063 /* 精选_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down@3x.png"; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -366,6 +402,15 @@
 		04E8C37722E55C1400B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0418F42222E6BA3300B50063 /* 高薪日结.png */,
+				0418F42822E6BA3400B50063 /* 高薪日结@2x.png */,
+				0418F42522E6BA3300B50063 /* 高薪日结@3x.png */,
+				0418F42422E6BA3300B50063 /* 简单易做.png */,
+				0418F42322E6BA3300B50063 /* 简单易做@2x.png */,
+				0418F42A22E6BA3400B50063 /* 简单易做@3x.png */,
+				0418F42922E6BA3400B50063 /* 宅家赚钱.png */,
+				0418F42622E6BA3400B50063 /* 宅家赚钱@2x.png */,
+				0418F42722E6BA3400B50063 /* 宅家赚钱@3x.png */,
 				0418F3EC22E697D100B50063 /* 搜索图标.png */,
 				0418F3EE22E697D100B50063 /* 搜索图标@2x.png */,
 				0418F3ED22E697D100B50063 /* 搜索图标@3x.png */,
@@ -385,6 +430,9 @@
 		04E8C38022E55CBB00B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0418F43522E6BAE400B50063 /* 精选_down.png */,
+				0418F43422E6BAE400B50063 /* 精选_down@2x.png */,
+				0418F43622E6BAE400B50063 /* 精选_down@3x.png */,
 				04E8C38122E55CCE00B4FF6D /* 精选.png */,
 				04E8C38322E55CCE00B4FF6D /* 精选@2x.png */,
 				04E8C38222E55CCE00B4FF6D /* 精选@3x.png */,
@@ -395,6 +443,12 @@
 		04E8C38722E55CDA00B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0418F41A22E6B93B00B50063 /* 全部_down.png */,
+				0418F41722E6B93B00B50063 /* 全部_down@2x.png */,
+				0418F41822E6B93B00B50063 /* 全部_down@3x.png */,
+				0418F41922E6B93B00B50063 /* BANNER _ 长图.png */,
+				0418F41B22E6B93B00B50063 /* BANNER _ 长图@2x.png */,
+				0418F41622E6B93B00B50063 /* BANNER _ 长图@3x.png */,
 				04E8C39722E55D1700B4FF6D /* 全部.png */,
 				04E8C39622E55D1600B4FF6D /* 全部@2x.png */,
 				04E8C39522E55D1600B4FF6D /* 全部@3x.png */,
@@ -563,42 +617,60 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E8C39222E55D0700B4FF6D /* 我的.png in Resources */,
+				0418F42B22E6BA3400B50063 /* 高薪日结.png in Resources */,
 				04E8C3FC22E5B83800B4FF6D /* 认证图标@3x.png in Resources */,
 				04E8C3E022E5AB3100B4FF6D /* PTMineCell.xib in Resources */,
 				04E8C39422E55D0700B4FF6D /* 我的@3x.png in Resources */,
+				0418F41F22E6B93B00B50063 /* BANNER _ 长图.png in Resources */,
 				04E8C3F222E5ADAC00B4FF6D /* PTDetailContentCell.xib in Resources */,
 				0418F40C22E6B07D00B50063 /* PTChoiceCell.xib in Resources */,
 				04E8C38422E55CCE00B4FF6D /* 精选.png in Resources */,
+				0418F41E22E6B93B00B50063 /* 全部_down@3x.png in Resources */,
+				0418F42022E6B93B00B50063 /* 全部_down.png in Resources */,
+				0418F43222E6BA3400B50063 /* 宅家赚钱.png in Resources */,
 				04E8C39922E55D1700B4FF6D /* 全部@2x.png in Resources */,
 				04E8C3C822E5A2F900B4FF6D /* 立即查看按钮.png in Resources */,
 				04E8C3A222E5710200B4FF6D /* 我的选中@2x.png in Resources */,
+				0418F42C22E6BA3400B50063 /* 简单易做@2x.png in Resources */,
 				04E8C35722E5459900B4FF6D /* LaunchScreen.storyboard in Resources */,
 				04E8C3FD22E5B83800B4FF6D /* 认证图标@2x.png in Resources */,
 				04E8C39322E55D0700B4FF6D /* 我的@2x.png in Resources */,
+				0418F43122E6BA3400B50063 /* 高薪日结@2x.png in Resources */,
 				04E8C35422E5459900B4FF6D /* Assets.xcassets in Resources */,
 				04E8C3D122E5A91600B4FF6D /* PTHomePageCell.xib in Resources */,
 				04E8C3AC22E5742400B4FF6D /* rightArrow@2x.png in Resources */,
+				0418F42122E6B93B00B50063 /* BANNER _ 长图@2x.png in Resources */,
 				04E8C3C622E5A2F900B4FF6D /* 立即查看按钮@2x.png in Resources */,
 				04E8C37B22E55C2F00B4FF6D /* 首页@3x.png in Resources */,
 				0418F3F122E697D100B50063 /* 搜索图标@2x.png in Resources */,
 				04E8C36822E547BD00B4FF6D /* PTTabbarViewController.xib in Resources */,
+				0418F43822E6BAE400B50063 /* 精选_down.png in Resources */,
+				0418F42F22E6BA3400B50063 /* 宅家赚钱@2x.png in Resources */,
 				04E8C39A22E55D1700B4FF6D /* 全部.png in Resources */,
 				04E8C38622E55CCE00B4FF6D /* 精选@2x.png in Resources */,
 				04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */,
 				04E8C3C722E5A2F900B4FF6D /* 立即查看按钮@3x.png in Resources */,
 				0418F3EF22E697D100B50063 /* 搜索图标.png in Resources */,
 				04E8C3B622E5878300B4FF6D /* 关闭_白色@2x.png in Resources */,
+				0418F41D22E6B93B00B50063 /* 全部_down@2x.png in Resources */,
+				0418F42E22E6BA3400B50063 /* 高薪日结@3x.png in Resources */,
+				0418F43322E6BA3400B50063 /* 简单易做@3x.png in Resources */,
+				0418F43722E6BAE400B50063 /* 精选_down@2x.png in Resources */,
 				04E8C3AD22E5742400B4FF6D /* rightArrow@3x.png in Resources */,
 				04E8C3FB22E5B83800B4FF6D /* 认证图标.png in Resources */,
+				0418F43922E6BAE400B50063 /* 精选_down@3x.png in Resources */,
 				04E8C3F722E5ADD900B4FF6D /* PTDetailCompanyCell.xib in Resources */,
+				0418F43022E6BA3400B50063 /* 宅家赚钱@3x.png in Resources */,
 				04E8C3B722E5878300B4FF6D /* 关闭_白色@3x.png in Resources */,
 				04E8C3A322E5710200B4FF6D /* 我的选中@3x.png in Resources */,
 				04E8C3ED22E5AC8900B4FF6D /* PTDetailTitleCell.xib in Resources */,
 				04E8C39822E55D1700B4FF6D /* 全部@3x.png in Resources */,
 				04E8C3A422E5710200B4FF6D /* 我的选中.png in Resources */,
+				0418F41C22E6B93B00B50063 /* BANNER _ 长图@3x.png in Resources */,
 				04E8C37D22E55C2F00B4FF6D /* 首页.png in Resources */,
 				0418F3F022E697D100B50063 /* 搜索图标@3x.png in Resources */,
 				04E8C38522E55CCE00B4FF6D /* 精选@3x.png in Resources */,
+				0418F42D22E6BA3400B50063 /* 简单易做.png in Resources */,
 				04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */,
 				04E8C37C22E55C2F00B4FF6D /* 首页@2x.png in Resources */,
 			);

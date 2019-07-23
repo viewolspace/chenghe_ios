@@ -33,7 +33,7 @@
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, height)];
         _topView.backgroundColor = [UIColor yellowColor];
         [self addSubview:_topView];
-        
+        NSArray *imagesNameArr = @[@"宅家赚钱",@"简单易做",@"高薪日结"];
         for (int i = 0; i < 3; i ++) {
             
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * width + i * 7.0, 0, width, height)];
@@ -42,6 +42,7 @@
             [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
             btn.backgroundColor = COLOR_RANDOM;
             [_topView addSubview:btn];
+            [btn setImage:[UIImage imageNamed:imagesNameArr[i]] forState:UIControlStateNormal];
         }
     }
     
@@ -80,6 +81,7 @@
             bg.tag = 300 + i;
             [bg addTarget:self action:@selector(hotAction:) forControlEvents:UIControlEventTouchUpInside];
             [_actionScrollView addSubview:bg];
+            [bg setImage:[UIImage imageNamed:@"BANNER _ 长图.png"] forState:UIControlStateNormal];
             scrollSizeWidth = bg.right + 14.;
         }
         

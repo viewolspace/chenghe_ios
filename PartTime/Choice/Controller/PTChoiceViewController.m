@@ -9,6 +9,7 @@
 #import "PTChoiceViewController.h"
 #import "PTChoiceHeaderView.h"
 #import "PTChoiceCell.h"
+#import "PTDetailViewController.h"
 @interface PTChoiceViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
 {
     UITableView *_tableView;
@@ -102,6 +103,15 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return self.headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.hidesBottomBarWhenPushed = YES;
+    PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - searchViewDelegate -

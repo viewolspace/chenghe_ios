@@ -58,7 +58,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3AP-XE-NAg"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="全部" image="全部.png" id="xkW-1l-wT8"/>
+                    <tabBarItem key="tabBarItem" title="全部" image="全部.png" selectedImage="全部_down.png" id="xkW-1l-wT8"/>
                     <navigationItem key="navigationItem" id="iUA-G9-Wd4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbQ-TE-sLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,7 +68,6 @@
         <!--Item-->
         <scene sceneID="cCJ-bg-O8c">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nbb-ax-oJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="0Kr-vd-sRz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="cT7-y5-ems"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rle-v9-zQt">
@@ -79,6 +78,7 @@
                         <segue destination="vfa-vX-iE4" kind="relationship" relationship="rootViewController" id="kEs-e9-iTY"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nbb-ax-oJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="251" y="-198"/>
         </scene>
@@ -160,7 +160,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Tqz-xR-9eW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="精选" image="精选.png" id="d88-YK-jg6"/>
+                    <tabBarItem key="tabBarItem" title="精选" image="精选.png" selectedImage="精选_down.png" id="d88-YK-jg6"/>
                     <navigationItem key="navigationItem" id="DQ5-x2-MZE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8P-Ju-ndC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,9 +170,11 @@
     </scenes>
     <resources>
         <image name="全部.png" width="24" height="19.5"/>
+        <image name="全部_down.png" width="24" height="19.5"/>
         <image name="我的.png" width="24" height="19.5"/>
         <image name="我的选中.png" width="24" height="19.5"/>
         <image name="精选.png" width="24" height="19.5"/>
+        <image name="精选_down.png" width="24" height="19.5"/>
         <image name="首页.png" width="24" height="19.5"/>
     </resources>
 </document>
