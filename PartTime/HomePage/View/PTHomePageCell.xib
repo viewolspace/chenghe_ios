@@ -28,36 +28,46 @@
                         <state key="normal" title="立即查看" image="立即查看按钮.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信在线兼职，随时随地做，秒结" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfN-FB-eTe">
-                        <rect key="frame" x="34" y="31" width="221" height="38.5"/>
+                        <rect key="frame" x="14" y="31" width="241" height="38.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jr-WK-JeU">
-                        <rect key="frame" x="34" y="81.5" width="221" height="27.5"/>
+                        <rect key="frame" x="14" y="81.5" width="241" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日结 | 长期 | 男女不限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-1L-1ee">
-                        <rect key="frame" x="34" y="121" width="221" height="16"/>
+                        <rect key="frame" x="14" y="121" width="241" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.72156862745098038" green="0.71764705882352942" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8q-7x-eB2">
+                        <rect key="frame" x="14" y="198.5" width="347" height="1"/>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.95294117647058818" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="QnS-Fo-8WY"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Y97-1L-1ee" firstAttribute="top" secondItem="6Jr-WK-JeU" secondAttribute="bottom" constant="12" id="4lx-8A-eda"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="trailing" constant="20" id="5hL-Nb-NDY"/>
-                    <constraint firstItem="6Jr-WK-JeU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="BoA-17-zdw"/>
+                    <constraint firstItem="R8q-7x-eB2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="CFk-Rn-rTW"/>
                     <constraint firstItem="lfN-FB-eTe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="G7l-TN-RcJ"/>
+                    <constraint firstItem="Y97-1L-1ee" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="leading" id="PbV-RR-y46"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="9" id="QFi-uB-rUd"/>
-                    <constraint firstItem="lfN-FB-eTe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="XJn-qk-wvc"/>
+                    <constraint firstAttribute="bottom" secondItem="R8q-7x-eB2" secondAttribute="bottom" id="Zbd-0l-pcR"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="4" id="dGS-mD-BNh"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="leading" secondItem="Y97-1L-1ee" secondAttribute="trailing" constant="20" id="eha-2L-pcl"/>
+                    <constraint firstAttribute="trailing" secondItem="R8q-7x-eB2" secondAttribute="trailing" constant="14" id="jYM-LT-lus"/>
                     <constraint firstItem="6Jr-WK-JeU" firstAttribute="top" secondItem="lfN-FB-eTe" secondAttribute="bottom" constant="12" id="rAc-WH-GEe"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="leading" secondItem="6Jr-WK-JeU" secondAttribute="trailing" constant="20" id="ukA-dE-0JQ"/>
-                    <constraint firstItem="Y97-1L-1ee" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="xSc-DC-sYI"/>
+                    <constraint firstItem="6Jr-WK-JeU" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="leading" id="ygA-Zk-bdr"/>
+                    <constraint firstItem="R8q-7x-eB2" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="leading" id="ym2-6t-6ub"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

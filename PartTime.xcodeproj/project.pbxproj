@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0418F3E422E692AE00B50063 /* PTSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3E322E692AE00B50063 /* PTSearchView.m */; };
+		0418F3E822E692D800B50063 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3E722E692D800B50063 /* BaseViewController.m */; };
+		0418F3EB22E694A500B50063 /* PTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3EA22E694A500B50063 /* PTManager.m */; };
+		0418F3EF22E697D100B50063 /* 搜索图标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F3EC22E697D100B50063 /* 搜索图标.png */; };
+		0418F3F022E697D100B50063 /* 搜索图标@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F3ED22E697D100B50063 /* 搜索图标@3x.png */; };
+		0418F3F122E697D100B50063 /* 搜索图标@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F3EE22E697D100B50063 /* 搜索图标@2x.png */; };
+		0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
@@ -65,6 +72,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0418F3E222E692AE00B50063 /* PTSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTSearchView.h; sourceTree = "<group>"; };
+		0418F3E322E692AE00B50063 /* PTSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTSearchView.m; sourceTree = "<group>"; };
+		0418F3E622E692D800B50063 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		0418F3E722E692D800B50063 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0418F3E922E694A500B50063 /* PTManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTManager.h; sourceTree = "<group>"; };
+		0418F3EA22E694A500B50063 /* PTManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTManager.m; sourceTree = "<group>"; };
+		0418F3EC22E697D100B50063 /* 搜索图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索图标.png"; sourceTree = "<group>"; };
+		0418F3ED22E697D100B50063 /* 搜索图标@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索图标@3x.png"; sourceTree = "<group>"; };
+		0418F3EE22E697D100B50063 /* 搜索图标@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索图标@2x.png"; sourceTree = "<group>"; };
+		0418F3F222E69DC100B50063 /* PTHomePageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTHomePageHeaderView.h; sourceTree = "<group>"; };
+		0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTHomePageHeaderView.m; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +175,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0418F3E522E692CC00B50063 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0418F3E622E692D800B50063 /* BaseViewController.h */,
+				0418F3E722E692D800B50063 /* BaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		04E8C33E22E5459900B4FF6D = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +205,7 @@
 		04E8C34922E5459900B4FF6D /* PartTime */ = {
 			isa = PBXGroup;
 			children = (
+				0418F3E522E692CC00B50063 /* Base */,
 				04E8C37522E549C300B4FF6D /* Tool */,
 				04E8C36322E5477600B4FF6D /* Mine */,
 				04E8C36222E5476000B4FF6D /* Whole */,
@@ -253,6 +281,8 @@
 				04E8C39B22E56DA400B4FF6D /* PTPch.pch */,
 				04E8C39C22E56F1A00B4FF6D /* PTTool.h */,
 				04E8C39D22E56F1A00B4FF6D /* PTTool.m */,
+				0418F3E922E694A500B50063 /* PTManager.h */,
+				0418F3EA22E694A500B50063 /* PTManager.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -260,6 +290,9 @@
 		04E8C37722E55C1400B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0418F3EC22E697D100B50063 /* 搜索图标.png */,
+				0418F3EE22E697D100B50063 /* 搜索图标@2x.png */,
+				0418F3ED22E697D100B50063 /* 搜索图标@3x.png */,
 				04E8C3F822E5B83700B4FF6D /* 认证图标.png */,
 				04E8C3FA22E5B83800B4FF6D /* 认证图标@2x.png */,
 				04E8C3F922E5B83700B4FF6D /* 认证图标@3x.png */,
@@ -323,18 +356,22 @@
 		04E8C3CC22E5A8FD00B4FF6D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				04E8C3CD22E5A91600B4FF6D /* PTHomePageCell.h */,
-				04E8C3CE22E5A91600B4FF6D /* PTHomePageCell.m */,
-				04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */,
-				04E8C3E922E5AC8900B4FF6D /* PTDetailTitleCell.h */,
-				04E8C3EA22E5AC8900B4FF6D /* PTDetailTitleCell.m */,
-				04E8C3EB22E5AC8900B4FF6D /* PTDetailTitleCell.xib */,
-				04E8C3EE22E5ADAC00B4FF6D /* PTDetailContentCell.h */,
-				04E8C3EF22E5ADAC00B4FF6D /* PTDetailContentCell.m */,
-				04E8C3F022E5ADAC00B4FF6D /* PTDetailContentCell.xib */,
 				04E8C3F322E5ADD900B4FF6D /* PTDetailCompanyCell.h */,
 				04E8C3F422E5ADD900B4FF6D /* PTDetailCompanyCell.m */,
 				04E8C3F522E5ADD900B4FF6D /* PTDetailCompanyCell.xib */,
+				04E8C3EE22E5ADAC00B4FF6D /* PTDetailContentCell.h */,
+				04E8C3EF22E5ADAC00B4FF6D /* PTDetailContentCell.m */,
+				04E8C3F022E5ADAC00B4FF6D /* PTDetailContentCell.xib */,
+				04E8C3E922E5AC8900B4FF6D /* PTDetailTitleCell.h */,
+				04E8C3EA22E5AC8900B4FF6D /* PTDetailTitleCell.m */,
+				04E8C3EB22E5AC8900B4FF6D /* PTDetailTitleCell.xib */,
+				04E8C3CD22E5A91600B4FF6D /* PTHomePageCell.h */,
+				04E8C3CE22E5A91600B4FF6D /* PTHomePageCell.m */,
+				04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */,
+				0418F3F222E69DC100B50063 /* PTHomePageHeaderView.h */,
+				0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */,
+				0418F3E222E692AE00B50063 /* PTSearchView.h */,
+				0418F3E322E692AE00B50063 /* PTSearchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -484,11 +521,13 @@
 				04E8C3AC22E5742400B4FF6D /* rightArrow@2x.png in Resources */,
 				04E8C3C622E5A2F900B4FF6D /* 立即查看按钮@2x.png in Resources */,
 				04E8C37B22E55C2F00B4FF6D /* 首页@3x.png in Resources */,
+				0418F3F122E697D100B50063 /* 搜索图标@2x.png in Resources */,
 				04E8C36822E547BD00B4FF6D /* PTTabbarViewController.xib in Resources */,
 				04E8C39A22E55D1700B4FF6D /* 全部.png in Resources */,
 				04E8C38622E55CCE00B4FF6D /* 精选@2x.png in Resources */,
 				04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */,
 				04E8C3C722E5A2F900B4FF6D /* 立即查看按钮@3x.png in Resources */,
+				0418F3EF22E697D100B50063 /* 搜索图标.png in Resources */,
 				04E8C3B622E5878300B4FF6D /* 关闭_白色@2x.png in Resources */,
 				04E8C3AD22E5742400B4FF6D /* rightArrow@3x.png in Resources */,
 				04E8C3FB22E5B83800B4FF6D /* 认证图标.png in Resources */,
@@ -499,6 +538,7 @@
 				04E8C39822E55D1700B4FF6D /* 全部@3x.png in Resources */,
 				04E8C3A422E5710200B4FF6D /* 我的选中.png in Resources */,
 				04E8C37D22E55C2F00B4FF6D /* 首页.png in Resources */,
+				0418F3F022E697D100B50063 /* 搜索图标@3x.png in Resources */,
 				04E8C38522E55CCE00B4FF6D /* 精选@3x.png in Resources */,
 				04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */,
 				04E8C37C22E55C2F00B4FF6D /* 首页@2x.png in Resources */,
@@ -540,6 +580,7 @@
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
 				04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */,
 				04E8C3EC22E5AC8900B4FF6D /* PTDetailTitleCell.m in Sources */,
+				0418F3EB22E694A500B50063 /* PTManager.m in Sources */,
 				04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */,
 				04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */,
 				04E8C3F622E5ADD900B4FF6D /* PTDetailCompanyCell.m in Sources */,
@@ -547,6 +588,7 @@
 				04E8C3BC22E5924B00B4FF6D /* NSString+validate.m in Sources */,
 				04E8C37122E5492200B4FF6D /* PTWholeViewController.m in Sources */,
 				04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */,
+				0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */,
 				04E8C3D522E5A93600B4FF6D /* PTHomePageModel.m in Sources */,
 				04E8C3BD22E5924B00B4FF6D /* NSString+Java.m in Sources */,
 				04E8C3E822E5ABC100B4FF6D /* PTDetailViewController.m in Sources */,
@@ -555,6 +597,8 @@
 				04E8C3D922E5A96200B4FF6D /* PTHomePageViewController.m in Sources */,
 				04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */,
 				04E8C39E22E56F1A00B4FF6D /* PTTool.m in Sources */,
+				0418F3E422E692AE00B50063 /* PTSearchView.m in Sources */,
+				0418F3E822E692D800B50063 /* BaseViewController.m in Sources */,
 				04E8C3B222E586D500B4FF6D /* PTLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

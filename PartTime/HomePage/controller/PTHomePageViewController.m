@@ -9,10 +9,14 @@
 #import "PTHomePageViewController.h"
 #import "PTHomePageCell.h"
 #import "PTDetailViewController.h"
-@interface PTHomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "PTHomePageHeaderView.h"
+@interface PTHomePageViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
 {
     UITableView *_tableView;
 }
+
+@property (nonatomic,strong)PTHomePageHeaderView *headerView;
+
 @end
 
 @implementation PTHomePageViewController
@@ -27,6 +31,8 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    [self searchView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -38,9 +44,13 @@
 
 - (void)createTabelView
 {
-    CGFloat tabbarHeight = self.navigationController.tabBarController.tabBar.height;
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - tabbarHeight) style:UITableViewStyleGrouped];
+    CGFloat statusBarHeight = [PTManager shareManager].statusBarHeight;
+    CGFloat tabbarHieght = [PTManager shareManager].tabbarHeight;
+    if (statusBarHeight < 27) {
+        statusBarHeight = 27;
+    }
+    //44上边搜索框高度
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, statusBarHeight + 44.f, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - statusBarHeight - 44 - tabbarHieght) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
@@ -74,7 +84,7 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    return 150;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -84,7 +94,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 200;
+    return 290;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -94,7 +104,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return nil;
+    return self.headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,6 +114,21 @@
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - searchViewDelegate -
+- (void)searchBtnTapAction
+{
+    NSLog(@"搜索按钮点击");
+}
+
+#pragma mark - getter and setter
+- (PTHomePageHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = [[PTHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, 290)];
+    }
+    return _headerView;
 }
 
 @end

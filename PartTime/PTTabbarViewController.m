@@ -15,8 +15,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+   
+    //初始化
+    PTManager *manager = [PTManager shareManager];
+    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
+    manager.statusBarHeight = statusRect.size.height;
+    manager.tabbarHeight    = self.tabBar.height;
 }
+
+
 
 /*
 #pragma mark - Navigation

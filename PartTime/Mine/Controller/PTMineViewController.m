@@ -51,7 +51,6 @@
 - (void)createTabelView
 {
     //获取状态栏的rect
-    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;

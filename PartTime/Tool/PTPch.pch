@@ -10,12 +10,16 @@
 #define PTPch_pch
 
 
-
+/* 宏定义 */
 // screen的宽度
 #define WIDTH_OF_SCREEN [[UIScreen mainScreen] bounds].size.width
 // screen的高度
 #define HEIGHT_OF_SCREEN [[UIScreen mainScreen] bounds].size.height
-
+#define COLOR_RANDOM                                                                               \
+[UIColor colorWithRed:random() % 255 / 255.f                                                     \
+green:random() % 255 / 255.f                                                     \
+blue:random() % 255 / 255.f                                                     \
+alpha:1]
 
 
 /* 常用工具引入 */
@@ -24,6 +28,7 @@
 #import "NSString+Java.h"
 #import "NSString+validate.h"
 #import "AFNetworking.h"
+#import "PTManager.h"
 
 
 #endif /* PTPch_pch */
