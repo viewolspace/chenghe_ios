@@ -69,14 +69,14 @@
 {
     if (!_actionScrollView) {
         CGFloat height = 120;
-        CGFloat page = 14;
+        CGFloat page = 0;
         _actionScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(page, self.actionLabel.bottom + 24, WIDTH_OF_SCREEN - page, height)];
         _actionScrollView.delegate = self;
         [self addSubview:_actionScrollView];
         
         CGFloat scrollSizeWidth = 0;
         for (int i = 0; i < 10; i ++) {
-            UIButton *bg = [[UIButton alloc] initWithFrame:CGRectMake(i * 207 + 8 * i, 0, 207, height)];
+            UIButton *bg = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * 207 + 8 * i, 0, 207, height)];
             bg.backgroundColor = COLOR_RANDOM;
             bg.tag = 300 + i;
             [bg addTarget:self action:@selector(hotAction:) forControlEvents:UIControlEventTouchUpInside];

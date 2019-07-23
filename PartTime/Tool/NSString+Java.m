@@ -7,7 +7,6 @@
 //
 
 #import "NSString+Java.h"
-
 @implementation NSString (Java)
 
 #define JavaNotFound -1

@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+//#import <UMCommon/UMCommon.h>
+#import <UMMobClick/MobClick.h>
 @interface AppDelegate ()
 
 @end
@@ -16,8 +17,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-        
+
+
+    
+    // 版本号
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+
+    
+    // 日志（真实环境注意NO）
+    [MobClick setCrashReportEnabled:YES];
+    [MobClick setLogEnabled:YES];
+    [MobClick setEncryptEnabled:YES];
+    [MobClick setLogSendInterval:300.];
+   
+    UMConfigInstance.appKey = UMENG_APPKEY;
+    UMConfigInstance.channelId = Ument_channelId;
+    UMConfigInstance.ePolicy = (ReportPolicy)REALTIME;
+    
+    // 开启
+    [MobClick startWithConfigure:[UMAnalyticsConfig sharedInstance]];
+
     return YES;
 }
 
