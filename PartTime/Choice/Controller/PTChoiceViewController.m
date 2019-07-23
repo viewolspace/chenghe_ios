@@ -1,29 +1,32 @@
 //
-//  PTHomePageViewController.m
+//  PTChoiceViewController.m
 //  PartTime
 //
 //  Created by Mac on 2019/7/22.
 //  Copyright © 2019 Mac. All rights reserved.
 //
 
-#import "PTHomePageViewController.h"
-#import "PTHomePageCell.h"
-#import "PTDetailViewController.h"
-#import "PTHomePageHeaderView.h"
-@interface PTHomePageViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
+#import "PTChoiceViewController.h"
+#import "PTChoiceHeaderView.h"
+#import "PTChoiceCell.h"
+@interface PTChoiceViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
 {
     UITableView *_tableView;
+    CGFloat      _headerHeight;
 }
 
-@property (nonatomic,strong)PTHomePageHeaderView *headerView;
+@property (nonatomic,strong)PTChoiceHeaderView *headerView;
 
 @end
 
-@implementation PTHomePageViewController
+@implementation PTChoiceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _headerHeight = 200;
+    
+    [self searchView];
     [self createTabelView];
     
     if (@available(iOS 11.0,*)) {
@@ -31,8 +34,7 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    [self searchView];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -44,28 +46,23 @@
 
 - (void)createTabelView
 {
-    CGFloat statusBarHeight = [PTManager shareManager].statusBarHeight;
     CGFloat tabbarHieght = [PTManager shareManager].tabbarHeight;
-    if (statusBarHeight < 27) {
-        statusBarHeight = 27;
-    }
-    //44上边搜索框高度
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, statusBarHeight + 44.f, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - statusBarHeight - 44 - tabbarHieght) style:UITableViewStyleGrouped];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchView.bottom, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - tabbarHieght - self.searchView.bottom) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_tableView];
     
-    [_tableView registerNib:[UINib nibWithNibName:@"PTHomePageCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass([PTHomePageCell class])];
+    [_tableView registerNib:[UINib nibWithNibName:@"PTChoiceCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass([PTChoiceCell class])];
+    
 }
 
 #pragma mark ----tableViewDataSource----
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    PTHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTHomePageCell class])];
-    
+    PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
     return cell;
 }
 
@@ -84,7 +81,7 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 250.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -94,7 +91,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 290;
+    return _headerHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -107,15 +104,6 @@
     return self.headerView;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.hidesBottomBarWhenPushed = YES;
-    PTDetailViewController *vc = [[PTDetailViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 #pragma mark - searchViewDelegate -
 - (void)searchBtnTapAction
 {
@@ -123,11 +111,13 @@
 }
 
 #pragma mark - getter and setter
-- (PTHomePageHeaderView *)headerView
+- (PTChoiceHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[PTHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, 290)];
+        
+        _headerView = [[PTChoiceHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
     }
+    
     return _headerView;
 }
 

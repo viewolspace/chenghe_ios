@@ -1,5 +1,5 @@
 //
-//  BaseViewController.h
+//  PTChoiceHeaderView.h
 //  PartTime
 //
 //  Created by Mac on 2019/7/23.
@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PTSearchView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseViewController : UIViewController<PTSearchViewDelegate>
+@interface PTChoiceHeaderView : UIView
 
-@property (nonatomic,strong)PTSearchView *searchView;
-
+@property (nonatomic,strong)UIScrollView *bannerScrollView;
+@property (nonatomic,strong)UILabel *choiceLabel;
 @end
 
 NS_ASSUME_NONNULL_END

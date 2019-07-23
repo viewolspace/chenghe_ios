@@ -37,4 +37,7 @@
     return _searchView;
 }
 
+- (void)searchBtnTapAction
+{}
+
 @end

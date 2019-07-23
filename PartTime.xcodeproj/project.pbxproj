@@ -14,6 +14,12 @@
 		0418F3F022E697D100B50063 /* 搜索图标@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F3ED22E697D100B50063 /* 搜索图标@3x.png */; };
 		0418F3F122E697D100B50063 /* 搜索图标@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F3EE22E697D100B50063 /* 搜索图标@2x.png */; };
 		0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */; };
+		0418F3FE22E6AA9900B50063 /* PTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3FA22E6AA9900B50063 /* PTHomePageViewController.m */; };
+		0418F3FF22E6AA9900B50063 /* PTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F3FB22E6AA9900B50063 /* PTDetailViewController.m */; };
+		0418F40422E6AAC500B50063 /* PTChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F40322E6AAC500B50063 /* PTChoiceViewController.m */; };
+		0418F40722E6AC6100B50063 /* PTChoiceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F40622E6AC6100B50063 /* PTChoiceHeaderView.m */; };
+		0418F40B22E6B07D00B50063 /* PTChoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0418F40922E6B07D00B50063 /* PTChoiceCell.m */; };
+		0418F40C22E6B07D00B50063 /* PTChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0418F40A22E6B07D00B50063 /* PTChoiceCell.xib */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
@@ -22,7 +28,6 @@
 		04E8C35A22E5459900B4FF6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C35922E5459900B4FF6D /* main.m */; };
 		04E8C36722E547BD00B4FF6D /* PTTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C36522E547BD00B4FF6D /* PTTabbarViewController.m */; };
 		04E8C36822E547BD00B4FF6D /* PTTabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C36622E547BD00B4FF6D /* PTTabbarViewController.xib */; };
-		04E8C36E22E5491700B4FF6D /* PTChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C36D22E5491700B4FF6D /* PTChoiceViewController.m */; };
 		04E8C37122E5492200B4FF6D /* PTWholeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C37022E5492200B4FF6D /* PTWholeViewController.m */; };
 		04E8C37B22E55C2F00B4FF6D /* 首页@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C37822E55C2F00B4FF6D /* 首页@3x.png */; };
 		04E8C37C22E55C2F00B4FF6D /* 首页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C37922E55C2F00B4FF6D /* 首页@2x.png */; };
@@ -54,11 +59,9 @@
 		04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3CE22E5A91600B4FF6D /* PTHomePageCell.m */; };
 		04E8C3D122E5A91600B4FF6D /* PTHomePageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */; };
 		04E8C3D522E5A93600B4FF6D /* PTHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3D422E5A93600B4FF6D /* PTHomePageModel.m */; };
-		04E8C3D922E5A96200B4FF6D /* PTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3D822E5A96200B4FF6D /* PTHomePageViewController.m */; };
 		04E8C3E022E5AB3100B4FF6D /* PTMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3DE22E5AB3100B4FF6D /* PTMineCell.xib */; };
 		04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3DF22E5AB3100B4FF6D /* PTMineCell.m */; };
 		04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3E322E5AB3800B4FF6D /* PTMineViewController.m */; };
-		04E8C3E822E5ABC100B4FF6D /* PTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3E722E5ABC100B4FF6D /* PTDetailViewController.m */; };
 		04E8C3EC22E5AC8900B4FF6D /* PTDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3EA22E5AC8900B4FF6D /* PTDetailTitleCell.m */; };
 		04E8C3ED22E5AC8900B4FF6D /* PTDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3EB22E5AC8900B4FF6D /* PTDetailTitleCell.xib */; };
 		04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3EF22E5ADAC00B4FF6D /* PTDetailContentCell.m */; };
@@ -83,6 +86,17 @@
 		0418F3EE22E697D100B50063 /* 搜索图标@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索图标@2x.png"; sourceTree = "<group>"; };
 		0418F3F222E69DC100B50063 /* PTHomePageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTHomePageHeaderView.h; sourceTree = "<group>"; };
 		0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTHomePageHeaderView.m; sourceTree = "<group>"; };
+		0418F3FA22E6AA9900B50063 /* PTHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHomePageViewController.m; sourceTree = "<group>"; };
+		0418F3FB22E6AA9900B50063 /* PTDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDetailViewController.m; sourceTree = "<group>"; };
+		0418F3FC22E6AA9900B50063 /* PTDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDetailViewController.h; sourceTree = "<group>"; };
+		0418F3FD22E6AA9900B50063 /* PTHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHomePageViewController.h; sourceTree = "<group>"; };
+		0418F40222E6AAC500B50063 /* PTChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTChoiceViewController.h; sourceTree = "<group>"; };
+		0418F40322E6AAC500B50063 /* PTChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTChoiceViewController.m; sourceTree = "<group>"; };
+		0418F40522E6AC6100B50063 /* PTChoiceHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTChoiceHeaderView.h; sourceTree = "<group>"; };
+		0418F40622E6AC6100B50063 /* PTChoiceHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTChoiceHeaderView.m; sourceTree = "<group>"; };
+		0418F40822E6B07D00B50063 /* PTChoiceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTChoiceCell.h; sourceTree = "<group>"; };
+		0418F40922E6B07D00B50063 /* PTChoiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTChoiceCell.m; sourceTree = "<group>"; };
+		0418F40A22E6B07D00B50063 /* PTChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTChoiceCell.xib; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,8 +110,6 @@
 		04E8C36422E547BD00B4FF6D /* PTTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTTabbarViewController.h; sourceTree = "<group>"; };
 		04E8C36522E547BD00B4FF6D /* PTTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTTabbarViewController.m; sourceTree = "<group>"; };
 		04E8C36622E547BD00B4FF6D /* PTTabbarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTTabbarViewController.xib; sourceTree = "<group>"; };
-		04E8C36C22E5491700B4FF6D /* PTChoiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTChoiceViewController.h; sourceTree = "<group>"; };
-		04E8C36D22E5491700B4FF6D /* PTChoiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTChoiceViewController.m; sourceTree = "<group>"; };
 		04E8C36F22E5492200B4FF6D /* PTWholeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTWholeViewController.h; sourceTree = "<group>"; };
 		04E8C37022E5492200B4FF6D /* PTWholeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTWholeViewController.m; sourceTree = "<group>"; };
 		04E8C37822E55C2F00B4FF6D /* 首页@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页@3x.png"; sourceTree = "<group>"; };
@@ -137,15 +149,11 @@
 		04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTHomePageCell.xib; sourceTree = "<group>"; };
 		04E8C3D322E5A93500B4FF6D /* PTHomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHomePageModel.h; sourceTree = "<group>"; };
 		04E8C3D422E5A93600B4FF6D /* PTHomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHomePageModel.m; sourceTree = "<group>"; };
-		04E8C3D722E5A96200B4FF6D /* PTHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHomePageViewController.h; sourceTree = "<group>"; };
-		04E8C3D822E5A96200B4FF6D /* PTHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHomePageViewController.m; sourceTree = "<group>"; };
 		04E8C3DD22E5AB3100B4FF6D /* PTMineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMineCell.h; sourceTree = "<group>"; };
 		04E8C3DE22E5AB3100B4FF6D /* PTMineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTMineCell.xib; sourceTree = "<group>"; };
 		04E8C3DF22E5AB3100B4FF6D /* PTMineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMineCell.m; sourceTree = "<group>"; };
 		04E8C3E222E5AB3800B4FF6D /* PTMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMineViewController.h; sourceTree = "<group>"; };
 		04E8C3E322E5AB3800B4FF6D /* PTMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMineViewController.m; sourceTree = "<group>"; };
-		04E8C3E622E5ABC100B4FF6D /* PTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTDetailViewController.h; sourceTree = "<group>"; };
-		04E8C3E722E5ABC100B4FF6D /* PTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTDetailViewController.m; sourceTree = "<group>"; };
 		04E8C3E922E5AC8900B4FF6D /* PTDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTDetailTitleCell.h; sourceTree = "<group>"; };
 		04E8C3EA22E5AC8900B4FF6D /* PTDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTDetailTitleCell.m; sourceTree = "<group>"; };
 		04E8C3EB22E5AC8900B4FF6D /* PTDetailTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTDetailTitleCell.xib; sourceTree = "<group>"; };
@@ -182,6 +190,45 @@
 				0418F3E722E692D800B50063 /* BaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		0418F3F822E6AA4200B50063 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0418F40222E6AAC500B50063 /* PTChoiceViewController.h */,
+				0418F40322E6AAC500B50063 /* PTChoiceViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0418F3F922E6AA8F00B50063 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0418F3FC22E6AA9900B50063 /* PTDetailViewController.h */,
+				0418F3FB22E6AA9900B50063 /* PTDetailViewController.m */,
+				0418F3FD22E6AA9900B50063 /* PTHomePageViewController.h */,
+				0418F3FA22E6AA9900B50063 /* PTHomePageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0418F40022E6AAAD00B50063 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0418F40122E6AAB300B50063 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0418F40522E6AC6100B50063 /* PTChoiceHeaderView.h */,
+				0418F40622E6AC6100B50063 /* PTChoiceHeaderView.m */,
+				0418F40822E6B07D00B50063 /* PTChoiceCell.h */,
+				0418F40922E6B07D00B50063 /* PTChoiceCell.m */,
+				0418F40A22E6B07D00B50063 /* PTChoiceCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		04E8C33E22E5459900B4FF6D = {
@@ -230,8 +277,7 @@
 		04E8C36022E5466700B4FF6D /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				04E8C3E522E5AB8A00B4FF6D /* 详情页面 */,
-				04E8C3D622E5A94100B4FF6D /* controller */,
+				0418F3F922E6AA8F00B50063 /* Controller */,
 				04E8C3D222E5A92400B4FF6D /* Model */,
 				04E8C3CC22E5A8FD00B4FF6D /* View */,
 				04E8C37722E55C1400B4FF6D /* images */,
@@ -242,9 +288,10 @@
 		04E8C36122E5472D00B4FF6D /* Choice */ = {
 			isa = PBXGroup;
 			children = (
+				0418F40122E6AAB300B50063 /* View */,
+				0418F40022E6AAAD00B50063 /* Model */,
+				0418F3F822E6AA4200B50063 /* Controller */,
 				04E8C38022E55CBB00B4FF6D /* images */,
-				04E8C36C22E5491700B4FF6D /* PTChoiceViewController.h */,
-				04E8C36D22E5491700B4FF6D /* PTChoiceViewController.m */,
 			);
 			path = Choice;
 			sourceTree = "<group>";
@@ -385,15 +432,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		04E8C3D622E5A94100B4FF6D /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				04E8C3D722E5A96200B4FF6D /* PTHomePageViewController.h */,
-				04E8C3D822E5A96200B4FF6D /* PTHomePageViewController.m */,
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
 		04E8C3DA22E5AAFE00B4FF6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,15 +456,6 @@
 				04E8C3E322E5AB3800B4FF6D /* PTMineViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		04E8C3E522E5AB8A00B4FF6D /* 详情页面 */ = {
-			isa = PBXGroup;
-			children = (
-				04E8C3E622E5ABC100B4FF6D /* PTDetailViewController.h */,
-				04E8C3E722E5ABC100B4FF6D /* PTDetailViewController.m */,
-			);
-			path = "详情页面";
 			sourceTree = "<group>";
 		};
 		454F5304B63AB1391313F474 /* Pods */ = {
@@ -509,6 +538,7 @@
 				04E8C3E022E5AB3100B4FF6D /* PTMineCell.xib in Resources */,
 				04E8C39422E55D0700B4FF6D /* 我的@3x.png in Resources */,
 				04E8C3F222E5ADAC00B4FF6D /* PTDetailContentCell.xib in Resources */,
+				0418F40C22E6B07D00B50063 /* PTChoiceCell.xib in Resources */,
 				04E8C38422E55CCE00B4FF6D /* 精选.png in Resources */,
 				04E8C39922E55D1700B4FF6D /* 全部@2x.png in Resources */,
 				04E8C3C822E5A2F900B4FF6D /* 立即查看按钮.png in Resources */,
@@ -578,27 +608,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
+				0418F40422E6AAC500B50063 /* PTChoiceViewController.m in Sources */,
+				0418F40722E6AC6100B50063 /* PTChoiceHeaderView.m in Sources */,
 				04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */,
 				04E8C3EC22E5AC8900B4FF6D /* PTDetailTitleCell.m in Sources */,
 				0418F3EB22E694A500B50063 /* PTManager.m in Sources */,
 				04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */,
 				04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */,
 				04E8C3F622E5ADD900B4FF6D /* PTDetailCompanyCell.m in Sources */,
-				04E8C36E22E5491700B4FF6D /* PTChoiceViewController.m in Sources */,
+				0418F3FE22E6AA9900B50063 /* PTHomePageViewController.m in Sources */,
 				04E8C3BC22E5924B00B4FF6D /* NSString+validate.m in Sources */,
+				0418F40B22E6B07D00B50063 /* PTChoiceCell.m in Sources */,
 				04E8C37122E5492200B4FF6D /* PTWholeViewController.m in Sources */,
 				04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */,
 				0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */,
 				04E8C3D522E5A93600B4FF6D /* PTHomePageModel.m in Sources */,
 				04E8C3BD22E5924B00B4FF6D /* NSString+Java.m in Sources */,
-				04E8C3E822E5ABC100B4FF6D /* PTDetailViewController.m in Sources */,
 				04E8C35A22E5459900B4FF6D /* main.m in Sources */,
 				04E8C36722E547BD00B4FF6D /* PTTabbarViewController.m in Sources */,
-				04E8C3D922E5A96200B4FF6D /* PTHomePageViewController.m in Sources */,
 				04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */,
 				04E8C39E22E56F1A00B4FF6D /* PTTool.m in Sources */,
 				0418F3E422E692AE00B50063 /* PTSearchView.m in Sources */,
 				0418F3E822E692D800B50063 /* BaseViewController.m in Sources */,
+				0418F3FF22E6AA9900B50063 /* PTDetailViewController.m in Sources */,
 				04E8C3B222E586D500B4FF6D /* PTLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
