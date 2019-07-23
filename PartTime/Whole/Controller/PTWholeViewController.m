@@ -1,34 +1,35 @@
 //
-//  PTHomePageViewController.m
+//  PTWholeViewController.m
 //  PartTime
 //
 //  Created by Mac on 2019/7/22.
 //  Copyright © 2019 Mac. All rights reserved.
 //
 
-#import "PTHomePageViewController.h"
-#import "PTHomePageCell.h"
+#import "PTWholeViewController.h"
+#import "PTWholeHeaderView.h"
 #import "PTDetailViewController.h"
-#import "PTHomePageHeaderView.h"
-@interface PTHomePageViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
+#import "PTHomePageCell.h"
+
+@interface PTWholeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableView;
     CGFloat      _headerHeight;
 }
 
-@property (nonatomic,strong)PTHomePageHeaderView *headerView;
+@property (nonatomic,strong)PTWholeHeaderView *headerView;
 
 @end
 
-@implementation PTHomePageViewController
+@implementation PTWholeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _headerHeight = 290;
+    _headerHeight = 200;
     
     [self searchView];
-
+    
     [self createTabelView];
     
     if (@available(iOS 11.0,*)) {
@@ -123,10 +124,10 @@
 }
 
 #pragma mark - getter and setter
-- (PTHomePageHeaderView *)headerView
+- (PTWholeHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[PTHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
+        _headerView = [[PTWholeHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
     }
     return _headerView;
 }
