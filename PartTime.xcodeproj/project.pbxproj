@@ -40,6 +40,7 @@
 		0418F43722E6BAE400B50063 /* 精选_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43422E6BAE400B50063 /* 精选_down@2x.png */; };
 		0418F43822E6BAE400B50063 /* 精选_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43522E6BAE400B50063 /* 精选_down.png */; };
 		0418F43922E6BAE400B50063 /* 精选_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0418F43622E6BAE400B50063 /* 精选_down@3x.png */; };
+		0418F43D22E6DB7F00B50063 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F43C22E6DB7F00B50063 /* UMMobClick.framework */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
@@ -138,6 +139,7 @@
 		0418F43422E6BAE400B50063 /* 精选_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down@2x.png"; sourceTree = "<group>"; };
 		0418F43522E6BAE400B50063 /* 精选_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down.png"; sourceTree = "<group>"; };
 		0418F43622E6BAE400B50063 /* 精选_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精选_down@3x.png"; sourceTree = "<group>"; };
+		0418F43C22E6DB7F00B50063 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0418F43D22E6DB7F00B50063 /* UMMobClick.framework in Frameworks */,
 				30EBA0BC06BC86DBD4997BD2 /* libPods-PartTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +389,7 @@
 		04E8C37522E549C300B4FF6D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				0418F43C22E6DB7F00B50063 /* UMMobClick.framework */,
 				04E8C3B922E5924B00B4FF6D /* NSString+Java.h */,
 				04E8C3BA22E5924B00B4FF6D /* NSString+Java.m */,
 				04E8C3BB22E5924B00B4FF6D /* NSString+validate.h */,
@@ -878,6 +882,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VD3KV6ESJD;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PartTime/Tool",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PartTime/Tool/PTPch.pch;
 				INFOPLIST_FILE = PartTime/Info.plist;
@@ -901,6 +909,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VD3KV6ESJD;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PartTime/Tool",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PartTime/Tool/PTPch.pch;
 				INFOPLIST_FILE = PartTime/Info.plist;

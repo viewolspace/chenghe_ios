@@ -22,6 +22,12 @@ blue:random() % 255 / 255.f                                                     
 alpha:1]
 
 
+// lqUmengAppKey
+#define UMENG_APPKEY @"5310370656240be15001ba2f"
+//设定友盟渠道号码 默认空为苹果商店
+#define Ument_channelId @""
+
+
 /* 常用工具引入 */
 #import "PTTool.h"
 #import "UIViewExt.h"

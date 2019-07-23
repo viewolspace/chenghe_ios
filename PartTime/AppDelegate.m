@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <UMCommon/UMCommon.h>
+#import <UMMobClick/MobClick.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +19,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [MobClick setCrashReportEnabled:YES];
+    // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+    //[MobClick setLogEnabled:NO];
+    //参数为NSString
+    //*类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    [MobClick setAppVersion:XcodeAppVersion];
+    //
+    UMConfigInstance.appKey = UMENG_APPKEY;
+    UMConfigInstance.channelId = Ument_channelId;
+    UMConfigInstance.ePolicy = (ReportPolicy)REALTIME;
+    
+    //  [MobClick checkUpdate]; //自动更新检查,
+    //如果需要自定义更新请使用下面的方法,需要接收一个(NSDictionary
+    //*)appInfo的参数
+    
+    [MobClick setLogSendInterval:60];
+    //  [MobClick updateOnlineConfig]; //在线参数配置
+    [MobClick startWithConfigure:UMConfigInstance];
+    
+    [UMConfigure initWithAppkey:@"" channel:@"App Store"];
+    
     return YES;
 }
 
