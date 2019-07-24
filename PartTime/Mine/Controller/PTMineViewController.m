@@ -72,6 +72,11 @@
     [self addObserver];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)addObserver
 {
     //监听键盘通知
@@ -86,6 +91,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
+
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

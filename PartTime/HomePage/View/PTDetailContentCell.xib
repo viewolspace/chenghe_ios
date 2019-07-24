@@ -49,15 +49,20 @@
                         <color key="textColor" red="0.39603209495544434" green="0.39610502123832703" blue="0.39602747559547424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGG-yZ-05X">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGG-yZ-05X">
                         <rect key="frame" x="0.0" y="291.5" width="375" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="aCV-9O-Rz2"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="展开信息">
+                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="175" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="展开信息" image="展开.png">
                             <color key="titleColor" red="0.39603209495544434" green="0.39610502123832703" blue="0.39602747559547424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <state key="selected" title="收起信息" image="收起.png"/>
+                        <connections>
+                            <action selector="openAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AYd-eZ-0YJ"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t43-rH-OmE">
                         <rect key="frame" x="0.0" y="290.5" width="375" height="1"/>
@@ -92,4 +97,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="展开.png" width="8.5" height="4.5"/>
+        <image name="收起.png" width="8" height="4"/>
+    </resources>
 </document>

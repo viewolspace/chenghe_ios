@@ -1,5 +1,5 @@
 //
-//  PTResumeViewController.h
+//  PTSearchViewController.h
 //  PartTime
 //
 //  Created by Mac on 2019/7/24.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PTResumeViewController : BaseViewController
+@interface PTSearchViewController : BaseViewController
 
 @end
 

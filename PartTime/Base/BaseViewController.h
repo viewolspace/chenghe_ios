@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong)PTSearchView *searchView;
 
+/** 设置返回按钮颜色 默认:#282828 黑色 */
+- (void)setLeftItemBtnWithColor:(UIColor *)color;
+
 @end
 
 NS_ASSUME_NONNULL_END

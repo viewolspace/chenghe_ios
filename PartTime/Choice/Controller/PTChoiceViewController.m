@@ -35,6 +35,10 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:self action:@selector(popAction:)];
+    [leftItem setTintColor:[PTTool colorFromHexRGB:@"#282828"]];
+    self.navigationItem.leftBarButtonItem = leftItem;
 
 }
 

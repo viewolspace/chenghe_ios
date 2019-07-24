@@ -31,6 +31,7 @@
     [self confirmBtn];
     
     [self setTitle:@"详情"];
+       
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -38,6 +39,7 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+    
     
 }
 

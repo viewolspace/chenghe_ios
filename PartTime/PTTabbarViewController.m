@@ -21,6 +21,7 @@
     CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
     manager.statusBarHeight = statusRect.size.height;
     manager.tabbarHeight    = self.tabBar.height;
+    
 }
 
 

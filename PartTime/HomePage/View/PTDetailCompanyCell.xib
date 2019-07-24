@@ -54,17 +54,62 @@
                                 <color key="textColor" red="0.72156862745098038" green="0.71764705882352942" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星_未点亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="uaq-cZ-muy">
+                                <rect key="frame" x="127" y="49.5" width="13" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="13" id="0he-XT-D0B"/>
+                                    <constraint firstAttribute="height" constant="12" id="cmm-D9-sR6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星_未点亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="3dq-H4-taD">
+                                <rect key="frame" x="171" y="49.5" width="13" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="5P8-LX-Xpf"/>
+                                    <constraint firstAttribute="width" constant="13" id="txV-Gn-0V7"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星_未点亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="iGg-Wq-vJs">
+                                <rect key="frame" x="193" y="49.5" width="13" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="c2D-Y2-k8j"/>
+                                    <constraint firstAttribute="width" constant="13" id="lO8-tW-W4f"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星_未点亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="y9K-Go-BGe">
+                                <rect key="frame" x="215" y="49.5" width="13" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="Plt-VB-yaR"/>
+                                    <constraint firstAttribute="width" constant="13" id="xK5-7G-GL6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星_未点亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="lak-gc-p7D">
+                                <rect key="frame" x="149" y="49.5" width="13" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="13" id="841-0W-NCR"/>
+                                    <constraint firstAttribute="height" constant="12" id="pfI-vM-4Qn"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="02v-Em-ZBB" firstAttribute="leading" secondItem="ZmB-nP-40h" secondAttribute="leading" id="1X4-gb-mJh"/>
                             <constraint firstAttribute="height" constant="79" id="7Md-bb-vyg"/>
+                            <constraint firstItem="lak-gc-p7D" firstAttribute="leading" secondItem="uaq-cZ-muy" secondAttribute="trailing" constant="9" id="8IP-IL-5Dd"/>
+                            <constraint firstItem="3dq-H4-taD" firstAttribute="centerY" secondItem="lak-gc-p7D" secondAttribute="centerY" id="9aH-bP-FNc"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F4O-H5-Rl5" secondAttribute="trailing" constant="8" id="B2h-KA-G0H"/>
+                            <constraint firstItem="iGg-Wq-vJs" firstAttribute="leading" secondItem="3dq-H4-taD" secondAttribute="trailing" constant="9" id="FTm-u7-tmb"/>
                             <constraint firstItem="F4O-H5-Rl5" firstAttribute="leading" secondItem="ZmB-nP-40h" secondAttribute="trailing" constant="11" id="I7a-KX-xWL"/>
                             <constraint firstItem="F4O-H5-Rl5" firstAttribute="centerY" secondItem="ZmB-nP-40h" secondAttribute="centerY" id="It3-y6-CiL"/>
+                            <constraint firstItem="y9K-Go-BGe" firstAttribute="centerY" secondItem="iGg-Wq-vJs" secondAttribute="centerY" id="JzE-3g-5Rm"/>
                             <constraint firstAttribute="bottom" secondItem="LOh-hy-Xci" secondAttribute="bottom" constant="18" id="MPc-cU-hwJ"/>
+                            <constraint firstItem="uaq-cZ-muy" firstAttribute="centerY" secondItem="02v-Em-ZBB" secondAttribute="centerY" id="PA8-r7-H8t"/>
+                            <constraint firstItem="lak-gc-p7D" firstAttribute="centerY" secondItem="uaq-cZ-muy" secondAttribute="centerY" id="UYn-O4-zUN"/>
                             <constraint firstItem="LOh-hy-Xci" firstAttribute="leading" secondItem="dpT-Lf-BLi" secondAttribute="leading" constant="8" id="V3J-c6-oSE"/>
                             <constraint firstItem="ZmB-nP-40h" firstAttribute="centerY" secondItem="dpT-Lf-BLi" secondAttribute="centerY" constant="-12" id="bk9-gb-HtH"/>
+                            <constraint firstItem="iGg-Wq-vJs" firstAttribute="centerY" secondItem="3dq-H4-taD" secondAttribute="centerY" id="cWd-vm-FPf"/>
+                            <constraint firstItem="uaq-cZ-muy" firstAttribute="leading" secondItem="02v-Em-ZBB" secondAttribute="trailing" constant="7" id="kwd-JU-Bae"/>
+                            <constraint firstItem="y9K-Go-BGe" firstAttribute="leading" secondItem="iGg-Wq-vJs" secondAttribute="trailing" constant="9" id="mkN-uq-5lI"/>
+                            <constraint firstItem="3dq-H4-taD" firstAttribute="leading" secondItem="lak-gc-p7D" secondAttribute="trailing" constant="9" id="n47-sn-YWh"/>
                             <constraint firstItem="02v-Em-ZBB" firstAttribute="centerY" secondItem="dpT-Lf-BLi" secondAttribute="centerY" constant="16" id="rap-JY-7kw"/>
                             <constraint firstItem="LOh-hy-Xci" firstAttribute="top" secondItem="dpT-Lf-BLi" secondAttribute="top" constant="18" id="uOy-av-bfE"/>
                             <constraint firstItem="ZmB-nP-40h" firstAttribute="leading" secondItem="LOh-hy-Xci" secondAttribute="trailing" constant="15" id="wUM-KA-ZYq"/>
@@ -81,9 +126,17 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outletCollection property="stars" destination="uaq-cZ-muy" id="3Wr-bp-1bg"/>
+                <outletCollection property="stars" destination="lak-gc-p7D" id="siq-tS-l7E"/>
+                <outletCollection property="stars" destination="3dq-H4-taD" id="63K-JL-GNj"/>
+                <outletCollection property="stars" destination="iGg-Wq-vJs" id="Jmb-qO-Bjx"/>
+                <outletCollection property="stars" destination="y9K-Go-BGe" id="G6m-kU-lgp"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="星星_未点亮.png" width="12.5" height="12"/>
         <image name="认证图标.png" width="37.5" height="15"/>
     </resources>
 </document>

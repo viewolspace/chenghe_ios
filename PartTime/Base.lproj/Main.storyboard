@@ -68,7 +68,7 @@
         <!--Item-->
         <scene sceneID="cCJ-bg-O8c">
             <objects>
-                <navigationController id="0Kr-vd-sRz" sceneMemberID="viewController">
+                <navigationController id="0Kr-vd-sRz" customClass="BaseNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="cT7-y5-ems"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rle-v9-zQt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -136,7 +136,7 @@
         <!--Item-->
         <scene sceneID="lit-iW-QhX">
             <objects>
-                <navigationController id="eXg-1Q-Wte" sceneMemberID="viewController">
+                <navigationController id="eXg-1Q-Wte" customClass="BaseNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="QFw-YO-oRy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hut-ZK-JUn">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

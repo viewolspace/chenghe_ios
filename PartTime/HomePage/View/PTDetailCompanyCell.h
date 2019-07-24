@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTDetailCompanyCell : UITableViewCell
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *stars;
 
 @end
 

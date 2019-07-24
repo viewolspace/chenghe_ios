@@ -20,7 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"我要报名";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#282828"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
     [self createTabelView];
 }
 
@@ -29,6 +31,7 @@
     // 导航栏透明
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.clipsToBounds = NO;
 
 }
 
