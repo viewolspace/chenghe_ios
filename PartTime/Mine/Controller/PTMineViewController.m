@@ -9,21 +9,57 @@
 #import "PTMineViewController.h"
 #import "PTMineCell.h"
 #import "PTLoginViewController.h"
+#import "PTResumeViewController.h"
+#import "PTSignUpViewController.h"
+#import "PTChangeNameView.h"
 
 @interface PTMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UIButton *loginBtn;
 @property (nonatomic,strong)UILabel  *loginLabel;
-@property (nonatomic,strong)UIView *headerView;
+@property (nonatomic,strong)UIImageView *headerView;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,copy)NSArray *titleArr;
+@property (nonatomic,copy)NSArray *imageArr;
+@property (nonatomic,assign)CGFloat headerHeight;
+@property (nonatomic,strong)UIImageView *userHeaderView;
+@property (nonatomic,strong)PTChangeNameView *changeNameView;
 @end
 
 @implementation PTMineViewController
 
+#pragma mark - 通知方法 -
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+   
+    NSValue *aValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height / 3.0;
+    if (self.changeNameView) {
+         self.changeNameView.topConstraint.constant = -height;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.changeNameView layoutIfNeeded];
+        }];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    if (self.changeNameView) {
+        self.changeNameView.topConstraint.constant = 0;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.changeNameView layoutIfNeeded];
+        }];
+    }
+   
+}
+
+#pragma makr - 生命周期 -
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    _headerHeight = 237.5 + 40.f;
    self.titleArr = @[@"我的简历",@"我的报名",@"修改昵称",@"关于我们"];
+    self.imageArr = @[@"简历",@"报名",@"昵称",@"我们"];
     
     [self createTabelView];
     
@@ -33,6 +69,15 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    [self addObserver];
+}
+
+- (void)addObserver
+{
+    //监听键盘通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -66,7 +111,7 @@
 {
     PTMineCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTMineCell class])];
     cell.ptTitleLabel.text = self.titleArr[indexPath.row];
-    
+    cell.ptImageView.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
     
     return cell;
 }
@@ -96,7 +141,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 237.5 + 40;
+    return _headerHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -106,14 +151,70 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.headerView;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
+    [headerView addSubview:self.headerView];
+    return headerView;
 }
 
-
+#pragma mark - tableView点击方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%@",self.titleArr[indexPath.row]);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        PTResumeViewController *vc = [PTResumeViewController new];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else if(indexPath.row == 1){
+        PTSignUpViewController *vc = [PTSignUpViewController new];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else if(indexPath.row == 2){
+        [self showAlertView];
+    }
+    
+}
+
+#pragma mark - 修改昵称 -
+- (void)showAlertView
+{
+    UIWindow *window = [PTManager shareManager].hightWindow;
+    PTChangeNameView *view = [PTChangeNameView initWithXib];
+    view.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
+    view.frame = CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN);
+    [window addSubview:view];
+    window.hidden = NO;
+    self.changeNameView = view;
+    
+    __weak typeof(self)weakSelf = self;
+    [view setCancelBlock:^{
+        weakSelf.changeNameView = nil;
+        window.hidden = YES;
+    }];
+    
+    [view setConfirmBlock:^(NSString * _Nonnull text) {
+        if (![text isEqualToString:@""]) {
+            weakSelf.loginLabel.text = text;
+            [weakSelf.changeNameView removeFromSuperview];
+            weakSelf.changeNameView = nil;
+            window.hidden = YES;
+        }else{
+            [NewShowLabel setMessageContent:@"请输入昵称"];
+        }
+    }];
+}
+
+
+
+- (void)setNameWithText:(NSString *)text
+{
+    if (![text isEqualToString:@""]) {
+        self.loginLabel.text = text;
+        UIWindow *window = [PTManager shareManager].hightWindow;
+        
+    }
 }
 
 
@@ -126,12 +227,24 @@
         CGFloat top   = 79.f;
         _loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH_OF_SCREEN - width) / 2.0, top, width, width)];
         [_loginBtn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
-        _loginBtn.backgroundColor = [UIColor orangeColor];
         _loginBtn.layer.masksToBounds = YES;
         _loginBtn.layer.cornerRadius  = width / 2.0;
+        _loginBtn.backgroundColor = [PTTool colorFromHexRGB:@"#f6f6f6"];
+        
+        [_loginBtn addSubview:self.userHeaderView];
     }
     
     return _loginBtn;
+}
+
+- (UIImageView *)userHeaderView
+{
+    if (!_userHeaderView) {
+        _userHeaderView = [[UIImageView alloc] initWithFrame:self.loginBtn.bounds];
+        [_userHeaderView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    }
+    
+    return _userHeaderView;
 }
 
 - (UILabel *)loginLabel
@@ -146,7 +259,7 @@
         _loginLabel.textAlignment = NSTextAlignmentCenter;
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH_OF_SCREEN - 200) / 2.0, 0, 200, height)];
         [btn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
-        btn.backgroundColor = [UIColor orangeColor];
+        //btn.backgroundColor = [UIColor orangeColor];
         [_loginLabel addSubview:btn];
         
         _loginLabel.userInteractionEnabled = YES;
@@ -155,25 +268,15 @@
     return _loginLabel;
 }
 
-- (UIView *)headerView
+- (UIImageView *)headerView
 {
     if (!_headerView) {
-        UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(0,0,375,237);
-        view.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-        
-        CAGradientLayer *gl = [CAGradientLayer layer];
-        gl.frame = CGRectMake(0,0,375,237);
-        gl.startPoint = CGPointMake(0, 0);
-        gl.endPoint = CGPointMake(1, 1);
-        gl.colors = @[(__bridge id)[UIColor colorWithRed:93/255.0 green:104/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:87/255.0 green:160/255.0 blue:254/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:95/255.0 green:195/255.0 blue:255/255.0 alpha:1.0].CGColor];
-        gl.locations = @[@(0.0),@(0.5),@(1.0)];
-        
-        [view.layer addSublayer:gl];
-        _headerView = view;
+        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, 237)];
+        _headerView.image = [UIImage imageNamed:@"登录背景.png"];
         
         [_headerView addSubview:self.loginBtn];
         [_headerView addSubview:self.loginLabel];
+        _headerView.userInteractionEnabled = YES;
     }
     
     return _headerView;

@@ -28,6 +28,8 @@ alpha:1]
 #define Ument_channelId @""
 #define UMConfigInstance [UMAnalyticsConfig sharedInstance]
 
+#define Window [UIApplication sharedApplication].keyWindow
+
 
 /* 常用工具引入 */
 #import "PTTool.h"
@@ -36,6 +38,8 @@ alpha:1]
 #import "NSString+validate.h"
 #import "AFNetworking.h"
 #import "PTManager.h"
+#import <UIImageView+WebCache.h>
+#import "NewShowLabel.h"
 
 
 #endif /* PTPch_pch */

@@ -14,21 +14,27 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
   - UIViewExt (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - SDWebImage (~> 4.2.2)
   - UIViewExt (~> 1.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - SDWebImage
     - UIViewExt
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   UIViewExt: 7f719ec46544e88dc0e7777626cbdbeea5497ef2
 
-PODFILE CHECKSUM: aa51ddf36c7d11ef8e46add26fd71b93e99be891
+PODFILE CHECKSUM: 5ee3dfa475815a51d31c1b6ac5664ef71f5aeb67
 
 COCOAPODS: 1.5.3

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5242E5860379B6C332771013A292D89C"
+               BlueprintIdentifier = "6D1F3CBFB28C44043B5D234B861735F0"
                BlueprintName = "UIViewExt"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libUIViewExt.a">

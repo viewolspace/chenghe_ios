@@ -38,6 +38,24 @@
     // 开启
     [MobClick startWithConfigure:[UMAnalyticsConfig sharedInstance]];
 
+    
+    //用于单个页面的弹窗
+    UIWindow *hightWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    hightWindow.windowLevel = UIWindowLevelStatusBar;
+    hightWindow.hidden = YES;
+    [[UIApplication sharedApplication].keyWindow addSubview:hightWindow];
+    
+    //用于所以界面之上，用于吐字提示
+    UIWindow *highestWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    highestWindow.windowLevel = UIWindowLevelStatusBar;
+    highestWindow.hidden = YES;
+    [[UIApplication sharedApplication].keyWindow addSubview:highestWindow];
+    
+    [PTManager shareManager].hightWindow = hightWindow;
+    [PTManager shareManager].highestWindow = highestWindow;
+    
+    [NewShowLabel newShowLabel];
+    
     return YES;
 }
 
