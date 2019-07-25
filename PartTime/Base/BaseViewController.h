@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 设置返回按钮颜色 默认:#282828 黑色 */
 - (void)setLeftItemBtnWithColor:(UIColor *)color;
 
+
+/** 返回方法 */
+- (void)popAction:(UIButton *)sender;
+
 @end
 
 NS_ASSUME_NONNULL_END

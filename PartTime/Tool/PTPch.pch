@@ -21,6 +21,19 @@ green:random() % 255 / 255.f                                                    
 blue:random() % 255 / 255.f                                                     \
 alpha:1]
 
+//在release版中必须屏蔽掉NSLog (通过Edit scheme -> Run SimuStock.app - Info -> Debug换为Release)
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define NSLog(...) {}
+#endif
+
+//完成回调Block
+typedef void(^CompleteBlock)(id obj);
+
+//失败回调Block
+typedef void(^FaileBlock)(id error);
+
 
 // lqUmengAppKey
 #define UMENG_APPKEY @"5d36cfae3fc19512c60001f5"
@@ -40,6 +53,10 @@ alpha:1]
 #import "PTManager.h"
 #import <UIImageView+WebCache.h>
 #import "NewShowLabel.h"
+#import <UIKit/UIKit.h>
+
+/* 接口 */
+#define PartTimeAddress @"http://112.126.97.144:8080/chengheWeb/"
 
 
 #endif /* PTPch_pch */

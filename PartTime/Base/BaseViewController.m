@@ -20,6 +20,7 @@
     [self setLeftItemBtnWithColor:[PTTool colorFromHexRGB:@"#282828"]];
 }
 
+
 - (void)setLeftItemBtnWithColor:(UIColor *)color
 {
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:self action:@selector(popAction:)];
@@ -29,6 +30,7 @@
 
 - (void)popAction:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -12,6 +12,7 @@
 @interface PTSearchViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
+    
 }
 @property (nonatomic,strong)UIImageView *noDataImageView;
 @property (nonatomic,strong)UITextField *searchTextField;
@@ -27,6 +28,8 @@
     [self noDataImageView];
     [self searchTextField];
     [self createTabelView];
+    
+    [self setSearchData:@[@"1"]];
     
 }
 
@@ -79,7 +82,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -168,6 +171,35 @@
 }
 
 #pragma mark - senderAction -
+- (void)popAction:(UIButton *)sender
+{
+    [self.view endEditing:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+#pragma mark - data -
+- (void)setSearchData:(NSArray *)dataArr
+{
+    if (dataArr.count == 0) {
+        if (self.dataArr.count == 0) {
+            self.tableView.hidden = YES;
+            self.noDataImageView.hidden = NO;
+        }else{
+            self.tableView.hidden = NO;
+            self.noDataImageView.hidden = YES;
+        }
+        return;
+    }
+    
+    
+    self.tableView.hidden = NO;
+    self.noDataImageView.hidden = YES;
+ 
+    
+    
+    self.dataArr = dataArr;
+    
+    [self.tableView reloadData];
+}
 
 @end

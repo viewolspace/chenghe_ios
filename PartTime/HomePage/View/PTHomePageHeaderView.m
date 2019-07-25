@@ -51,17 +51,17 @@
 
 
 
-- (UILabel *)actionLabel
+- (UILabel *)hotLabel
 {
-    if (!_actionLabel) {
-        _actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, self.topView.bottom + 31, WIDTH_OF_SCREEN - 14 - 14, 18)];
-        _actionLabel.text = @"热门";
-        _actionLabel.textColor = [PTTool colorFromHexRGB:@"#282828"];
-        _actionLabel.font = [UIFont systemFontOfSize:19.f];
-        [self addSubview:_actionLabel];
+    if (!_hotLabel) {
+        _hotLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, self.topView.bottom + 31, WIDTH_OF_SCREEN - 14 - 14, 18)];
+        _hotLabel.text = @"热门";
+        _hotLabel.textColor = [PTTool colorFromHexRGB:@"#282828"];
+        _hotLabel.font = [UIFont systemFontOfSize:19.f];
+        [self addSubview:_hotLabel];
     }
     
-    return _actionLabel;
+    return _hotLabel;
 }
 
 
@@ -70,7 +70,7 @@
     if (!_actionScrollView) {
         CGFloat height = 120;
         CGFloat page = 0;
-        _actionScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(page, self.actionLabel.bottom + 24, WIDTH_OF_SCREEN - page, height)];
+        _actionScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(page, self.hotLabel.bottom + 24, WIDTH_OF_SCREEN - page, height)];
         _actionScrollView.delegate = self;
         [self addSubview:_actionScrollView];
         
@@ -117,5 +117,20 @@
 {
     NSLog(@"热门：%ld",sender.tag);
 }
+
+#pragma mark - data -
+- (void)setHotDataWithModel:(PTHomePageModel *)model
+{
+    if (model.modelArr.count == 0) {
+        self.actionScrollView.height = 0;
+        self.hotLabel.height = 0;
+        self.recommendLabel.top = self.topView.bottom + 31;
+    }else{
+        self.actionScrollView.height = 120.f;
+        self.hotLabel.height = 18.f;
+        self.recommendLabel.top = self.actionScrollView.bottom + 32.f;
+    }
+}
+
 
 @end

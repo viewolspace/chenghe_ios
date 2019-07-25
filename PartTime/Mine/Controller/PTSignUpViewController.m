@@ -21,7 +21,7 @@
     [super viewDidLoad];
   
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"我要报名";
+    self.title = @"我的报名";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#282828"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
     [self createTabelView];
 }

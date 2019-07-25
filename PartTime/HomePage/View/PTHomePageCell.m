@@ -18,7 +18,16 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+}
+
+- (IBAction)lookAction:(UIButton *)sender {
+    NSLog(@"查看");
+}
+
+
+- (void)setDataWithModel:(PTHotAndChoiceRecommentModel *)model
+{
+    self.ptTitleLabel.text = model.title;
 }
 
 @end

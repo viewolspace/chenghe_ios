@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PTHomePageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTHomePageHeaderView : UIView<UIScrollViewDelegate>
 @property (nonatomic,strong)UIView *topView;
-@property (nonatomic,strong)UILabel *actionLabel;
+@property (nonatomic,strong)UILabel *hotLabel;
 @property (nonatomic,strong)UIScrollView *actionScrollView;
 @property (nonatomic,strong)UILabel *recommendLabel;
+
+- (void)setHotDataWithModel:(PTHomePageModel *)model;
+
 @end
 
 NS_ASSUME_NONNULL_END

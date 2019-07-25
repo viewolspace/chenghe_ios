@@ -44,6 +44,7 @@
 		0418F44122E6E13300B50063 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F44022E6E13200B50063 /* libsqlite3.tbd */; };
 		0418F45322E6E5F600B50063 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F45222E6E5F600B50063 /* UMMobClick.framework */; };
 		0418F45422E6E60A00B50063 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F44222E6E13B00B50063 /* CoreTelephony.framework */; };
+		04A4F39D22E94DAB00C8B449 /* PTMyPartTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */; };
 		04AD20DA22E80C6B0004421E /* PTChangeNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD20D922E80C6B0004421E /* PTChangeNameView.m */; };
 		04AD20DC22E80C780004421E /* PTChangeNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD20DB22E80C780004421E /* PTChangeNameView.xib */; };
 		04AD20DF22E823E20004421E /* NewShowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD20DD22E823E20004421E /* NewShowLabel.m */; };
@@ -207,6 +208,8 @@
 		0418F44222E6E13B00B50063 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0418F44422E6E14200B50063 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0418F45222E6E5F600B50063 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
+		04A4F39B22E94DAB00C8B449 /* PTMyPartTimeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTMyPartTimeModel.h; sourceTree = "<group>"; };
+		04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTMyPartTimeModel.m; sourceTree = "<group>"; };
 		04AD20D822E80C6B0004421E /* PTChangeNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTChangeNameView.h; sourceTree = "<group>"; };
 		04AD20D922E80C6B0004421E /* PTChangeNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTChangeNameView.m; sourceTree = "<group>"; };
 		04AD20DB22E80C780004421E /* PTChangeNameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTChangeNameView.xib; sourceTree = "<group>"; };
@@ -717,6 +720,8 @@
 		04E8C3DA22E5AAFE00B4FF6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04A4F39B22E94DAB00C8B449 /* PTMyPartTimeModel.h */,
+				04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -972,6 +977,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A4F39D22E94DAB00C8B449 /* PTMyPartTimeModel.m in Sources */,
 				04AD20E222E8339B0004421E /* BaseNavigationController.m in Sources */,
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
 				0418F40422E6AAC500B50063 /* PTChoiceViewController.m in Sources */,

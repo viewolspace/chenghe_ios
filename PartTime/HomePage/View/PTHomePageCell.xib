@@ -26,6 +26,9 @@
                             <constraint firstAttribute="width" constant="89" id="rde-9O-pMr"/>
                         </constraints>
                         <state key="normal" title="立即查看" image="立即查看按钮.png"/>
+                        <connections>
+                            <action selector="lookAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PFo-Qg-63e"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信在线兼职，随时随地做，秒结" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfN-FB-eTe">
                         <rect key="frame" x="14" y="31" width="241" height="38.5"/>
@@ -71,6 +74,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="lookBtn" destination="cOO-am-ivo" id="hup-ks-M1T"/>
+                <outlet property="ptPayLabel" destination="6Jr-WK-JeU" id="Gz4-V3-kny"/>
+                <outlet property="ptSubTitleLabel" destination="Y97-1L-1ee" id="vlh-d8-aOa"/>
+                <outlet property="ptTitleLabel" destination="lfN-FB-eTe" id="rbW-8n-UsE"/>
+            </connections>
             <point key="canvasLocation" x="48.550724637681164" y="50.892857142857139"/>
         </tableViewCell>
     </objects>
