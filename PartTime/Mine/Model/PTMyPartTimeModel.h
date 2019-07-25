@@ -6,13 +6,19 @@
 //  Copyright © 2019 Mac. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PTMyPartTimeModel : NSObject
+@interface PTMyPartTimeModel : BaseModel
 
-+ (void)requestMyPartTimeWithUserId:(NSInteger)userId;
+@property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
+
++ (void)requestMyPartTimeWithUserId:(NSInteger)userId
+                          pageIndex:(NSInteger)pageIndex
+                           pageSize:(NSInteger)pageSize
+                      completeBlock:(CompleteBlock)completeBlock
+                         faileBlock:(FaileBlock)faileBlock;
 
 @end
 

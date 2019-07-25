@@ -11,6 +11,7 @@
 @implementation PTHomePageModel
 
 - (void)jsonToObject:(NSDictionary *)dic
+       completeBlock:(nonnull CompleteBlock)completeBlock
 {
     NSString *message = dic[@"message"];
     NSString *status  = dic[@"status"];
@@ -24,7 +25,7 @@
     }
     
     _modelArr = arr;
-    _completeBlock(self);
+    completeBlock(self);
     NSLog(@"热门or精选 %@ %@",message,status);
 }
 
@@ -32,7 +33,7 @@
 + (void)requestHotOrChoiseWithId:(int)rId
                        pageIndex:(int)pageIndex
                         pageSize:(int)pageSize
-                   completeBlock:(CompleteBlock)block
+                   completeBlock:(CompleteBlock)completeBlock
                       faileBlock:(FaileBlock)faileBlock
 {
     NSString *hotUrl = [NSString stringWithFormat:@"%@partTime/queryRecommnet?recomment=%d&pageIndex=%d&pageSize=%d",PartTimeAddress,rId,pageIndex,pageSize];
@@ -44,8 +45,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         PTHomePageModel *model = [PTHomePageModel new];
-        model.completeBlock = block;
-        [model jsonToObject:responseObject];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -55,13 +55,6 @@
 
 @end
 
+
 @implementation PTHotAndChoiceRecommentModel
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    if ([key isEqualToString:@"id"]) {
-        self.aId = [value intValue];
-    }
-}
-
 @end

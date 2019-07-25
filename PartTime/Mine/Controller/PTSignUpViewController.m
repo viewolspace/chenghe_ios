@@ -8,6 +8,7 @@
 
 #import "PTSignUpViewController.h"
 #import "PTChoiceCell.h"
+#import "PTMyPartTimeModel.h"
 
 @interface PTSignUpViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -32,7 +33,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.clipsToBounds = NO;
-
+    [self requestMyPartTimeData];
 }
 
 
@@ -100,5 +101,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+#pragma mark - data -
+- (void)requestMyPartTimeData
+{
+    
+    [PTMyPartTimeModel requestMyPartTimeWithUserId:1 pageIndex:1 pageSize:5 completeBlock:^(id obj) {
+        
+        
+        
+    } faileBlock:^(id error) {
+        
+        [NewShowLabel setMessageContent:@"请求我的报名数据失败"];
+        NSLog(@"请求我的报名数据失败");
+    }];
+    
+}
 
 @end

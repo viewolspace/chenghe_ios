@@ -54,6 +54,7 @@ typedef void(^FaileBlock)(id error);
 #import <UIImageView+WebCache.h>
 #import "NewShowLabel.h"
 #import <UIKit/UIKit.h>
+#import "BaseModel.h"
 
 /* 接口 */
 #define PartTimeAddress @"http://112.126.97.144:8080/chengheWeb/"
