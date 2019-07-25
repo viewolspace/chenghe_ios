@@ -34,6 +34,36 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)setMjFooterView:(UITableView *)tableView
+{
+    __weak typeof(self)weakSelf = self;
+    MJRefreshBackNormalFooter *footerView = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf footerReloadAction];
+    }];
+    
+    tableView.mj_footer = footerView;
+}
+
+- (void)setMJHeaderView:(UITableView *)tableView
+{
+    __weak typeof(self)weakSelf = self;
+    MJRefreshNormalHeader *headerView = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf headerReoladAction];
+    }];
+    
+    tableView.mj_header = headerView;
+}
+
+- (void)footerReloadAction
+{
+    NSLog(@"父视图 上拉刷新 脚部");
+}
+
+- (void)headerReoladAction
+{
+    NSLog(@"父视图 下拉刷新 头部");
+}
+
 #pragma mark - getter and setter
 - (PTSearchView *)searchView
 {
@@ -43,7 +73,7 @@
             statusBarHeight = 27;
         }
         _searchView = [[PTSearchView alloc] initWithFrame:CGRectMake(0, statusBarHeight, WIDTH_OF_SCREEN, 44.f)];
-        _searchView.backgroundColor = [UIColor orangeColor];
+        //_searchView.backgroundColor = [UIColor orangeColor];
         _searchView.delegate = self;
         [self.view addSubview:_searchView];
     }

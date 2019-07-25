@@ -17,6 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** haveImage ? 93 : 0 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *ptTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *ptImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *ptSubTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ptPayLabel;
+@property (weak, nonatomic) IBOutlet UIButton *lookBtn;
+
+- (void)setDataWithModel:(PartTimeModel *)model;
 
 @end
 

@@ -54,6 +54,7 @@ typedef void(^FaileBlock)(id error);
 #import <UIImageView+WebCache.h>
 #import "NewShowLabel.h"
 #import <UIKit/UIKit.h>
+#import <MJRefresh/MJRefresh.h>
 #import "BaseModel.h"
 
 /* 接口 */

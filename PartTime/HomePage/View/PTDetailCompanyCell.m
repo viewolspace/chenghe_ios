@@ -14,6 +14,9 @@
     [super awakeFromNib];
     // Initialization code
     [self setStarsLight:3];
+    self.companyBgView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.companyBgView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.companyBgView.layer.shadowOpacity = 0.1;
 }
 
 - (void)setStarsLight:(NSInteger)lightStar
@@ -28,10 +31,20 @@
     }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setDataWithModel:(PartTimeModel *)model
+{
+    if (!model) {
+        return;
+    }
+    
+    self.companyNameLabel.text = model.title;
+   
+    CGFloat companyNameHeight = [model.title boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 80 - 94, 0) options:1 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.f]} context:nil].size.height;
+    if (companyNameHeight > 20.f ) {
+        self.companyHeightConstraint.constant = 79  + companyNameHeight - 20;
+    }else{
+        self.companyHeightConstraint.constant = 79.f;
+    }
 }
 
 @end

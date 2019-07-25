@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor cyanColor];
+        //self.backgroundColor = [UIColor cyanColor];
         [self recommendLabel];
     }
     return self;
@@ -31,7 +31,7 @@
         CGFloat height = 42.f;
         
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, height)];
-        _topView.backgroundColor = [UIColor yellowColor];
+       // _topView.backgroundColor = [UIColor yellowColor];
         [self addSubview:_topView];
         NSArray *imagesNameArr = @[@"宅家赚钱",@"简单易做",@"高薪日结"];
         for (int i = 0; i < 3; i ++) {
@@ -40,7 +40,7 @@
             [btn addTarget:self action:@selector(topThreeAction:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = 100 + i;
             [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-            btn.backgroundColor = COLOR_RANDOM;
+           // btn.backgroundColor = COLOR_RANDOM;
             [_topView addSubview:btn];
             [btn setImage:[UIImage imageNamed:imagesNameArr[i]] forState:UIControlStateNormal];
         }
@@ -77,7 +77,7 @@
         CGFloat scrollSizeWidth = 0;
         for (int i = 0; i < 10; i ++) {
             UIButton *bg = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * 207 + 8 * i, 0, 207, height)];
-            bg.backgroundColor = COLOR_RANDOM;
+            //bg.backgroundColor = COLOR_RANDOM;
             bg.tag = 300 + i;
             [bg addTarget:self action:@selector(hotAction:) forControlEvents:UIControlEventTouchUpInside];
             [_actionScrollView addSubview:bg];

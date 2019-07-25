@@ -34,14 +34,14 @@
                                     <constraint firstAttribute="width" constant="43" id="vux-7i-j9U"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京冬日环氧科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmB-nP-40h">
-                                <rect key="frame" x="66" y="17" width="208" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmB-nP-40h">
+                                <rect key="frame" x="66" y="17.5" width="15.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.15684100985527039" green="0.15687525272369385" blue="0.15683883428573608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4O-H5-Rl5">
-                                <rect key="frame" x="285" y="20" width="38" height="15"/>
+                                <rect key="frame" x="92.5" y="20" width="38" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="Pd9-xQ-koi"/>
                                     <constraint firstAttribute="height" constant="15" id="zq3-2A-gSj"/>
@@ -90,7 +90,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="02v-Em-ZBB" firstAttribute="leading" secondItem="ZmB-nP-40h" secondAttribute="leading" id="1X4-gb-mJh"/>
                             <constraint firstAttribute="height" constant="79" id="7Md-bb-vyg"/>
@@ -110,8 +110,8 @@
                             <constraint firstItem="uaq-cZ-muy" firstAttribute="leading" secondItem="02v-Em-ZBB" secondAttribute="trailing" constant="7" id="kwd-JU-Bae"/>
                             <constraint firstItem="y9K-Go-BGe" firstAttribute="leading" secondItem="iGg-Wq-vJs" secondAttribute="trailing" constant="9" id="mkN-uq-5lI"/>
                             <constraint firstItem="3dq-H4-taD" firstAttribute="leading" secondItem="lak-gc-p7D" secondAttribute="trailing" constant="9" id="n47-sn-YWh"/>
-                            <constraint firstItem="02v-Em-ZBB" firstAttribute="centerY" secondItem="dpT-Lf-BLi" secondAttribute="centerY" constant="16" id="rap-JY-7kw"/>
                             <constraint firstItem="LOh-hy-Xci" firstAttribute="top" secondItem="dpT-Lf-BLi" secondAttribute="top" constant="18" id="uOy-av-bfE"/>
+                            <constraint firstItem="02v-Em-ZBB" firstAttribute="top" secondItem="ZmB-nP-40h" secondAttribute="bottom" constant="9.5" id="vHE-Dd-cF8"/>
                             <constraint firstItem="ZmB-nP-40h" firstAttribute="leading" secondItem="LOh-hy-Xci" secondAttribute="trailing" constant="15" id="wUM-KA-ZYq"/>
                         </constraints>
                     </view>
@@ -127,6 +127,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="companyBgView" destination="dpT-Lf-BLi" id="GBM-x2-qNF"/>
+                <outlet property="companyHeightConstraint" destination="7Md-bb-vyg" id="7cV-7B-KFP"/>
+                <outlet property="companyNameLabel" destination="ZmB-nP-40h" id="bfE-61-MEU"/>
                 <outletCollection property="stars" destination="uaq-cZ-muy" id="3Wr-bp-1bg"/>
                 <outletCollection property="stars" destination="lak-gc-p7D" id="siq-tS-l7E"/>
                 <outletCollection property="stars" destination="3dq-H4-taD" id="63K-JL-GNj"/>

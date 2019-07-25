@@ -9,7 +9,7 @@
 #import "PTSearchViewController.h"
 #import "PTChoiceCell.h"
 #import "PTDetailViewController.h"
-@interface PTSearchViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface PTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
     
@@ -17,19 +17,57 @@
 @property (nonatomic,strong)UIImageView *noDataImageView;
 @property (nonatomic,strong)UITextField *searchTextField;
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,assign)NSInteger pageIndex;
+@property (nonatomic,assign)NSInteger pageSize;
+@property (nonatomic,assign)BOOL pop;
+@property (nonatomic,assign)CGFloat keyBoardHeight;
+@property (nonatomic,assign)CGFloat tableViewHeight;
+
 @end
 
 @implementation PTSearchViewController
 
+#pragma mark - 通知方法 -
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSValue *aValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    self.keyBoardHeight = keyboardRect.size.height;
+    
+    self.tableView.height = self.tableViewHeight - self.keyBoardHeight;
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.tableView.height = self.tableViewHeight;
+}
+
+#pragma mark - 生命周期 -
 - (void)viewDidLoad {
     [super viewDidLoad];
   
+    _pageIndex = 1;
+    _pageSize  = 10;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self noDataImageView];
     [self searchTextField];
     [self createTabelView];
     
-    [self setSearchData:@[@"1"]];
+    [self addObserver];
+    
+    [self setMJHeaderView:self.tableView];
+    [self setMjFooterView:self.tableView];
+    
+    self.tableView.hidden = YES;
+    
+}
+
+- (void)addObserver
+{
+    //监听键盘通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
 }
 
@@ -38,6 +76,9 @@
     if (self.searchTextField) {
         [self.searchTextField removeFromSuperview];
     }
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    NSLog(@"%@ 释放了！",[self class]);
 }
 
 
@@ -46,6 +87,13 @@
     // 导航栏透明
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+    self.searchTextField.hidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    self.searchTextField.hidden = YES;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -54,18 +102,20 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.view endEditing:YES];
+    [self.navigationController.view endEditing:YES];
 }
 
 - (void)createTabelView
 {
     CGFloat tabbarHieght = [PTManager shareManager].tabbarHeight;
     CGFloat statusBarHeight = [PTManager shareManager].statusBarHeight;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - tabbarHieght - statusBarHeight) style:UITableViewStyleGrouped];
+    self.tableViewHeight = HEIGHT_OF_SCREEN - tabbarHieght - statusBarHeight;
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, self.tableViewHeight) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    _tableView.hidden = YES;
     [self.view addSubview:_tableView];
     
     [_tableView registerNib:[UINib nibWithNibName:@"PTChoiceCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass([PTChoiceCell class])];
@@ -76,13 +126,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
+    [cell setDataWithModel:self.modelArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArr.count;
+    return self.modelArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -94,7 +145,12 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250.0;
+    if (self.modelArr.count == 0) {
+        return 0;
+    }else{
+        PartTimeModel *model = self.modelArr[indexPath.row];
+        return model.havePicCellHeight;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -119,13 +175,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PartTimeModel *model = self.modelArr[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+    vc.ptId = model.aId;
+    [self.navigationController.view endEditing:YES];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - textFieldDelegate -
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if ([textField.text isEqualToString:@""]) {
+        [self.modelArr removeAllObjects];
+        self.tableView.hidden = YES;
+        self.noDataImageView.hidden = NO;
+        [self.tableView reloadData];
+        return;
+    }
+    [self requestQueryWithText:textField.text];
+}
 
 
 #pragma mark - setter and getter
@@ -154,6 +225,7 @@
         _searchTextField.layer.masksToBounds = YES;
         _searchTextField.placeholder = @"输入您想搜索的内容";
         _searchTextField.font = [UIFont systemFontOfSize:15.f];
+        _searchTextField.delegate = self;
         [self.navigationController.navigationBar addSubview:_searchTextField];
         
         CGFloat leftViewWidth = 46;
@@ -164,42 +236,79 @@
         
         [_searchTextField setLeftViewMode:UITextFieldViewModeAlways];
         [_searchTextField setLeftView:leftView];
+        
+        [_searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     }
 
     
     return _searchTextField;
 }
 
+- (NSMutableArray *)modelArr
+{
+    if (!_modelArr) {
+        _modelArr = [NSMutableArray array];
+    }
+    
+    return _modelArr;
+}
+
 #pragma mark - senderAction -
 - (void)popAction:(UIButton *)sender
 {
-    [self.view endEditing:YES];
+    [self.navigationController.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - data -
-- (void)setSearchData:(NSArray *)dataArr
+- (void)headerReoladAction
 {
-    if (dataArr.count == 0) {
-        if (self.dataArr.count == 0) {
-            self.tableView.hidden = YES;
-            self.noDataImageView.hidden = NO;
-        }else{
-            self.tableView.hidden = NO;
-            self.noDataImageView.hidden = YES;
-        }
-        return;
+    NSLog(@"下拉刷新了");
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)footerReloadAction
+{
+    NSLog(@"上拉刷新了");
+    [self.tableView.mj_footer endRefreshing];
+}
+
+- (void)requestQueryWithText:(NSString *)text
+{
+    __weak typeof(self)weakSelf = self;
+    [QueryPartTimeModel requestPartTimeWithKeyWord:text pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+        
+        QueryPartTimeModel *model = (QueryPartTimeModel *)obj;
+        [weakSelf setDataWithModel:model];
+        
+    } faileBlock:^(id error) {
+        
+    }];
+}
+
+- (void)setDataWithModel:(QueryPartTimeModel *)model
+{
+    if ([self.searchTextField isEditing]) {
+        
+        [self.modelArr removeAllObjects];
+        [self.modelArr addObjectsFromArray:model.modelArr];
+        
+    }else{
+        [self.modelArr addObjectsFromArray:model.modelArr];
     }
     
-    
-    self.tableView.hidden = NO;
-    self.noDataImageView.hidden = YES;
- 
-    
-    
-    self.dataArr = dataArr;
+    if (self.modelArr.count == 0) {
+        self.tableView.hidden = YES;
+        self.noDataImageView.hidden = NO;
+    }else{
+        self.tableView.hidden = NO;
+        self.noDataImageView.hidden = YES;
+    }
     
     [self.tableView reloadData];
+    
 }
+
+
 
 @end

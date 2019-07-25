@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTDetailViewController : BaseViewController
+@property (nonatomic,assign)int ptId; //
 
 @end
 

@@ -19,6 +19,8 @@
 @property (nonatomic,strong)UIButton *confirmBtn;
 @property (nonatomic,strong) CAGradientLayer *confirmLayer;
 @property (nonatomic,strong)UILabel *confirmLabel;
+@property (nonatomic,strong)PartTimeModel *model;
+@property (nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation PTDetailViewController
@@ -39,6 +41,8 @@
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+    
+    [self requestDetailAction];
 }
 
 - (void)createTabelView
@@ -72,35 +76,32 @@
 }
 
 
-/**
- 标题
- */
+/** 标题 */
 - (UITableViewCell *)titleCell:(UITableView *)tableView
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailTitleCell class])];
+    [cell setDataWithModel:self.model];
     return cell;
 }
 
 
-/**
- 工作内容
- */
+/** 工作内容 */
 - (UITableViewCell *)contentCell:(UITableView *)tableView
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailContentCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailContentCell class])];
+    [cell setDataWithModel:self.model];
     return cell;
 }
 
 
-/**
- 公司
- */
+/** 公司 */
 - (UITableViewCell *)companyCell:(UITableView *)tableView
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailCompanyCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailCompanyCell class])];
+    [cell setDataWithModel:self.model];
     return cell;
 }
 
@@ -119,7 +120,18 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 350.f;
+    if (self.model) {
+        if (indexPath.section == 0) {
+            return self.model.detailTitleCellHeight;
+        }else if(indexPath.section == 1){
+            return self.model.detailContentCellHeight;
+        }else{
+            return self.model.detailCompanyCellHeight;
+        }
+    }else{
+        return 300;
+    }
+   
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -199,6 +211,25 @@
 - (void)confirmAction:(UIButton *)sender
 {
     NSLog(@"报名参加");
+}
+
+#pragma mark - data -
+- (void)requestDetailAction
+{
+    __weak typeof(self)weakSelf = self;
+    [PartTimeDetailModel requestDetailPartTimeWithUserId:1 aid:self.ptId completeBlock:^(id obj) {
+        
+        [weakSelf setDetailDataWithModel:(PartTimeDetailModel *)obj];
+        
+    } faileBlock:^(id error) {
+        
+    }];
+}
+
+- (void)setDetailDataWithModel:(PartTimeDetailModel *)detailModel
+{
+    self.model = detailModel.model;
+    [self.tableView reloadData];
 }
 
 @end

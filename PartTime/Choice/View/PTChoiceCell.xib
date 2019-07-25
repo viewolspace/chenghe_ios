@@ -45,6 +45,9 @@
                             <constraint firstAttribute="width" constant="89" id="6q7-u0-YlK"/>
                         </constraints>
                         <state key="normal" title="Button" image="立即查看按钮.png"/>
+                        <connections>
+                            <action selector="lookAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nhu-JJ-6mM"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orf-Tp-UDX">
                         <rect key="frame" x="226" y="189" width="39" height="28"/>
@@ -82,7 +85,12 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="imageHeightConstraint" destination="Tu6-wi-vvB" id="l0t-kA-CHb"/>
+                <outlet property="lookBtn" destination="4x2-fA-3OE" id="VhE-IH-pcH"/>
                 <outlet property="noImageChangeTopConstraint" destination="yRU-pr-Hcm" id="SKX-KT-StN"/>
+                <outlet property="ptImageView" destination="zeF-cQ-9Rp" id="Hyk-Qy-6bh"/>
+                <outlet property="ptPayLabel" destination="orf-Tp-UDX" id="MW8-9V-AGX"/>
+                <outlet property="ptSubTitleLabel" destination="vwZ-F4-U5o" id="XyX-NF-W8D"/>
+                <outlet property="ptTitleLabel" destination="veO-ep-n4s" id="hcV-KH-MgL"/>
             </connections>
             <point key="canvasLocation" x="136.95652173913044" y="150.66964285714286"/>
         </tableViewCell>

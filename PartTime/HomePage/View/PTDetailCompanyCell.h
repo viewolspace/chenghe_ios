@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PTDetailCompanyCell : UITableViewCell
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *stars;
+@property (weak, nonatomic) IBOutlet UIView *companyBgView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *companyHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
+
+- (void)setDataWithModel:(PartTimeModel *)model;
 
 @end
 

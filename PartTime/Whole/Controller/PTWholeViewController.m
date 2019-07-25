@@ -117,11 +117,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - searchViewDelegate -
-- (void)searchBtnTapAction
-{
-    NSLog(@"搜索按钮点击");
-}
 
 #pragma mark - getter and setter
 - (PTWholeHeaderView *)headerView

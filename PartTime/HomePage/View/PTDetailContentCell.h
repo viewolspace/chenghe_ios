@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTDetailContentCell : UITableViewCell
+- (void)setDataWithModel:(PartTimeModel *)model;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *showMoreBtn;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @end
 

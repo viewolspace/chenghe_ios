@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *lookBtn;
 
-- (void)setDataWithModel:(PTHotAndChoiceRecommentModel *)model;
+- (void)setDataWithModel:(PartTimeModel *)model;
 
 @end
 

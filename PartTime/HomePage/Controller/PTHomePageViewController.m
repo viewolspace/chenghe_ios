@@ -24,13 +24,23 @@
 @property (nonatomic,assign)BOOL haveHotData;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *choiceDataArr;
+@property (nonatomic,assign)NSInteger hotPageIndex;
+@property (nonatomic,assign)NSInteger hotPageSize;
 
+@property (nonatomic,assign)NSInteger choicePageIndex;
+@property (nonatomic,assign)NSInteger choicePageSize;
 @end
 
 @implementation PTHomePageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.hotPageIndex = 1;
+    self.hotPageSize  = 10;
+    
+    self.choicePageIndex = 1;
+    self.choicePageSize = 10;
     
     _haveHotData = YES;
     _headerHeight = 290;
@@ -45,7 +55,10 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    [self setMJHeaderView:self.tableView];
+    [self setMjFooterView:self.tableView];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -74,7 +87,6 @@
 #pragma mark ----tableViewDataSource----
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     PTHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTHomePageCell class])];
     [cell setDataWithModel:self.choiceDataArr[indexPath.row]];
     return cell;
@@ -95,7 +107,13 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    if (self.choiceDataArr.count == 0) {
+        return 150;
+    }else{
+        PartTimeModel *model = self.choiceDataArr[indexPath.row];
+        return model.homePageCellHeight;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -124,11 +142,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.hidesBottomBarWhenPushed = YES;
-    PTDetailViewController *vc = [[PTDetailViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.choiceDataArr.count != 0) {
+        PartTimeModel *model = self.choiceDataArr[indexPath.row];
+        self.hidesBottomBarWhenPushed = YES;
+        PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+        vc.ptId = model.aId;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    
 }
 
 
@@ -153,11 +176,28 @@
 
 
 #pragma mark - data -
+- (void)footerReloadAction
+{
+   // [self requestHotDataAction];
+    [self requestChoiceDataAction];
+}
+
+- (void)headerReoladAction
+{
+    [self.choiceDataArr removeAllObjects];
+    
+   // self.hotPageIndex = 1;
+    self.choicePageIndex = 1;
+    
+   // [self requestHotDataAction];
+    [self requestChoiceDataAction];
+}
+
 /** 请求热门数据 */
 - (void)requestHotDataAction
 {
     __weak typeof(self)weakSelf = self;
-    [PTHomePageModel requestHotOrChoiseWithId:1 pageIndex:1 pageSize:5 completeBlock:^(id obj) {
+    [PTHomePageModel requestHotOrChoiseWithId:1 pageIndex:self.hotPageIndex pageSize:self.hotPageSize completeBlock:^(id obj) {
         
         PTHomePageModel *model = (PTHomePageModel *)obj;
         [weakSelf.headerView setHotDataWithModel:model];
@@ -180,15 +220,38 @@
 /** 请求精选数据 */
 - (void)requestChoiceDataAction
 {
-    [PTHomePageModel requestHotOrChoiseWithId:2 pageIndex:1 pageSize:5 completeBlock:^(id obj) {
+    __weak typeof(self)weakSelf = self;
+    [PTHomePageModel requestHotOrChoiseWithId:2 pageIndex:self.choicePageIndex pageSize:self.choicePageSize completeBlock:^(id obj) {
         
-        NSLog(@"%@",obj);
+        PTHomePageModel *model = (PTHomePageModel *)obj;
+        [weakSelf reloadChoiceDataWithModel:model];
+
         
     } faileBlock:^(id error) {
         
         [NewShowLabel setMessageContent:@"请求精选数据失败"];
-        NSLog(@"%@",error);
     }];
+}
+
+
+//设置精选数据
+- (void)reloadChoiceDataWithModel:(PTHomePageModel *)model
+{
+    if (model.modelArr.count == 0) {
+        
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        
+        return;
+    }
+    
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
+    [self.choiceDataArr addObjectsFromArray:model.modelArr];
+    [self.tableView reloadData];
+    
+    self.choicePageIndex ++;
 }
 
 

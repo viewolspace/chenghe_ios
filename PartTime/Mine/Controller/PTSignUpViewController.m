@@ -14,6 +14,10 @@
 {
     UITableView *_tableView;
 }
+
+@property (nonatomic,strong)NSMutableArray *dataArr;
+@property (nonatomic,strong)UITableView *tableView;
+
 @end
 
 @implementation PTSignUpViewController
@@ -55,13 +59,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
+    [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -101,20 +106,43 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - setter and getter -
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr ;
+}
+
 
 #pragma mark - data -
 - (void)requestMyPartTimeData
 {
     
+    __weak typeof(self)weakSelf = self;
     [PTMyPartTimeModel requestMyPartTimeWithUserId:1 pageIndex:1 pageSize:5 completeBlock:^(id obj) {
         
-        
+        [weakSelf setMyPartTimeData:(PTMyPartTimeModel *)obj];
         
     } faileBlock:^(id error) {
         
         [NewShowLabel setMessageContent:@"请求我的报名数据失败"];
         NSLog(@"请求我的报名数据失败");
     }];
+    
+}
+
+
+- (void)setMyPartTimeData:(PTMyPartTimeModel *)model
+{
+    if (model.modelArr.count == 0) {
+        
+        return;
+    }
+    
+    [_dataArr addObjectsFromArray:model.modelArr];
+    [self.tableView reloadData];
     
 }
 

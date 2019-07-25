@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PTSearchViewController : BaseViewController
-@property (nonatomic,copy)NSArray *dataArr;
+@property (nonatomic,strong)NSMutableArray *modelArr;
 @end
 
 NS_ASSUME_NONNULL_END

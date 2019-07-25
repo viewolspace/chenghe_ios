@@ -25,30 +25,6 @@
                         <color key="textColor" red="0.15684100985527039" green="0.15687525272369385" blue="0.15683883428573608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【要求】" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-8c-3s4">
-                        <rect key="frame" x="5" y="65.5" width="65.5" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20岁以上，每天能工作3小时，喜欢玩手机" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edi-03-o9D">
-                        <rect key="frame" x="14" y="97" width="347" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.39603209495544434" green="0.39610502123832703" blue="0.39602747559547424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【内容】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksY-dC-bCU">
-                        <rect key="frame" x="5" y="146.5" width="65.5" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.39603209495544434" green="0.39610502123832703" blue="0.39602747559547424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1、手机，电脑均可（任何地方，任何地点）\n 2、我们不会索要任何押金等费用，请放心来应聘。\n 3、工作内容简单易学，上手快！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh9-4p-M53">
-                        <rect key="frame" x="14" y="186" width="347" height="57.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.39603209495544434" green="0.39610502123832703" blue="0.39602747559547424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGG-yZ-05X">
                         <rect key="frame" x="0.0" y="291.5" width="375" height="44"/>
                         <constraints>
@@ -71,30 +47,34 @@
                             <constraint firstAttribute="height" constant="1" id="ZOK-e1-fHm"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMe-Rj-NxU">
+                        <rect key="frame" x="14" y="65.5" width="347" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Edi-03-o9D" firstAttribute="top" secondItem="ZBX-8c-3s4" secondAttribute="bottom" constant="12" id="3YX-ZG-sdb"/>
-                    <constraint firstItem="ZBX-8c-3s4" firstAttribute="leading" secondItem="6qt-sZ-RxP" secondAttribute="leading" constant="-9" id="Cuj-Ue-Boz"/>
-                    <constraint firstItem="ksY-dC-bCU" firstAttribute="top" secondItem="Edi-03-o9D" secondAttribute="bottom" constant="30" id="MMm-Y8-DTV"/>
-                    <constraint firstItem="Dh9-4p-M53" firstAttribute="leading" secondItem="6qt-sZ-RxP" secondAttribute="leading" id="Mpk-Tz-WS5"/>
+                    <constraint firstAttribute="trailing" secondItem="cMe-Rj-NxU" secondAttribute="trailing" constant="14" id="ISs-oY-V9c"/>
                     <constraint firstItem="t43-rH-OmE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Pb6-M0-eGr"/>
                     <constraint firstAttribute="bottom" secondItem="t43-rH-OmE" secondAttribute="bottom" constant="44" id="QYo-P3-GzI"/>
+                    <constraint firstItem="cMe-Rj-NxU" firstAttribute="leading" secondItem="6qt-sZ-RxP" secondAttribute="leading" id="Sqy-0D-sN6"/>
                     <constraint firstAttribute="trailing" secondItem="6qt-sZ-RxP" secondAttribute="trailing" constant="14" id="VxC-nu-zFs"/>
-                    <constraint firstAttribute="trailing" secondItem="Edi-03-o9D" secondAttribute="trailing" constant="14" id="Xc2-JW-i3R"/>
                     <constraint firstItem="DGG-yZ-05X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aKX-JI-SbX"/>
-                    <constraint firstItem="ZBX-8c-3s4" firstAttribute="top" secondItem="6qt-sZ-RxP" secondAttribute="bottom" constant="22" id="aaA-nq-Sxv"/>
                     <constraint firstItem="6qt-sZ-RxP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="b2E-yO-Gtv"/>
                     <constraint firstAttribute="trailing" secondItem="DGG-yZ-05X" secondAttribute="trailing" id="c9x-OT-dhj"/>
-                    <constraint firstAttribute="trailing" secondItem="Dh9-4p-M53" secondAttribute="trailing" constant="14" id="jP9-Z3-Djh"/>
                     <constraint firstAttribute="bottom" secondItem="DGG-yZ-05X" secondAttribute="bottom" id="jiG-Kv-U91"/>
-                    <constraint firstItem="Edi-03-o9D" firstAttribute="leading" secondItem="6qt-sZ-RxP" secondAttribute="leading" id="joL-YS-qNG"/>
-                    <constraint firstItem="ksY-dC-bCU" firstAttribute="leading" secondItem="6qt-sZ-RxP" secondAttribute="leading" constant="-9" id="mmr-B4-qdJ"/>
                     <constraint firstAttribute="trailing" secondItem="t43-rH-OmE" secondAttribute="trailing" id="p4Y-pW-Fwt"/>
-                    <constraint firstItem="Dh9-4p-M53" firstAttribute="top" secondItem="ksY-dC-bCU" secondAttribute="bottom" constant="20" id="rDI-LG-Utx"/>
+                    <constraint firstItem="cMe-Rj-NxU" firstAttribute="top" secondItem="6qt-sZ-RxP" secondAttribute="bottom" constant="22" id="q94-ij-QoA"/>
                     <constraint firstItem="6qt-sZ-RxP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="st6-tw-SWa"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentLabel" destination="cMe-Rj-NxU" id="gJZ-Y6-DpM"/>
+                <outlet property="lineView" destination="t43-rH-OmE" id="J9d-0y-VLa"/>
+                <outlet property="showMoreBtn" destination="DGG-yZ-05X" id="jCs-aS-m5E"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

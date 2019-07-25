@@ -19,8 +19,9 @@
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
     for (NSDictionary *resultDic in resultArr) {
-        PTHotAndChoiceRecommentModel *model = [PTHotAndChoiceRecommentModel new];
+        PartTimeModel *model = [PartTimeModel new];
         [model setValuesForKeysWithDictionary:resultDic];
+        [model calculateCellHeight];
         [arr addObject:model];
     }
     
@@ -31,12 +32,12 @@
 
 
 + (void)requestHotOrChoiseWithId:(int)rId
-                       pageIndex:(int)pageIndex
-                        pageSize:(int)pageSize
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
                    completeBlock:(CompleteBlock)completeBlock
                       faileBlock:(FaileBlock)faileBlock
 {
-    NSString *hotUrl = [NSString stringWithFormat:@"%@partTime/queryRecommnet?recomment=%d&pageIndex=%d&pageSize=%d",PartTimeAddress,rId,pageIndex,pageSize];
+    NSString *hotUrl = [NSString stringWithFormat:@"%@partTime/queryRecommnet?recommend=%d&pageIndex=%ld&pageSize=%ld",PartTimeAddress,rId,pageIndex,pageSize];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -48,7 +49,6 @@
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         faileBlock(error);
     }];
 }

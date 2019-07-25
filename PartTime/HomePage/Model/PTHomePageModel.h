@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
   rId 1 热门 2 精选
  */
 + (void)requestHotOrChoiseWithId:(int)rId
-                       pageIndex:(int)pageIndex
-                        pageSize:(int)pageSize
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
                    completeBlock:(CompleteBlock)completeBlock
                       faileBlock:(FaileBlock)faileBlock;
 

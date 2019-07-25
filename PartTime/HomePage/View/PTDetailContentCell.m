@@ -19,5 +19,22 @@
     sender.selected = !sender.selected;
 }
 
+- (void)setDataWithModel:(PartTimeModel *)model
+{
+    if (model.content) {
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        style.lineSpacing = 5.f;
+        
+        NSAttributedString *str = [[NSAttributedString alloc] initWithString:model.content attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style}];
+        
+        self.contentLabel.attributedText = str;
+    }
+  
+   
+        self.showMoreBtn.hidden = model.isHiddenContent;
+    self.lineView.hidden = model.isHiddenContent;
+    
+}
+
 
 @end

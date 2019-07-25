@@ -31,19 +31,19 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信在线兼职，随时随地做，秒结" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfN-FB-eTe">
-                        <rect key="frame" x="14" y="31" width="241" height="38.5"/>
+                        <rect key="frame" x="14" y="65" width="241" height="38.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jr-WK-JeU">
-                        <rect key="frame" x="14" y="81.5" width="241" height="27.5"/>
+                        <rect key="frame" x="14" y="115.5" width="241" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日结 | 长期 | 男女不限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y97-1L-1ee">
-                        <rect key="frame" x="14" y="121" width="241" height="16"/>
+                        <rect key="frame" x="14" y="155" width="241" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.72156862745098038" green="0.71764705882352942" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                     <constraint firstItem="Y97-1L-1ee" firstAttribute="top" secondItem="6Jr-WK-JeU" secondAttribute="bottom" constant="12" id="4lx-8A-eda"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="trailing" constant="20" id="5hL-Nb-NDY"/>
                     <constraint firstItem="R8q-7x-eB2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="CFk-Rn-rTW"/>
-                    <constraint firstItem="lfN-FB-eTe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="G7l-TN-RcJ"/>
+                    <constraint firstItem="lfN-FB-eTe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="G7l-TN-RcJ"/>
                     <constraint firstItem="Y97-1L-1ee" firstAttribute="leading" secondItem="lfN-FB-eTe" secondAttribute="leading" id="PbV-RR-y46"/>
                     <constraint firstItem="cOO-am-ivo" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="9" id="QFi-uB-rUd"/>
                     <constraint firstAttribute="bottom" secondItem="R8q-7x-eB2" secondAttribute="bottom" id="Zbd-0l-pcR"/>
