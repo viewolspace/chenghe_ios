@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong)UIScrollView *bannerScrollView;
 @property (nonatomic,strong)UILabel *choiceLabel;
+@property (nonatomic,copy)NSArray *modelArr;
+@property (nonatomic,copy)void (^selectDataBlock)(PartTimeAdModel *model);
+
+- (void)setDataWithAdModel:(PartTimeAdModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

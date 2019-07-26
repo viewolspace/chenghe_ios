@@ -28,18 +28,6 @@
         CGFloat width = WIDTH_OF_SCREEN;
         _bannerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _bannerScrollView.pagingEnabled = YES;
-        
-        CGFloat sizeWidth = 0;
-        CGFloat bannerWidth = width - 14 * 2.0;
-        for (int i = 0; i < 3; i ++) {
-            
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(14 + i * WIDTH_OF_SCREEN, 0, bannerWidth, height)];
-            view.backgroundColor = COLOR_RANDOM;
-            [_bannerScrollView addSubview:view];
-            sizeWidth = view.right;
-        }
-        
-        _bannerScrollView.contentSize = CGSizeMake(WIDTH_OF_SCREEN * 3.0, 0);
         [self addSubview:_bannerScrollView];
     }
     
@@ -57,6 +45,48 @@
     }
     
     return _choiceLabel;
+}
+
+#pragma mark - data -
+- (void)setDataWithAdModel:(PartTimeAdModel *)model
+{
+    NSArray *views = self.bannerScrollView.subviews;
+    for (UIView *view in views) {
+        [view removeFromSuperview];
+    }
+    
+    
+    CGFloat height = 119;
+    CGFloat width = WIDTH_OF_SCREEN;
+    
+    CGFloat sizeWidth = 0;
+    CGFloat bannerWidth = width - 14 * 2.0;
+    for (int i = 0; i < model.adModelArr.count; i ++) {
+        
+        PartTimeAdModel *adModel = model.adModelArr[i];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(14 + i * WIDTH_OF_SCREEN, 0, bannerWidth, height)];
+        [btn addTarget:self action:@selector(selectAdAction:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = 100 + i;
+        [self.bannerScrollView addSubview:btn];
+        sizeWidth = btn.right;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:btn.bounds];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:adModel.adImageUrl] placeholderImage:[UIImage imageNamed:@""]];
+        imageView.backgroundColor = COLOR_RANDOM;
+        [btn addSubview:imageView];
+    }
+    
+    self.modelArr = model.adModelArr;
+    self.bannerScrollView.contentSize = CGSizeMake(WIDTH_OF_SCREEN * model.adModelArr.count, 0);
+}
+
+#pragma mark - senderAction -
+- (void)selectAdAction:(UIButton *)sender
+{
+    PartTimeAdModel *model = self.modelArr[sender.tag - 100];
+    if (self.selectDataBlock) {
+        self.selectDataBlock(model);
+    }
 }
 
 @end

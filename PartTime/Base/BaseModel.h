@@ -54,14 +54,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *workTime;
 /** 工作地点 */
 @property (nonatomic,copy)NSString *workAddress;
+/** 创建、更新时间 */
+@property (nonatomic,copy)NSString *cTime;
+/** 精选列表图片 */
+@property (nonatomic,copy)NSString *pic;
+
+
 /** 详情页 如果内容过多，隐藏一部分 */
 @property (nonatomic,assign)BOOL isHiddenContent;
-
 @property (nonatomic,assign)CGFloat homePageCellHeight;
-
 @property (nonatomic,assign)CGFloat detailTitleCellHeight;
 @property (nonatomic,assign)CGFloat detailCompanyCellHeight;
-
 /** 未展开信息的高度*/
 @property (nonatomic,assign)CGFloat detailContentCellHeight;
 /** 展开信息的高度 */
@@ -72,7 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)BOOL haveImage;
 
 @property (nonatomic,assign)int status;
-@property (nonatomic,copy)NSString *getsTime;
 @property (nonatomic,assign)int browseNum;
 @property (nonatomic,assign)int copyNum;
 @property (nonatomic,assign)int joinNum;
@@ -91,7 +93,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface ADModel : BaseModel
+@interface PartTimeAdModel : BaseModel
+
+@property (nonatomic,copy)NSArray <PartTimeAdModel *>*adModelArr;
+
+@property (nonatomic,assign)int adId;
+@property (nonatomic,strong)NSString *adTitle;
+@property (nonatomic,strong)NSString *adUrl;
+@property (nonatomic,strong)NSString *adImageUrl;
+
 /** 查询广告 */
 + (void)requestADWithCategoryId:(NSString *)categoryId
                   completeBlock:(CompleteBlock)completeBlock
@@ -100,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface QueryPartTimeModel : BaseModel
+@interface PartTimeQueryModel : BaseModel
 
 @property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
 
@@ -114,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface JoinPartTimeModel : BaseModel
+@interface PartTimeJoinModel : BaseModel
 
 /** 参加兼职 */
 + (void)requestJoinPartTimeWithUserId:(NSInteger)userId
@@ -133,6 +143,26 @@ NS_ASSUME_NONNULL_BEGIN
                                     aid:(NSInteger)aid
                           completeBlock:(CompleteBlock)completeBlock
                              faileBlock:(FaileBlock)faileBlock;
+
+@end
+
+
+
+
+@interface PTHomePageModel : BaseModel
+
+@property (nonatomic,copy)CompleteBlock completeBlock;
+@property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
+
+
+/**
+ rId 1 热门 2 精选
+ */
++ (void)requestHotOrChoiseWithId:(int)rId
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
+                   completeBlock:(CompleteBlock)completeBlock
+                      faileBlock:(FaileBlock)faileBlock;
 
 @end
 

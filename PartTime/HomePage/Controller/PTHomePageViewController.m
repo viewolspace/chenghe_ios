@@ -10,7 +10,6 @@
 #import "PTHomePageCell.h"
 #import "PTDetailViewController.h"
 #import "PTHomePageHeaderView.h"
-#import "PTHomePageModel.h"
 
 @interface PTHomePageViewController ()<UITableViewDelegate,UITableViewDataSource,PTSearchViewDelegate>
 {
@@ -23,7 +22,6 @@
 @property (nonatomic,strong)PTHomePageHeaderView *headerView;
 @property (nonatomic,assign)BOOL haveHotData;
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,strong)NSMutableArray *choiceDataArr;
 @property (nonatomic,assign)NSInteger hotPageIndex;
 @property (nonatomic,assign)NSInteger hotPageSize;
 
@@ -57,6 +55,10 @@
     
     [self setMJHeaderView:self.tableView];
     [self setMjFooterView:self.tableView];
+    
+    [self requestHotDataAction];
+    [self requestChoiceDataAction];
+    [self requestTopThreeAdAction];
 }
 
 
@@ -66,8 +68,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     
-    [self requestHotDataAction];
-    [self requestChoiceDataAction];
+
 }
 
 - (void)createTabelView
@@ -88,14 +89,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTHomePageCell class])];
-    [cell setDataWithModel:self.choiceDataArr[indexPath.row]];
+    [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.choiceDataArr.count;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -107,10 +108,10 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.choiceDataArr.count == 0) {
+    if (self.dataArr.count == 0) {
         return 150;
     }else{
-        PartTimeModel *model = self.choiceDataArr[indexPath.row];
+        PartTimeModel *model = self.dataArr[indexPath.row];
         return model.homePageCellHeight;
     }
     
@@ -142,8 +143,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.choiceDataArr.count != 0) {
-        PartTimeModel *model = self.choiceDataArr[indexPath.row];
+    if (self.dataArr.count != 0) {
+        PartTimeModel *model = self.dataArr[indexPath.row];
         self.hidesBottomBarWhenPushed = YES;
         PTDetailViewController *vc = [[PTDetailViewController alloc] init];
         vc.ptId = model.aId;
@@ -161,17 +162,18 @@
 {
     if (!_headerView) {
         _headerView = [[PTHomePageHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
+        __weak typeof(self)weakSelf = self;
+        [_headerView setClickAdBlcok:^(PartTimeAdModel * _Nonnull model) {
+            [weakSelf clickAdAction:model];
+        }];
     }
     return _headerView;
 }
 
-- (NSMutableArray *)choiceDataArr
+#pragma mark - senderAction -
+- (void)clickAdAction:(PartTimeAdModel *)model
 {
-    if (!_choiceDataArr) {
-        _choiceDataArr = [NSMutableArray array];
-    }
-    
-    return _choiceDataArr;
+    [self.navigationController clickAdAction:model chileVC:self];
 }
 
 
@@ -184,7 +186,7 @@
 
 - (void)headerReoladAction
 {
-    [self.choiceDataArr removeAllObjects];
+    [self.dataArr removeAllObjects];
     
    // self.hotPageIndex = 1;
     self.choicePageIndex = 1;
@@ -193,26 +195,25 @@
     [self requestChoiceDataAction];
 }
 
+- (void)requestTopThreeAdAction
+{
+    __weak typeof(self)weakSelf = self;
+    [PartTimeAdModel requestADWithCategoryId:PT_HOMEPAGE_TOP_THREE completeBlock:^(id obj) {
+        [weakSelf.headerView setTopThreeDataWithModel:(PartTimeAdModel *)obj];
+    } faileBlock:^(id error) {
+        
+    }];
+}
+
 /** 请求热门数据 */
 - (void)requestHotDataAction
 {
     __weak typeof(self)weakSelf = self;
-    [PTHomePageModel requestHotOrChoiseWithId:1 pageIndex:self.hotPageIndex pageSize:self.hotPageSize completeBlock:^(id obj) {
-        
-        PTHomePageModel *model = (PTHomePageModel *)obj;
-        [weakSelf.headerView setHotDataWithModel:model];
-        if (model.modelArr.count == 0) {
-            weakSelf.haveHotData = NO;
-        }else{
-            weakSelf.haveHotData = YES;
-        }
-        
-        [weakSelf.tableView reloadData];
+    [PartTimeAdModel requestADWithCategoryId:PT_HOMEPAGE_SCROLL completeBlock:^(id obj) {
+        [weakSelf.headerView setBannerDataWithModel:(PartTimeAdModel *)obj];
         
     } faileBlock:^(id error) {
         
-        [NewShowLabel setMessageContent:@"请求热门数据失败"];
-
     }];
 }
 
@@ -239,7 +240,7 @@
 {
     if (model.modelArr.count == 0) {
         
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
         [self.tableView.mj_header endRefreshing];
         
         return;
@@ -248,7 +249,7 @@
     [self.tableView.mj_footer endRefreshing];
     [self.tableView.mj_header endRefreshing];
     
-    [self.choiceDataArr addObjectsFromArray:model.modelArr];
+    [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
     
     self.choicePageIndex ++;

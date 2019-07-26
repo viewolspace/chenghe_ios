@@ -19,6 +19,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (CAGradientLayer *)customLayer:(UIView *)superView
                       haveCorner:(BOOL)haveCorner;
 
+
+
+@end
+
+
+
+@interface PTUserUtil : NSObject
+
+
+
+/** 获取用户id */
++ (NSString *)getUserId;
+/** 存储用户id */
++ (void)setUserId:(NSString *)userId;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

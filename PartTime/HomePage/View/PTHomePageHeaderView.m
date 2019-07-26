@@ -27,23 +27,10 @@
 {
     if (!_topView) {
         
-        CGFloat width = (WIDTH_OF_SCREEN - (14 * 2.0 + 7 * 2.0)) / 3.0;
         CGFloat height = 42.f;
-        
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, height)];
-       // _topView.backgroundColor = [UIColor yellowColor];
         [self addSubview:_topView];
-        NSArray *imagesNameArr = @[@"宅家赚钱",@"简单易做",@"高薪日结"];
-        for (int i = 0; i < 3; i ++) {
-            
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * width + i * 7.0, 0, width, height)];
-            [btn addTarget:self action:@selector(topThreeAction:) forControlEvents:UIControlEventTouchUpInside];
-            btn.tag = 100 + i;
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-           // btn.backgroundColor = COLOR_RANDOM;
-            [_topView addSubview:btn];
-            [btn setImage:[UIImage imageNamed:imagesNameArr[i]] forState:UIControlStateNormal];
-        }
+      
     }
     
     return _topView;
@@ -73,19 +60,7 @@
         _actionScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(page, self.hotLabel.bottom + 24, WIDTH_OF_SCREEN - page, height)];
         _actionScrollView.delegate = self;
         [self addSubview:_actionScrollView];
-        
-        CGFloat scrollSizeWidth = 0;
-        for (int i = 0; i < 10; i ++) {
-            UIButton *bg = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * 207 + 8 * i, 0, 207, height)];
-            //bg.backgroundColor = COLOR_RANDOM;
-            bg.tag = 300 + i;
-            [bg addTarget:self action:@selector(hotAction:) forControlEvents:UIControlEventTouchUpInside];
-            [_actionScrollView addSubview:bg];
-            [bg setImage:[UIImage imageNamed:@"BANNER _ 长图.png"] forState:UIControlStateNormal];
-            scrollSizeWidth = bg.right + 14.;
-        }
-        
-        [_actionScrollView setContentSize:CGSizeMake(scrollSizeWidth, 0)];
+ 
     }
     
     return _actionScrollView;
@@ -110,26 +85,72 @@
 #pragma mark - senderAction -
 - (void)topThreeAction:(UIButton *)sender
 {
-    NSLog(@"top: %ld",sender.tag);
+    PartTimeAdModel *model = self.topThreeModelArr[sender.tag - 100];
+    if (self.clickAdBlcok) {
+        self.clickAdBlcok(model);
+    }
 }
 
-- (void)hotAction:(UIButton *)sender
+- (void)bannerAction:(UIButton *)sender
 {
-    NSLog(@"热门：%ld",sender.tag);
+    PartTimeAdModel *model = self.scrollModelArr[sender.tag - 300];
+    if (self.clickAdBlcok) {
+        self.clickAdBlcok(model);
+    }
 }
 
 #pragma mark - data -
-- (void)setHotDataWithModel:(PTHomePageModel *)model
+- (void)setBannerDataWithModel:(PartTimeAdModel *)model
 {
-    if (model.modelArr.count == 0) {
-        self.actionScrollView.height = 0;
-        self.hotLabel.height = 0;
-        self.recommendLabel.top = self.topView.bottom + 31;
-    }else{
-        self.actionScrollView.height = 120.f;
-        self.hotLabel.height = 18.f;
-        self.recommendLabel.top = self.actionScrollView.bottom + 32.f;
+    [self.actionScrollView removeAllSubVies];
+    
+    CGFloat height = 120;
+    CGFloat scrollSizeWidth = 0;
+    
+    for (int i = 0; i < model.adModelArr.count; i ++) {
+        
+        PartTimeAdModel *adModel = model.adModelArr[i];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * 207 + 8 * i, 0, 207, height)];
+        btn.tag = 300 + i;
+        [btn addTarget:self action:@selector(bannerAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.actionScrollView addSubview:btn];
+        scrollSizeWidth = btn.right + 14.;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:btn.bounds];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:adModel.adImageUrl] placeholderImage:[UIImage imageNamed:@""]];
+        imageView.backgroundColor = COLOR_RANDOM;
+        [btn addSubview:imageView];
     }
+    
+    [self.actionScrollView setContentSize:CGSizeMake(scrollSizeWidth, 0)];
+    
+    self.scrollModelArr = model.adModelArr;
+}
+
+- (void)setTopThreeDataWithModel:(PartTimeAdModel *)model
+{
+    
+    [self.topView removeAllSubVies];
+    
+    CGFloat width = (WIDTH_OF_SCREEN - (14 * 2.0 + 7 * 2.0)) / 3.0;
+    CGFloat height = 42.f;
+    
+    for (int i = 0; i < model.adModelArr.count && i < 3; i ++) {
+        PartTimeAdModel *adModel = model.adModelArr[i];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(14 + i * width + i * 7.0, 0, width, height)];
+        [btn addTarget:self action:@selector(topThreeAction:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = 100 + i;
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
+        [_topView addSubview:btn];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:btn.bounds];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:adModel.adImageUrl] placeholderImage:[UIImage imageNamed:@""]];
+        imageView.backgroundColor = COLOR_RANDOM;
+        [btn addSubview:imageView];
+    }
+    
+    self.topThreeModelArr = model.adModelArr;
+   
 }
 
 

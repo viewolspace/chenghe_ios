@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic,strong)PTWholeHeaderView *headerView;
+@property (nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -37,6 +38,13 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    [self setMjFooterView:self.tableView];
+    [self setMJHeaderView:self.tableView];
+    
+    [self requestAllData];
+    [self requestBannerAction];
+    [self requestTopThreeAdAction];
     
 }
 
@@ -66,14 +74,14 @@
 {
     
     PTHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTHomePageCell class])];
-    
+    [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -85,7 +93,8 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    PartTimeModel *model = self.dataArr[indexPath.row];
+    return model.homePageCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -110,8 +119,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PartTimeModel *model = self.dataArr[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+    vc.ptId = model.aId;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -123,8 +134,83 @@
 {
     if (!_headerView) {
         _headerView = [[PTWholeHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
+        __weak typeof(self)weakSelf = self;
+        [_headerView setClickAdBlcok:^(PartTimeAdModel * _Nonnull model) {
+            [weakSelf clickAdAction:model];
+        }];
     }
     return _headerView;
+}
+
+#pragma mark - senderAction -
+- (void)clickAdAction:(PartTimeAdModel *)model
+{
+    [self.navigationController clickAdAction:model chileVC:self];
+}
+
+#pragma mark - data -
+- (void)headerReoladAction
+{
+    self.pageIndex = 1;
+    [self.dataArr removeAllObjects];
+    [self requestAllData];
+}
+
+- (void)footerReloadAction
+{
+    [self requestAllData];
+}
+
+
+/** 顶部三个按钮 */
+- (void)requestTopThreeAdAction
+{
+    __weak typeof(self)weakSelf = self;
+    [PartTimeAdModel requestADWithCategoryId:PT_WHOLE_TOP_THREE completeBlock:^(id obj) {
+        [weakSelf.headerView setTopThreeDataWithModel:(PartTimeAdModel *)obj];
+    } faileBlock:^(id error) {
+        
+    }];
+}
+
+/** 请求滚动数据 */
+- (void)requestBannerAction
+{
+    __weak typeof(self)weakSelf = self;
+    [PartTimeAdModel requestADWithCategoryId:PT_WHOLE_SINGLE completeBlock:^(id obj) {
+        [weakSelf.headerView setBannerDataWithModel:(PartTimeAdModel *)obj];
+    } faileBlock:^(id error) {
+        
+    }];
+}
+
+/** 请求全部数据 */
+- (void)requestAllData{
+    
+    __weak typeof(self)weakSelf = self;
+    [PartTimeQueryModel requestPartTimeWithKeyWord:@"" pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+        [weakSelf setDataWithModel:(PartTimeQueryModel *)obj];
+    } faileBlock:^(id error) {
+        
+    }];
+    
+}
+
+- (void)setDataWithModel:(PartTimeQueryModel *)model
+{
+    if (model.modelArr.count == 0) {
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
+    self.pageIndex ++;
+    [self.dataArr addObjectsFromArray:model.modelArr];
+    [self.tableView reloadData];
 }
 
 @end

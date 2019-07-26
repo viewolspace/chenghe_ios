@@ -171,6 +171,12 @@
     
     //图片高度
     CGFloat picHeight = 93.f;
+    if (self.pic && ![self.pic isEqualToString:@""]) {
+        self.haveImage = YES;
+    }else{
+        self.haveImage = NO;
+    }
+    
     if (self.haveImage) {
         picHeight = 93.f;
     }else{
@@ -186,19 +192,33 @@
 
 @end
 
-@implementation ADModel
+@implementation PartTimeAdModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSLog(@"%@",dic);
+    NSArray *arr = dic[@"result"];
+    NSMutableArray *mArr = [NSMutableArray arrayWithCapacity:arr.count];
+    for (NSDictionary *resultDic in arr) {
+        PartTimeAdModel *model = [PartTimeAdModel new];
+        model.adId = [resultDic[@"id"]intValue];
+        model.adTitle = resultDic[@"title"];
+        model.adImageUrl = resultDic[@"imageUrl"];
+        model.adUrl = resultDic[@"url"];
+        [mArr addObject:model];
+    }
+    
+    self.adModelArr = mArr;
+    
+    completeBlock(self);
+    NSLog(@"广告 %@ %@",dic[@"message"],dic[@"status"]);
 }
 
 + (void)requestADWithCategoryId:(NSString *)categoryId
                   completeBlock:(CompleteBlock)completeBlock
                      faileBlock:(FaileBlock)faileBlock
 {
-    NSString *myPartTimeUrl = [NSString stringWithFormat:@"%@ad/queryAdList?id=%@",PartTimeAddress,categoryId];
+    NSString *myPartTimeUrl = [NSString stringWithFormat:@"%@ad/queryAdList?categoryId=%@",PartTimeAddress,categoryId];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -207,7 +227,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        ADModel *model = [ADModel new];
+        PartTimeAdModel *model = [PartTimeAdModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -221,7 +241,7 @@
 
 
 #pragma mark -------- 根据关键词查询兼职内容 --------
-@implementation QueryPartTimeModel
+@implementation PartTimeQueryModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
@@ -235,6 +255,7 @@
         PartTimeModel *model = [PartTimeModel new];
         [model setValuesForKeysWithDictionary:resultDic];
         [model calculateHaveImageCellHeight];
+        [model calculateCellHeight];
         [arr addObject:model];
     }
     NSLog(@"查询 %@ %@",message,status);
@@ -258,7 +279,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        QueryPartTimeModel *model = [QueryPartTimeModel new];
+        PartTimeQueryModel *model = [PartTimeQueryModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -270,7 +291,7 @@
 @end
 
 
-@implementation JoinPartTimeModel
+@implementation PartTimeJoinModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
@@ -292,7 +313,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        JoinPartTimeModel *model = [JoinPartTimeModel new];
+        PartTimeJoinModel *model = [PartTimeJoinModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -350,6 +371,53 @@
 @end
 
 
+@implementation PTHomePageModel
+
+- (void)jsonToObject:(NSDictionary *)dic
+       completeBlock:(nonnull CompleteBlock)completeBlock
+{
+    NSString *message = dic[@"message"];
+    NSString *status  = dic[@"status"];
+    NSArray *resultArr = dic[@"result"];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
+    for (NSDictionary *resultDic in resultArr) {
+        PartTimeModel *model = [PartTimeModel new];
+        [model setValuesForKeysWithDictionary:resultDic];
+        [model calculateCellHeight];
+        [model calculateHaveImageCellHeight];
+        [arr addObject:model];
+    }
+    
+    _modelArr = arr;
+    completeBlock(self);
+    NSLog(@"热门or精选 %@ %@",message,status);
+}
+
+
++ (void)requestHotOrChoiseWithId:(int)rId
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
+                   completeBlock:(CompleteBlock)completeBlock
+                      faileBlock:(FaileBlock)faileBlock
+{
+    NSString *hotUrl = [NSString stringWithFormat:@"%@partTime/queryRecommnet?recommend=%d&pageIndex=%ld&pageSize=%ld",PartTimeAddress,rId,pageIndex,pageSize];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:hotUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        PTHomePageModel *model = [PTHomePageModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        faileBlock(error);
+    }];
+}
+
+@end
 
 
 /************************* 用户相关 ************************/
@@ -555,7 +623,7 @@
 + (void)requestFirstActiveCompleteBlock:(CompleteBlock)completeBlock
                              faileBlock:(FaileBlock)faileBlock
 {
-    NSString *idfa = PT_IDFA;
+    NSString *idfa = @"1";
     NSString *activeUrl = [NSString stringWithFormat:@"%@user/active?idfa=%@&os=1",PartTimeAddress,idfa];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

@@ -106,6 +106,9 @@
 		04BB402022E7F3D00019800D /* 女-up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB401122E7F3D00019800D /* 女-up@3x.png */; };
 		04BB402122E7F3D00019800D /* 圆角按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB401222E7F3D00019800D /* 圆角按钮.png */; };
 		04BB402422E7FE1C0019800D /* PTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BB402322E7FE1C0019800D /* PTSignUpViewController.m */; };
+		04D05A5622EAA24E001E4C04 /* PTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5522EAA24E001E4C04 /* PTWebViewController.m */; };
+		04D05A5922EAAB39001E4C04 /* UIView+viewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5822EAAB39001E4C04 /* UIView+viewCategory.m */; };
+		04D05A5C22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5B22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
@@ -143,7 +146,6 @@
 		04E8C3C822E5A2F900B4FF6D /* 立即查看按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3C522E5A2F900B4FF6D /* 立即查看按钮.png */; };
 		04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3CE22E5A91600B4FF6D /* PTHomePageCell.m */; };
 		04E8C3D122E5A91600B4FF6D /* PTHomePageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */; };
-		04E8C3D522E5A93600B4FF6D /* PTHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3D422E5A93600B4FF6D /* PTHomePageModel.m */; };
 		04E8C3E022E5AB3100B4FF6D /* PTMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3DE22E5AB3100B4FF6D /* PTMineCell.xib */; };
 		04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3DF22E5AB3100B4FF6D /* PTMineCell.m */; };
 		04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C3E322E5AB3800B4FF6D /* PTMineViewController.m */; };
@@ -279,6 +281,12 @@
 		04BB401222E7F3D00019800D /* 圆角按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆角按钮.png"; sourceTree = "<group>"; };
 		04BB402222E7FE1C0019800D /* PTSignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTSignUpViewController.h; sourceTree = "<group>"; };
 		04BB402322E7FE1C0019800D /* PTSignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTSignUpViewController.m; sourceTree = "<group>"; };
+		04D05A5422EAA24E001E4C04 /* PTWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTWebViewController.h; sourceTree = "<group>"; };
+		04D05A5522EAA24E001E4C04 /* PTWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTWebViewController.m; sourceTree = "<group>"; };
+		04D05A5722EAAB39001E4C04 /* UIView+viewCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+viewCategory.h"; sourceTree = "<group>"; };
+		04D05A5822EAAB39001E4C04 /* UIView+viewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewCategory.m"; sourceTree = "<group>"; };
+		04D05A5A22EAB219001E4C04 /* UINavigationController+ClickAdCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ClickAdCategory.h"; sourceTree = "<group>"; };
+		04D05A5B22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ClickAdCategory.m"; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -327,8 +335,6 @@
 		04E8C3CD22E5A91600B4FF6D /* PTHomePageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHomePageCell.h; sourceTree = "<group>"; };
 		04E8C3CE22E5A91600B4FF6D /* PTHomePageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHomePageCell.m; sourceTree = "<group>"; };
 		04E8C3CF22E5A91600B4FF6D /* PTHomePageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTHomePageCell.xib; sourceTree = "<group>"; };
-		04E8C3D322E5A93500B4FF6D /* PTHomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHomePageModel.h; sourceTree = "<group>"; };
-		04E8C3D422E5A93600B4FF6D /* PTHomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHomePageModel.m; sourceTree = "<group>"; };
 		04E8C3DD22E5AB3100B4FF6D /* PTMineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTMineCell.h; sourceTree = "<group>"; };
 		04E8C3DE22E5AB3100B4FF6D /* PTMineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTMineCell.xib; sourceTree = "<group>"; };
 		04E8C3DF22E5AB3100B4FF6D /* PTMineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTMineCell.m; sourceTree = "<group>"; };
@@ -446,6 +452,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		04D05A5322EAA21E001E4C04 /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				04D05A5422EAA24E001E4C04 /* PTWebViewController.h */,
+				04D05A5522EAA24E001E4C04 /* PTWebViewController.m */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
 		04E8C33E22E5459900B4FF6D = {
 			isa = PBXGroup;
 			children = (
@@ -467,8 +482,9 @@
 		04E8C34922E5459900B4FF6D /* PartTime */ = {
 			isa = PBXGroup;
 			children = (
-				0418F3E522E692CC00B50063 /* Base */,
 				04E8C37522E549C300B4FF6D /* Tool */,
+				0418F3E522E692CC00B50063 /* Base */,
+				04D05A5322EAA21E001E4C04 /* AD */,
 				04E8C36322E5477600B4FF6D /* Mine */,
 				04E8C36222E5476000B4FF6D /* Whole */,
 				04E8C36122E5472D00B4FF6D /* Choice */,
@@ -549,6 +565,10 @@
 				04E8C39D22E56F1A00B4FF6D /* PTTool.m */,
 				0418F3E922E694A500B50063 /* PTManager.h */,
 				0418F3EA22E694A500B50063 /* PTManager.m */,
+				04D05A5722EAAB39001E4C04 /* UIView+viewCategory.h */,
+				04D05A5822EAAB39001E4C04 /* UIView+viewCategory.m */,
+				04D05A5A22EAB219001E4C04 /* UINavigationController+ClickAdCategory.h */,
+				04D05A5B22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -716,8 +736,6 @@
 		04E8C3D222E5A92400B4FF6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04E8C3D322E5A93500B4FF6D /* PTHomePageModel.h */,
-				04E8C3D422E5A93600B4FF6D /* PTHomePageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -986,12 +1004,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PartTime/Pods-PartTime-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1010,6 +1030,9 @@
 				04A4F3A022E94F9C00C8B449 /* BaseModel.m in Sources */,
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
 				0418F40422E6AAC500B50063 /* PTChoiceViewController.m in Sources */,
+				04D05A5C22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m in Sources */,
+				04D05A5922EAAB39001E4C04 /* UIView+viewCategory.m in Sources */,
+				04D05A5622EAA24E001E4C04 /* PTWebViewController.m in Sources */,
 				0418F40722E6AC6100B50063 /* PTChoiceHeaderView.m in Sources */,
 				04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */,
 				04E8C3EC22E5AC8900B4FF6D /* PTDetailTitleCell.m in Sources */,
@@ -1028,7 +1051,6 @@
 				04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */,
 				0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */,
 				04AD20DF22E823E20004421E /* NewShowLabel.m in Sources */,
-				04E8C3D522E5A93600B4FF6D /* PTHomePageModel.m in Sources */,
 				04E8C3BD22E5924B00B4FF6D /* NSString+Java.m in Sources */,
 				04E8C35A22E5459900B4FF6D /* main.m in Sources */,
 				04E8C36722E547BD00B4FF6D /* PTTabbarViewController.m in Sources */,

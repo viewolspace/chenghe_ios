@@ -55,6 +55,13 @@
     
     [NewShowLabel newShowLabel];
     
+    
+    //获取UUID存储到keyChain中
+    NSString *uuid = [SAMKeychain passwordForService:@"兼职圈" account:@""];
+    if (!uuid) {
+        NSString *uuid = [NSUUID UUID].UUIDString;
+        [SAMKeychain setPassword:uuid forService:@"兼职圈" account:@"" error:nil];
+    }
    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //首次打开app
@@ -67,6 +74,8 @@
         }];
     }
    
+    
+    
     return YES;
 }
 

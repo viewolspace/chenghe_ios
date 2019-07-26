@@ -17,8 +17,7 @@
 @property (nonatomic,strong)UIImageView *noDataImageView;
 @property (nonatomic,strong)UITextField *searchTextField;
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,assign)NSInteger pageIndex;
-@property (nonatomic,assign)NSInteger pageSize;
+
 @property (nonatomic,assign)BOOL pop;
 @property (nonatomic,assign)CGFloat keyBoardHeight;
 @property (nonatomic,assign)CGFloat tableViewHeight;
@@ -46,9 +45,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    _pageIndex = 1;
-    _pageSize  = 10;
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self noDataImageView];
     [self searchTextField];
@@ -126,14 +122,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
-    [cell setDataWithModel:self.modelArr[indexPath.row]];
+    [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.modelArr.count;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,10 +141,10 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.modelArr.count == 0) {
+    if (self.dataArr.count == 0) {
         return 0;
     }else{
-        PartTimeModel *model = self.modelArr[indexPath.row];
+        PartTimeModel *model = self.dataArr[indexPath.row];
         return model.havePicCellHeight;
     }
 }
@@ -175,7 +171,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PartTimeModel *model = self.modelArr[indexPath.row];
+    PartTimeModel *model = self.dataArr[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     PTDetailViewController *vc = [[PTDetailViewController alloc] init];
     vc.ptId = model.aId;
@@ -189,7 +185,7 @@
 - (void)textFieldDidChange:(UITextField *)textField
 {
     if ([textField.text isEqualToString:@""]) {
-        [self.modelArr removeAllObjects];
+        [self.dataArr removeAllObjects];
         self.tableView.hidden = YES;
         self.noDataImageView.hidden = NO;
         [self.tableView reloadData];
@@ -244,15 +240,6 @@
     return _searchTextField;
 }
 
-- (NSMutableArray *)modelArr
-{
-    if (!_modelArr) {
-        _modelArr = [NSMutableArray array];
-    }
-    
-    return _modelArr;
-}
-
 #pragma mark - senderAction -
 - (void)popAction:(UIButton *)sender
 {
@@ -276,9 +263,9 @@
 - (void)requestQueryWithText:(NSString *)text
 {
     __weak typeof(self)weakSelf = self;
-    [QueryPartTimeModel requestPartTimeWithKeyWord:text pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+    [PartTimeQueryModel requestPartTimeWithKeyWord:text pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
         
-        QueryPartTimeModel *model = (QueryPartTimeModel *)obj;
+        PartTimeQueryModel *model = (PartTimeQueryModel *)obj;
         [weakSelf setDataWithModel:model];
         
     } faileBlock:^(id error) {
@@ -286,18 +273,18 @@
     }];
 }
 
-- (void)setDataWithModel:(QueryPartTimeModel *)model
+- (void)setDataWithModel:(PartTimeQueryModel *)model
 {
     if ([self.searchTextField isEditing]) {
         
-        [self.modelArr removeAllObjects];
-        [self.modelArr addObjectsFromArray:model.modelArr];
+        [self.dataArr removeAllObjects];
+        [self.dataArr addObjectsFromArray:model.modelArr];
         
     }else{
-        [self.modelArr addObjectsFromArray:model.modelArr];
+        [self.dataArr addObjectsFromArray:model.modelArr];
     }
     
-    if (self.modelArr.count == 0) {
+    if (self.dataArr.count == 0) {
         self.tableView.hidden = YES;
         self.noDataImageView.hidden = NO;
     }else{

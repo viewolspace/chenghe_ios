@@ -17,9 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.pageSize = 10;
+    self.pageIndex = 1;
+    
     [self setLeftItemBtnWithColor:[PTTool colorFromHexRGB:@"#282828"]];
 }
 
+- (void)dealloc
+{
+    NSLog(@"%@ 销毁了",[self class]);
+}
 
 - (void)setLeftItemBtnWithColor:(UIColor *)color
 {
@@ -79,6 +86,15 @@
     }
     
     return _searchView;
+}
+
+- (NSMutableArray *)dataArr
+{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    
+    return _dataArr;
 }
 
 - (void)searchBtnTapAction

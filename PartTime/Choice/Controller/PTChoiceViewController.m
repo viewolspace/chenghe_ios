@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic,strong)PTChoiceHeaderView *headerView;
+@property (nonatomic,strong)UITableView *tableView;
 
 @end
 
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+ 
     _headerHeight = 200;
     
     [self searchView];
@@ -39,7 +40,12 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:self action:@selector(popAction:)];
     [leftItem setTintColor:[PTTool colorFromHexRGB:@"#282828"]];
     self.navigationItem.leftBarButtonItem = leftItem;
-
+   
+    [self setMjFooterView:self.tableView];
+    [self setMJHeaderView:self.tableView];
+    
+    [self requestChoiceAction];
+    [self requestAD];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -47,6 +53,8 @@
     // 导航栏透明
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
+
 }
 
 - (void)createTabelView
@@ -68,13 +76,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
+    [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,7 +95,8 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250.0;
+    PartTimeModel *model = self.dataArr[indexPath.row];
+    return model.havePicCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -113,6 +123,8 @@
 {
     self.hidesBottomBarWhenPushed = YES;
     PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+    PartTimeModel *model = self.dataArr[indexPath.row];
+    vc.ptId = model.aId;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -125,9 +137,76 @@
     if (!_headerView) {
         
         _headerView = [[PTChoiceHeaderView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, _headerHeight)];
+        __weak typeof(self)weakSelf = self;
+        [_headerView setSelectDataBlock:^(PartTimeAdModel * _Nonnull model) {
+            [weakSelf clickAdAction:model];
+        }];
+        
     }
     
     return _headerView;
 }
+
+#pragma mark - senderAction -
+- (void)clickAdAction:(PartTimeAdModel *)model
+{
+    [self.navigationController clickAdAction:model chileVC:self];
+}
+
+
+#pragma mark - data -
+- (void)headerReoladAction
+{
+    NSLog(@"上拉刷新");
+    self.pageIndex = 1;
+    [self.dataArr removeAllObjects];
+    [self requestChoiceAction];
+}
+- (void)footerReloadAction
+{
+    NSLog(@"下拉刷新");
+    [self requestChoiceAction];
+
+}
+
+- (void)requestAD
+{
+    __weak typeof(self)weakSelf = self;
+    [PartTimeAdModel requestADWithCategoryId:PT_CHOICE_SCROLL completeBlock:^(id obj) {
+        PartTimeAdModel *model = (PartTimeAdModel *)obj;
+        [weakSelf.headerView setDataWithAdModel:model];
+    } faileBlock:^(id error) {
+        NSLog(@"精选广告请求失败");
+    }];
+}
+
+- (void)requestChoiceAction
+{
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+
+    __weak typeof(self)weakSelf = self;
+    [PTHomePageModel requestHotOrChoiseWithId:2 pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+        
+        [weakSelf setDataWithModel:(PTHomePageModel *)obj];
+        
+    } faileBlock:^(id error) {
+        NSLog(@"精选页面请求精选失败");
+    }];
+}
+
+- (void)setDataWithModel:(PTHomePageModel *)model
+{
+    if (model.modelArr.count == 0) {
+        //没有请求到数据，页面保持不变
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    
+    self.pageIndex ++;
+    [self.dataArr addObjectsFromArray:model.modelArr];
+    [self.tableView reloadData];
+}
+
 
 @end

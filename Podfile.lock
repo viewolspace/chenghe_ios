@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - MJRefresh (3.1.15.7)
+  - SAMKeychain (1.5.3)
   - SDWebImage (4.2.3):
     - SDWebImage/Core (= 4.2.3)
   - SDWebImage/Core (4.2.3)
@@ -23,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
   - MJRefresh (~> 3.1.15.7)
+  - SAMKeychain (~> 1.5.3)
   - SDWebImage (~> 4.2.2)
   - UIViewExt (~> 1.0.1)
 
@@ -30,15 +32,17 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - MJRefresh
+    - SAMKeychain
     - SDWebImage
     - UIViewExt
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   UIViewExt: 7f719ec46544e88dc0e7777626cbdbeea5497ef2
 
-PODFILE CHECKSUM: aecb00279bab954c98143adbd428da4daec91286
+PODFILE CHECKSUM: 0e9488cdb80478a187603180362c61b59ab7a6b0
 
 COCOAPODS: 1.5.3

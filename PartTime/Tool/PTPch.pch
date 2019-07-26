@@ -45,8 +45,21 @@ typedef void(^FaileBlock)(id error);
 
 //首次登陆标识
 #define PT_FIRST_TIME @"PT_FIRST_TIME"
-//IDFA
-#define PT_IDFA [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]
+//USERID
+#define PT_USER_ID @"PT_USER_ID"
+
+//广告categoryId
+//首页顶部3格固定
+#define PT_HOMEPAGE_TOP_THREE @"000000020001"
+//首页左右滑动
+#define PT_HOMEPAGE_SCROLL    @"000000020002"
+//精选头部滑动
+#define PT_CHOICE_SCROLL      @"000000020003"
+//全部三格固定
+#define PT_WHOLE_TOP_THREE    @"000000020004"
+//全部单图固定
+#define PT_WHOLE_SINGLE       @"000000020005"
+
 
 
 /* 常用工具引入 */
@@ -61,6 +74,10 @@ typedef void(^FaileBlock)(id error);
 #import <UIKit/UIKit.h>
 #import <MJRefresh/MJRefresh.h>
 #import "BaseModel.h"
+#import <SAMKeychain.h>
+#import "PTWebViewController.h"
+#import "UIView+viewCategory.h"
+#import "UINavigationController+ClickAdCategory.h"
 
 /* 接口 */
 #define PartTimeAddress @"http://112.126.97.144:8080/chengheWeb/"

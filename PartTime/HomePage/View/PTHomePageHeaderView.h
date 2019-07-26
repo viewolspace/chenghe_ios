@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PTHomePageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,8 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong)UILabel *hotLabel;
 @property (nonatomic,strong)UIScrollView *actionScrollView;
 @property (nonatomic,strong)UILabel *recommendLabel;
+@property (nonatomic,copy)NSArray *topThreeModelArr;
+@property (nonatomic,copy)NSArray *scrollModelArr;
 
-- (void)setHotDataWithModel:(PTHomePageModel *)model;
+@property (nonatomic,copy)void (^clickAdBlcok)(PartTimeAdModel *model);
+
+- (void)setBannerDataWithModel:(PartTimeAdModel *)model;
+- (void)setTopThreeDataWithModel:(PartTimeAdModel *)model;
 
 @end
 

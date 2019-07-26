@@ -15,7 +15,6 @@
     UITableView *_tableView;
 }
 
-@property (nonatomic,strong)NSMutableArray *dataArr;
 @property (nonatomic,strong)UITableView *tableView;
 
 @end
@@ -107,14 +106,6 @@
 }
 
 #pragma mark - setter and getter -
-- (NSMutableArray *)dataArr
-{
-    if (!_dataArr) {
-        _dataArr = [NSMutableArray array];
-    }
-    return _dataArr ;
-}
-
 
 #pragma mark - data -
 - (void)requestMyPartTimeData
@@ -141,7 +132,7 @@
         return;
     }
     
-    [_dataArr addObjectsFromArray:model.modelArr];
+    [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
     
 }

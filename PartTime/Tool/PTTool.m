@@ -61,3 +61,20 @@
 }
 
 @end
+
+
+
+@implementation PTUserUtil
+
++ (NSString *)getUserId
+{
+    
+    return [[NSUserDefaults standardUserDefaults]stringForKey:PT_USER_ID];
+}
+
++ (void)setUserId:(NSString *)userId
+{
+    [[NSUserDefaults standardUserDefaults]setValue:userId forKey:PT_USER_ID];
+}
+
+@end
