@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-/***************** 用户相关 *******************/
+#pragma mark --------------User-----------------
 /** 获取token (getToken)*/
 @interface UserGetTokenModel : BaseModel
 

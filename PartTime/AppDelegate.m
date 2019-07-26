@@ -18,7 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-
     
     // 版本号
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
@@ -56,8 +55,22 @@
     
     [NewShowLabel newShowLabel];
     
+   
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //首次打开app
+    if (![defaults boolForKey:PT_FIRST_TIME]) {
+        [defaults setBool:YES forKey:PT_FIRST_TIME];
+        [UserFirstActiveModel requestFirstActiveCompleteBlock:^(id obj) {
+            NSLog(@"首次打开app激活成功");
+        } faileBlock:^(id error) {
+            NSLog(@"首次打开app激活失败");
+        }];
+    }
+   
     return YES;
 }
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

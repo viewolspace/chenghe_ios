@@ -40,8 +40,13 @@ typedef void(^FaileBlock)(id error);
 //设定友盟渠道号码 默认空为苹果商店
 #define Ument_channelId @""
 #define UMConfigInstance [UMAnalyticsConfig sharedInstance]
-
 #define Window [UIApplication sharedApplication].keyWindow
+
+
+//首次登陆标识
+#define PT_FIRST_TIME @"PT_FIRST_TIME"
+//IDFA
+#define PT_IDFA [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]
 
 
 /* 常用工具引入 */

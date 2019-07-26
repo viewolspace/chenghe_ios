@@ -555,7 +555,7 @@
 + (void)requestFirstActiveCompleteBlock:(CompleteBlock)completeBlock
                              faileBlock:(FaileBlock)faileBlock
 {
-    NSString *idfa = @"1";
+    NSString *idfa = PT_IDFA;
     NSString *activeUrl = [NSString stringWithFormat:@"%@user/active?idfa=%@&os=1",PartTimeAddress,idfa];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
