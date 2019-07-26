@@ -44,7 +44,6 @@
 		0418F44122E6E13300B50063 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F44022E6E13200B50063 /* libsqlite3.tbd */; };
 		0418F45322E6E5F600B50063 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F45222E6E5F600B50063 /* UMMobClick.framework */; };
 		0418F45422E6E60A00B50063 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0418F44222E6E13B00B50063 /* CoreTelephony.framework */; };
-		04A4F39D22E94DAB00C8B449 /* PTMyPartTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */; };
 		04A4F3A022E94F9C00C8B449 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A4F39F22E94F9C00C8B449 /* BaseModel.m */; };
 		04AD20DA22E80C6B0004421E /* PTChangeNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD20D922E80C6B0004421E /* PTChangeNameView.m */; };
 		04AD20DC22E80C780004421E /* PTChangeNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD20DB22E80C780004421E /* PTChangeNameView.xib */; };
@@ -109,8 +108,11 @@
 		04D05A5622EAA24E001E4C04 /* PTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5522EAA24E001E4C04 /* PTWebViewController.m */; };
 		04D05A5922EAAB39001E4C04 /* UIView+viewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5822EAAB39001E4C04 /* UIView+viewCategory.m */; };
 		04D05A5C22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5B22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m */; };
+		04D05A6022EAE177001E4C04 /* PTAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A5E22EAE177001E4C04 /* PTAboutUsViewController.m */; };
+		04D05A6522EAE1C9001E4C04 /* 兼职圈logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6222EAE1C9001E4C04 /* 兼职圈logo@2x.png */; };
+		04D05A6622EAE1C9001E4C04 /* 兼职圈logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6322EAE1C9001E4C04 /* 兼职圈logo@3x.png */; };
+		04D05A6722EAE1C9001E4C04 /* 兼职圈logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6422EAE1C9001E4C04 /* 兼职圈logo.png */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
-		04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34E22E5459900B4FF6D /* ViewController.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
 		04E8C35422E5459900B4FF6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35322E5459900B4FF6D /* Assets.xcassets */; };
 		04E8C35722E5459900B4FF6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35522E5459900B4FF6D /* LaunchScreen.storyboard */; };
@@ -211,8 +213,6 @@
 		0418F44222E6E13B00B50063 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0418F44422E6E14200B50063 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0418F45222E6E5F600B50063 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
-		04A4F39B22E94DAB00C8B449 /* PTMyPartTimeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTMyPartTimeModel.h; sourceTree = "<group>"; };
-		04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTMyPartTimeModel.m; sourceTree = "<group>"; };
 		04A4F39E22E94F9C00C8B449 /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		04A4F39F22E94F9C00C8B449 /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		04AD20D822E80C6B0004421E /* PTChangeNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTChangeNameView.h; sourceTree = "<group>"; };
@@ -287,11 +287,14 @@
 		04D05A5822EAAB39001E4C04 /* UIView+viewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewCategory.m"; sourceTree = "<group>"; };
 		04D05A5A22EAB219001E4C04 /* UINavigationController+ClickAdCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ClickAdCategory.h"; sourceTree = "<group>"; };
 		04D05A5B22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ClickAdCategory.m"; sourceTree = "<group>"; };
+		04D05A5D22EAE177001E4C04 /* PTAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTAboutUsViewController.h; sourceTree = "<group>"; };
+		04D05A5E22EAE177001E4C04 /* PTAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTAboutUsViewController.m; sourceTree = "<group>"; };
+		04D05A6222EAE1C9001E4C04 /* 兼职圈logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo@2x.png"; sourceTree = "<group>"; };
+		04D05A6322EAE1C9001E4C04 /* 兼职圈logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo@3x.png"; sourceTree = "<group>"; };
+		04D05A6422EAE1C9001E4C04 /* 兼职圈logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo.png"; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04E8C34D22E5459900B4FF6D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04E8C34E22E5459900B4FF6D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04E8C35122E5459900B4FF6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04E8C35322E5459900B4FF6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04E8C35622E5459900B4FF6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -494,8 +497,6 @@
 				04E8C36422E547BD00B4FF6D /* PTTabbarViewController.h */,
 				04E8C36522E547BD00B4FF6D /* PTTabbarViewController.m */,
 				04E8C36622E547BD00B4FF6D /* PTTabbarViewController.xib */,
-				04E8C34D22E5459900B4FF6D /* ViewController.h */,
-				04E8C34E22E5459900B4FF6D /* ViewController.m */,
 				04E8C35022E5459900B4FF6D /* Main.storyboard */,
 				04E8C35322E5459900B4FF6D /* Assets.xcassets */,
 				04E8C35522E5459900B4FF6D /* LaunchScreen.storyboard */,
@@ -650,6 +651,9 @@
 		04E8C38822E55CE200B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				04D05A6422EAE1C9001E4C04 /* 兼职圈logo.png */,
+				04D05A6222EAE1C9001E4C04 /* 兼职圈logo@2x.png */,
+				04D05A6322EAE1C9001E4C04 /* 兼职圈logo@3x.png */,
 				04AD20E522E8390F0004421E /* 跳转小尖头.png */,
 				04AD20E422E8390F0004421E /* 跳转小尖头@2x.png */,
 				04AD20E322E8390F0004421E /* 跳转小尖头@3x.png */,
@@ -743,8 +747,6 @@
 		04E8C3DA22E5AAFE00B4FF6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04A4F39B22E94DAB00C8B449 /* PTMyPartTimeModel.h */,
-				04A4F39C22E94DAB00C8B449 /* PTMyPartTimeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -771,6 +773,8 @@
 				04BB400222E7F10F0019800D /* PTResumeViewController.m */,
 				04BB402222E7FE1C0019800D /* PTSignUpViewController.h */,
 				04BB402322E7FE1C0019800D /* PTSignUpViewController.m */,
+				04D05A5D22EAE177001E4C04 /* PTAboutUsViewController.h */,
+				04D05A5E22EAE177001E4C04 /* PTAboutUsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -923,11 +927,14 @@
 				04E8C38622E55CCE00B4FF6D /* 精选@2x.png in Resources */,
 				04BB401D22E7F3D00019800D /* 男_down@3x.png in Resources */,
 				04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */,
+				04D05A6522EAE1C9001E4C04 /* 兼职圈logo@2x.png in Resources */,
 				04E8C3C722E5A2F900B4FF6D /* 立即查看按钮@3x.png in Resources */,
 				0418F3EF22E697D100B50063 /* 搜索图标.png in Resources */,
 				04BB3FF122E7E6700019800D /* 默认头像@2x.png in Resources */,
 				04BB402122E7F3D00019800D /* 圆角按钮.png in Resources */,
+				04D05A6722EAE1C9001E4C04 /* 兼职圈logo.png in Resources */,
 				04AD20E622E8390F0004421E /* 跳转小尖头@3x.png in Resources */,
+				04D05A6622EAE1C9001E4C04 /* 兼职圈logo@3x.png in Resources */,
 				04BB3FFC22E7E6700019800D /* 报名@3x.png in Resources */,
 				04E8C3B622E5878300B4FF6D /* 关闭_白色@2x.png in Resources */,
 				0418F41D22E6B93B00B50063 /* 全部_down@2x.png in Resources */,
@@ -1025,7 +1032,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A4F39D22E94DAB00C8B449 /* PTMyPartTimeModel.m in Sources */,
 				04AD20E222E8339B0004421E /* BaseNavigationController.m in Sources */,
 				04A4F3A022E94F9C00C8B449 /* BaseModel.m in Sources */,
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
@@ -1039,9 +1045,9 @@
 				0418F3EB22E694A500B50063 /* PTManager.m in Sources */,
 				04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */,
 				0418F41522E6B66000B50063 /* PTWholeHeaderView.m in Sources */,
-				04E8C34F22E5459900B4FF6D /* ViewController.m in Sources */,
 				04BB400322E7F10F0019800D /* PTResumeViewController.m in Sources */,
 				04E8C3F622E5ADD900B4FF6D /* PTDetailCompanyCell.m in Sources */,
+				04D05A6022EAE177001E4C04 /* PTAboutUsViewController.m in Sources */,
 				04AD210322E850620004421E /* PTSearchViewController.m in Sources */,
 				0418F3FE22E6AA9900B50063 /* PTHomePageViewController.m in Sources */,
 				04BB402422E7FE1C0019800D /* PTSignUpViewController.m in Sources */,

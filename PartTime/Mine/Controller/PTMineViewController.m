@@ -12,6 +12,7 @@
 #import "PTResumeViewController.h"
 #import "PTSignUpViewController.h"
 #import "PTChangeNameView.h"
+#import "PTAboutUsViewController.h"
 
 @interface PTMineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UIButton *loginBtn;
@@ -53,6 +54,11 @@
    
 }
 
+- (void)loginNotificationAction:(NSNotification *)notification
+{
+    [self isLogin:YES];
+}
+
 #pragma makr - 生命周期 -
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,6 +76,19 @@
     }
     
     [self addObserver];
+    [self isLogin:[PTUserUtil loginStatus]];
+}
+
+- (void)isLogin:(BOOL)isLogin
+{
+    if (isLogin) {
+        UserModel *model = [PTUserUtil getUserInfo];
+        self.loginLabel.text = model.nickName;
+        [self.userHeaderView sd_setImageWithURL:[NSURL URLWithString:model.headPic] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    }else{
+        self.loginLabel.text = @"点击登录";
+        [self.userHeaderView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    }
 }
 
 - (void)dealloc
@@ -82,6 +101,8 @@
     //监听键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginNotificationAction:) name:kNotificationLogin object:nil];
    
 }
 
@@ -166,22 +187,43 @@
 #pragma mark - tableView点击方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@",self.titleArr[indexPath.row]);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 0) {
-        PTResumeViewController *vc = [PTResumeViewController new];
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }else if(indexPath.row == 1){
-        PTSignUpViewController *vc = [PTSignUpViewController new];
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }else if(indexPath.row == 2){
-        [self showAlertView];
-    }
     
+    if (indexPath.row == 3) {
+        //关于我们
+        PTAboutUsViewController *vc = [[PTAboutUsViewController alloc] init];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+        
+    }else{
+        
+        if ([PTUserUtil loginStatus]) {
+            
+            if (indexPath.row == 0) {
+                //简历
+                PTResumeViewController *vc = [PTResumeViewController new];
+                self.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed = NO;
+            }else if(indexPath.row == 1){
+                //我的报名
+                PTSignUpViewController *vc = [PTSignUpViewController new];
+                self.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed = NO;
+            }else if(indexPath.row == 2){
+                //修改昵称
+                [self showAlertView];
+            }
+            
+        }else{
+            //未登录情况下直接跳转登录页面
+            [self loginAction:nil];
+        }
+        
+    }
+   
 }
 
 #pragma mark - 修改昵称 -
@@ -293,11 +335,16 @@
 #pragma mark - senderAction -
 - (void)loginAction:(UIButton *)sender
 {
+    if ([PTUserUtil loginStatus]) {
+        return;
+    }
+    
     PTLoginViewController *loginVC = [[PTLoginViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:loginVC animated:YES];
-   
     self.hidesBottomBarWhenPushed = NO;
 }
+
+
 
 @end

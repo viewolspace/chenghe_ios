@@ -17,6 +17,9 @@
 
 - (IBAction)openAction:(UIButton *)sender {
     sender.selected = !sender.selected;
+    if (self.openBlock) {
+        self.openBlock(sender.selected);
+    }
 }
 
 - (void)setDataWithModel:(PartTimeModel *)model

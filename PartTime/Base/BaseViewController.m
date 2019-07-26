@@ -97,6 +97,18 @@
     return _dataArr;
 }
 
+- (UIView *)lineView
+{
+    if (!_lineView) {
+        CGFloat navBarHeight = self.navigationController.navigationBar.height;
+        
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, navBarHeight - 0.5, WIDTH_OF_SCREEN, 0.5)];
+        _lineView.backgroundColor = [PTTool colorFromHexRGB:@"#f1f3f4"];
+    }
+    
+    return _lineView;
+}
+
 - (void)searchBtnTapAction
 {
     PTSearchViewController *vc = [[PTSearchViewController alloc] init];

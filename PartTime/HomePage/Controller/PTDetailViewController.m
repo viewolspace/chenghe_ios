@@ -21,6 +21,8 @@
 @property (nonatomic,strong)UILabel *confirmLabel;
 @property (nonatomic,strong)PartTimeModel *model;
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,assign)BOOL isOpen;
+
 @end
 
 @implementation PTDetailViewController
@@ -54,6 +56,9 @@
     [self.view addSubview:_tableView];
     
     [self registerAction];
+    
+    _tableView.estimatedRowHeight = 0;
+    
 }
 
 - (void)registerAction{
@@ -91,7 +96,13 @@
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailContentCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailContentCell class])];
+    cell.clipsToBounds = YES;
     [cell setDataWithModel:self.model];
+    __weak typeof(self)weakSelf = self;
+    [cell setOpenBlock:^(BOOL isOpen) {
+        weakSelf.isOpen = isOpen;
+        [weakSelf.tableView reloadData];
+    }];
     return cell;
 }
 
@@ -124,10 +135,18 @@
         if (indexPath.section == 0) {
             return self.model.detailTitleCellHeight;
         }else if(indexPath.section == 1){
-            return self.model.detailContentCellHeight;
+            
+            //内容可能包含有展开信息
+            if (self.isOpen) {
+                return self.model.detailContentRealCellHeight;
+            }else{
+                return self.model.detailContentCellHeight;
+            }
+            
         }else{
             return self.model.detailCompanyCellHeight;
         }
+        
     }else{
         return 300;
     }

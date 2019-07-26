@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FastCoding (3.3)
   - MJRefresh (3.1.15.7)
   - SAMKeychain (1.5.3)
   - SDWebImage (4.2.3):
@@ -23,6 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - FastCoding (~> 3.3)
   - MJRefresh (~> 3.1.15.7)
   - SAMKeychain (~> 1.5.3)
   - SDWebImage (~> 4.2.2)
@@ -31,6 +33,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FastCoding
     - MJRefresh
     - SAMKeychain
     - SDWebImage
@@ -38,11 +41,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   UIViewExt: 7f719ec46544e88dc0e7777626cbdbeea5497ef2
 
-PODFILE CHECKSUM: 0e9488cdb80478a187603180362c61b59ab7a6b0
+PODFILE CHECKSUM: 31238e71d07e75aa3741baf91b04a6281e59b07b
 
 COCOAPODS: 1.5.3

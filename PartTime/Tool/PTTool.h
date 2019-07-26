@@ -28,12 +28,22 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PTUserUtil : NSObject
 
 
+/** 获取用户登录状态 */
++ (BOOL)loginStatus;
+/** 设置用户登录状态 */
++ (void)setLoginStatus:(BOOL)isLogin;
+
 
 /** 获取用户id */
-+ (NSString *)getUserId;
++ (NSInteger)getUserId;
 /** 存储用户id */
-+ (void)setUserId:(NSString *)userId;
++ (void)setUserId:(NSInteger)userId;
 
+
+/** 存储用户信息 */
++ (void)setUserInfo:(id)userInfo;
+/** 获取用户信息 */
++ (id)getUserInfo;
 
 @end
 

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseModel : NSObject
 
+@property (nonatomic,copy)NSString *message;
+@property (nonatomic,copy)NSString *status;
 
 /** 解析数据 */
 - (void)jsonToObject:(NSDictionary *)dic
@@ -93,6 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+
+
+
 @interface PartTimeAdModel : BaseModel
 
 @property (nonatomic,copy)NSArray <PartTimeAdModel *>*adModelArr;
@@ -134,11 +139,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+/** 我的兼职 */
+@interface PTMyPartTimeModel : BaseModel
+
+@property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
+
++ (void)requestMyPartTimeWithUserId:(NSInteger)userId
+                          pageIndex:(NSInteger)pageIndex
+                           pageSize:(NSInteger)pageSize
+                      completeBlock:(CompleteBlock)completeBlock
+                         faileBlock:(FaileBlock)faileBlock;
+
+@end
+
+
+
+/** 兼职详情查询 */
 @interface PartTimeDetailModel : BaseModel
 
 @property (nonatomic,strong)PartTimeModel *model;
 
-/** 兼职详情查询 */
+
 + (void)requestDetailPartTimeWithUserId:(NSInteger)userId
                                     aid:(NSInteger)aid
                           completeBlock:(CompleteBlock)completeBlock
@@ -149,15 +172,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/** rId 1 热门 2 精选 */
 @interface PTHomePageModel : BaseModel
 
 @property (nonatomic,copy)CompleteBlock completeBlock;
 @property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
 
 
-/**
- rId 1 热门 2 精选
- */
+
 + (void)requestHotOrChoiseWithId:(int)rId
                        pageIndex:(NSInteger)pageIndex
                         pageSize:(NSInteger)pageSize
@@ -169,8 +191,41 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark --------------User-----------------
+/** 用户信息 */
+@interface UserModel : BaseModel
+
+/** userId */
+@property (nonatomic,assign)NSInteger userId;
+/** 手机 */
+@property (nonatomic,copy)NSString *phone;
+/** */
+@property (nonatomic,copy)NSString *pwd;
+/** */
+@property (nonatomic,copy)NSString *idfa;
+/** 头像 */
+@property (nonatomic,copy)NSString *headPic;
+/** 创建时间 */
+@property (nonatomic,copy)NSString *cTime;
+/** 修改时间 */
+@property (nonatomic,copy)NSString *mTime;
+/** 真是姓名 */
+@property (nonatomic,copy)NSString *realName;
+/** 昵称 */
+@property (nonatomic,copy)NSString *nickName;
+/** 性别 */
+@property (nonatomic,assign)int sex;
+/** 生日 */
+@property (nonatomic,copy)NSString *birthday;
+/** 工作经验 */
+@property (nonatomic,copy)NSString *exp;
+/** 自我介绍 */
+@property (nonatomic,copy)NSString *des;
+
+
+@end
+
 /** 获取token (getToken)*/
-@interface UserGetTokenModel : BaseModel
+@interface PartTimeUserGetTokenModel : BaseModel
 
 @property (nonatomic,copy)NSString *token;
 
@@ -185,7 +240,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 获取验证码 (getRand)*/
-@interface UserGetRandModel : BaseModel
+@interface PartTimeUserGetRandModel : BaseModel
 
 @property (nonatomic,copy)NSString *rand;
 
@@ -199,11 +254,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-/** 手机号验证码登录 (getUser) */
-@interface UserGerUserModel : BaseModel
+/** 登录状态下获取user信息 (getUser) */
+@interface PartTimeUserGetInfoModel : BaseModel
 
-/** 手机号验证码登录 (getUser) */
-+ (void)requestUserWithUserId:(NSString *)userId
+/** 登录状态下获取user信息 (getUser) */
++ (void)requestUserWithUserId:(NSInteger)userId
                 completeBlock:(CompleteBlock)completeBlock
                    faileBlock:(FaileBlock)faileBlock;
 
@@ -211,7 +266,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface UserUpdateUserModel : BaseModel
+@interface PartTimeUpDateUserInfoModel : BaseModel
 /**
  完善简历
 
@@ -234,7 +289,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 修改昵称 */
-@interface UserUpdateNickName : BaseModel
+@interface PartTimeUserChangeNameModel : BaseModel
 
 
 + (void)requestNickName:(NSString *)nickName
@@ -246,7 +301,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 首次激活登录 (active) */
-@interface UserFirstActiveModel: BaseModel
+@interface PartTimeUserFirstActiveModel: BaseModel
 /** 首次激活登录 (active) */
 + (void)requestFirstActiveCompleteBlock:(CompleteBlock)completeBlock
                              faileBlock:(FaileBlock)faileBlock;
@@ -255,7 +310,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 手机号验证码登录 (login) */
-@interface UserGetLoginModel : BaseModel
+@interface PartTimeUserLoginModel : BaseModel
+
+
+@property (nonatomic,strong)UserModel *model;
+
 /** 手机号验证码登录 (login) */
 + (void)requestLoginWithPhone:(NSString *)phone
                          rand:(NSString *)rand

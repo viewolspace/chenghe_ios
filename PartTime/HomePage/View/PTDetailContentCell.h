@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *showMoreBtn;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (nonatomic,copy)void (^openBlock)(BOOL isOpen);
 
 @end
 

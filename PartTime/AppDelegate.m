@@ -63,19 +63,31 @@
         [SAMKeychain setPassword:uuid forService:@"兼职圈" account:@"" error:nil];
     }
    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //首次打开app
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults boolForKey:PT_FIRST_TIME]) {
         [defaults setBool:YES forKey:PT_FIRST_TIME];
-        [UserFirstActiveModel requestFirstActiveCompleteBlock:^(id obj) {
+        [PartTimeUserFirstActiveModel requestFirstActiveCompleteBlock:^(id obj) {
             NSLog(@"首次打开app激活成功");
         } faileBlock:^(id error) {
             NSLog(@"首次打开app激活失败");
         }];
     }
+    
    
+    //用户登录状态，更新用户信息
+    if ([PTUserUtil loginStatus]) {
+        [PartTimeUserGetInfoModel requestUserWithUserId:[PTUserUtil getUserId] completeBlock:^(id obj) {
+           
+            PartTimeUserGetInfoModel *model = (PartTimeUserGetInfoModel *)obj;
+            //[NewShowLabel setMessageContent:model.message];
+            
+        } faileBlock:^(id error) {
+            
+        }];
+    }
     
-    
+
     return YES;
 }
 

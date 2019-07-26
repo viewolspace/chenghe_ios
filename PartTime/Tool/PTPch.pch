@@ -47,6 +47,10 @@ typedef void(^FaileBlock)(id error);
 #define PT_FIRST_TIME @"PT_FIRST_TIME"
 //USERID
 #define PT_USER_ID @"PT_USER_ID"
+//用户信息
+#define PT_USER_INFO @"userInfo"
+//是否登录
+#define PT_USER_LOGIN @"PT_USER_LOGIN"
 
 //广告categoryId
 //首页顶部3格固定
@@ -60,6 +64,14 @@ typedef void(^FaileBlock)(id error);
 //全部单图固定
 #define PT_WHOLE_SINGLE       @"000000020005"
 
+
+
+
+//****** 通知相关 ******//
+//登录
+#define kNotificationLogin @"kNotificationLogin"
+//退出
+#define kNotificationLogout @"kNotificationLogout"
 
 
 /* 常用工具引入 */
@@ -78,6 +90,7 @@ typedef void(^FaileBlock)(id error);
 #import "PTWebViewController.h"
 #import "UIView+viewCategory.h"
 #import "UINavigationController+ClickAdCategory.h"
+#import <FastCoder.h>
 
 /* 接口 */
 #define PartTimeAddress @"http://112.126.97.144:8080/chengheWeb/"

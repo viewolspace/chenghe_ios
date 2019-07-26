@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor cyanColor];
+        //self.backgroundColor = [UIColor cyanColor];
         [self bannerScrollView];
     }
     return self;

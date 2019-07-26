@@ -12,10 +12,17 @@
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
-{}
+{
+    self.message = dic[@"message"];
+    self.status  = dic[@"status"];
+}
 
 @end
 
+
+#pragma mark -- 兼职数据 --
+
+/*✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨ 兼职数据 ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨*/
 @implementation PartTimeModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
@@ -192,11 +199,19 @@
 
 @end
 
+
+
+
+
+
+#pragma mark -- 广告数据 --
 @implementation PartTimeAdModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
+    [super jsonToObject:dic completeBlock:completeBlock];
+    
     NSArray *arr = dic[@"result"];
     NSMutableArray *mArr = [NSMutableArray arrayWithCapacity:arr.count];
     for (NSDictionary *resultDic in arr) {
@@ -240,14 +255,17 @@
 @end
 
 
+
+
+
 #pragma mark -------- 根据关键词查询兼职内容 --------
 @implementation PartTimeQueryModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSString *message = dic[@"message"];
-    NSString *status  = dic[@"status"];
+    [super jsonToObject:dic completeBlock:completeBlock];
+
     NSArray *resultArr = dic[@"result"];
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
@@ -258,7 +276,7 @@
         [model calculateCellHeight];
         [arr addObject:model];
     }
-    NSLog(@"查询 %@ %@",message,status);
+    NSLog(@"查询 %@ %@",self.message,self.status);
 
     _modelArr = arr;
     completeBlock(self);
@@ -296,6 +314,8 @@
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
+    [super jsonToObject:dic completeBlock:completeBlock];
+
     NSLog(@"%@",dic);
 }
 
@@ -329,8 +349,8 @@
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSString *message = dic[@"message"];
-    NSString *status  = dic[@"status"];
+    [super jsonToObject:dic completeBlock:completeBlock];
+
     NSDictionary *resultDic = dic[@"result"];
     
     PartTimeModel *model = [PartTimeModel new];
@@ -341,7 +361,7 @@
     self.model = model;
    
     completeBlock(self);
-    NSLog(@"详情 %@ %@",message,status);
+    NSLog(@"详情 %@ %@",self.message,self.status);
   
 }
 
@@ -370,14 +390,12 @@
 
 @end
 
-
-@implementation PTHomePageModel
+#pragma mark ---- 我的兼职 ---
+@implementation PTMyPartTimeModel
 
 - (void)jsonToObject:(NSDictionary *)dic
-       completeBlock:(nonnull CompleteBlock)completeBlock
+       completeBlock:(CompleteBlock)completeBlock
 {
-    NSString *message = dic[@"message"];
-    NSString *status  = dic[@"status"];
     NSArray *resultArr = dic[@"result"];
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
@@ -391,7 +409,58 @@
     
     _modelArr = arr;
     completeBlock(self);
-    NSLog(@"热门or精选 %@ %@",message,status);
+}
+
++ (void)requestMyPartTimeWithUserId:(NSInteger)userId
+                          pageIndex:(NSInteger)pageIndex
+                           pageSize:(NSInteger)pageSize
+                      completeBlock:(CompleteBlock)completeBlock
+                         faileBlock:(FaileBlock)faileBlock
+{
+    NSString *myPartTimeUrl = [NSString stringWithFormat:@"%@partTime/queryMyPartTime?userId=%ld&pageIndex=%ld&pageSize=%ld",PartTimeAddress,userId,pageIndex,pageSize];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSString *userStr = [NSString stringWithFormat:@"%ld",userId];
+    [manager.requestSerializer setValue:userStr forHTTPHeaderField:@"userId"];
+    
+    [manager GET:myPartTimeUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        PTMyPartTimeModel *model = [PTMyPartTimeModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        faileBlock(error);
+    }];
+}
+
+@end
+
+
+@implementation PTHomePageModel
+
+- (void)jsonToObject:(NSDictionary *)dic
+       completeBlock:(nonnull CompleteBlock)completeBlock
+{
+    [super jsonToObject:dic completeBlock:completeBlock];
+
+    NSArray *resultArr = dic[@"result"];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
+    for (NSDictionary *resultDic in resultArr) {
+        PartTimeModel *model = [PartTimeModel new];
+        [model setValuesForKeysWithDictionary:resultDic];
+        [model calculateCellHeight];
+        [model calculateHaveImageCellHeight];
+        [arr addObject:model];
+    }
+    
+    _modelArr = arr;
+    completeBlock(self);
+    NSLog(@"热门or精选 %@ %@",self.message,self.status);
 }
 
 
@@ -420,17 +489,19 @@
 @end
 
 
+#pragma mark -- 用户相关 --
 /************************* 用户相关 ************************/
-
-@implementation UserGetTokenModel
+@implementation PartTimeUserGetTokenModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSString *message = dic[@"message"];
-    NSString *status  = dic[@"status"];
+    [super jsonToObject:dic completeBlock:completeBlock];
+
+   
     self.token        = dic[@"token"];
-    NSLog(@"获取token %@ %@ %@",message,status,self.token);
+    NSLog(@"获取token %@ %@ %@",self.message,self.status,self.token);
+    completeBlock(self);
 }
 
 + (void)requestTokenWithPhone:(NSString *)phone
@@ -446,7 +517,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserGetTokenModel *model = [UserGetTokenModel new];
+        PartTimeUserGetTokenModel *model = [PartTimeUserGetTokenModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -458,14 +529,15 @@
 @end
 
 
-@implementation UserGetRandModel
+@implementation PartTimeUserGetRandModel
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSString *message = dic[@"message"];
-    NSString *status  = dic[@"status"];
-    self.rand        = dic[@"token"];
-    NSLog(@"获取token %@ %@ %@",message,status,self.rand);
+    [super jsonToObject:dic completeBlock:completeBlock];
+
+    self.rand        = dic[@"rand"];
+    NSLog(@"获取rand %@ %@ %@",self.message,self.status,self.rand);
+    completeBlock(self);
 }
 
 + (void)requestTokenWithPhone:(NSString *)phone
@@ -473,16 +545,19 @@
                 completeBlock:(CompleteBlock)completeBlock
                    faileBlock:(FaileBlock)faileBlock
 {
-    NSString *tokenUrl = [NSString stringWithFormat:@"%@user/getRand?phone=%@&token=%@",PartTimeAddress,phone,token];
+    NSString *tokenUrl = [NSString stringWithFormat:@"%@user/getRand?phone=%@",PartTimeAddress,phone];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+   
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     
     [manager GET:tokenUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserGetRandModel *model = [UserGetRandModel new];
+        PartTimeUserGetRandModel *model = [PartTimeUserGetRandModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -494,28 +569,47 @@
 @end
 
 
-@implementation UserGerUserModel
+#pragma mark ---- 用户登录状态，进入app更新用户信息 ----
+@implementation PartTimeUserGetInfoModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSLog(@"%@",dic);
+    [super jsonToObject:dic completeBlock:completeBlock];
+    
+    NSDictionary *resultDic = dic[@"result"];
+    UserModel *model = [UserModel new];
+    [model setValuesForKeysWithDictionary:resultDic];
+    completeBlock(self);
+    
+    
+    //
+    if (model.userId == [PTUserUtil getUserId]) {
+        //存储用户信息到本地
+        [PTUserUtil setUserInfo:model];
+        [PTUserUtil setUserId:model.userId];
+        [PTUserUtil setLoginStatus:YES];
+    }
+  
 }
 
-+ (void)requestUserWithUserId:(NSString *)userId
++ (void)requestUserWithUserId:(NSInteger)userId
                 completeBlock:(CompleteBlock)completeBlock
                    faileBlock:(FaileBlock)faileBlock
 {
-    NSString *getUserUrl = [NSString stringWithFormat:@"%@user/getUser?userId=%@",PartTimeAddress,userId];
+    NSString *getUserUrl = [NSString stringWithFormat:@"%@user/getUser",PartTimeAddress];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *userStr = [NSString stringWithFormat:@"%ld",userId];
+    [manager.requestSerializer setValue:userStr forHTTPHeaderField:@"userId"];
     
     [manager GET:getUserUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserGerUserModel *model = [UserGerUserModel new];
+        PartTimeUserGetInfoModel *model = [PartTimeUserGetInfoModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -527,7 +621,7 @@
 @end
 
 
-@implementation UserUpdateUserModel
+@implementation PartTimeUpDateUserInfoModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
@@ -562,7 +656,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserUpdateUserModel *model = [UserUpdateUserModel new];
+        PartTimeUpDateUserInfoModel *model = [PartTimeUpDateUserInfoModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -575,7 +669,7 @@
 
 
 
-@implementation UserUpdateNickName
+@implementation PartTimeUserChangeNameModel
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
@@ -601,7 +695,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserUpdateNickName *model = [UserUpdateNickName new];
+        PartTimeUserChangeNameModel *model = [PartTimeUserChangeNameModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -612,7 +706,7 @@
 @end
 
 
-@implementation UserFirstActiveModel
+@implementation PartTimeUserFirstActiveModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
@@ -633,7 +727,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserFirstActiveModel *model = [UserFirstActiveModel new];
+        PartTimeUserFirstActiveModel *model = [PartTimeUserFirstActiveModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -644,20 +738,38 @@
 
 @end
 
-@implementation UserGetLoginModel
+#pragma mark -- 手机号码登录 --
+@implementation PartTimeUserLoginModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSLog(@"%@",dic);
+    [super jsonToObject:dic completeBlock:completeBlock];
+
+    NSDictionary *resultDic = dic[@"result"];
+    UserModel *model = [UserModel new];
+    [model setValuesForKeysWithDictionary:resultDic];
+    self.model = model;
+    completeBlock(self);
+    
+    //存储用户信息到本地
+    [PTUserUtil setUserInfo:model];
+    [PTUserUtil setUserId:model.userId];
+    [PTUserUtil setLoginStatus:YES];
+
+    //发送登录成功的通知
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationLogin object:nil];
+
 }
+
+
 
 + (void)requestLoginWithPhone:(NSString *)phone
                          rand:(NSString *)rand
                 completeBlock:(CompleteBlock)completeBlock
                    faileBlock:(FaileBlock)faileBlock
 {
-    NSString *idfa = @"1";
+    NSString *idfa = [SAMKeychain passwordForService:@"兼职圈" account:@""];;
     NSString *loginUrl = [NSString stringWithFormat:@"%@user/login?idfa=%@&phone=%@&rand=%@",PartTimeAddress,idfa,phone,rand];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -667,7 +779,7 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        UserGetLoginModel *model = [UserGetLoginModel new];
+        PartTimeUserLoginModel *model = [PartTimeUserLoginModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -676,4 +788,12 @@
     }];
 }
 
+@end
+
+@implementation UserModel
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
 @end

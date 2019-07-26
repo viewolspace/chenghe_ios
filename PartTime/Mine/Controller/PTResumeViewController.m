@@ -26,11 +26,13 @@
 @property (nonatomic,strong)UITextView *introduceTextField;
 @property (nonatomic,strong)UIButton *confirmBtn;
 @property (nonatomic,assign)CGFloat scrollViewSizeHeight;
-
+@property (nonatomic,strong)UIView *statusBarView;
 
 @property (nonatomic,assign)NSInteger exeTag; //编辑工作
 @property (nonatomic,assign)NSInteger introduceTag; //编辑介绍
 @property (nonatomic,assign)CGFloat keyBoardHeight;
+@property (nonatomic,assign)BOOL isLight;
+
 @end
 
 @implementation PTResumeViewController
@@ -55,8 +57,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isLight = YES;
+    
+    self.statusBarView = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    
     [self setLeftItemBtnWithColor:[PTTool colorFromHexRGB:@"#ffffff"]];
-  
+
     
     self.exeTag = 400;
     self.introduceTag = 500;
@@ -71,6 +78,10 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    
     
     [self womanBtn];
     
@@ -96,6 +107,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.bgScrollView addGestureRecognizer:tap];
+
 }
 
 - (void)addObserver
@@ -126,37 +138,30 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.clipsToBounds = YES;
+ 
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    if (self.isLight) {
+        return UIStatusBarStyleLightContent;
+    }else{
+        return UIStatusBarStyleDefault;
+    }
 }
 
 -(BOOL)prefersStatusBarHidden{
     return NO;
 }
 
-#pragma mark - scrollViewDelegate -
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-//    if (scrollView.contentOffset.y >= self.barHeight) {
-//          self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
-//    }else{
-//        self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-//    }
-    
-}
-
 #pragma mark - getter and setter
 - (UIScrollView *)bgScrollView
 {
     if (!_bgScrollView) {
-        
-        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN , HEIGHT_OF_SCREEN )];
+        CGFloat statusBar = [PTManager shareManager].statusBarHeight;
+        CGFloat navHeight = self.navigationController.navigationBar.height;
+        _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, - statusBar - navHeight, WIDTH_OF_SCREEN , HEIGHT_OF_SCREEN )];
         _bgScrollView.delegate = self;
         _bgScrollView.backgroundColor = [PTTool colorFromHexRGB:@"#f6f6f6"];
-        _bgScrollView.layer.masksToBounds = YES;
-        _bgScrollView.layer.cornerRadius = 5.f;
         [self.view addSubview:_bgScrollView];
         
         //背景和返回按钮
@@ -391,6 +396,8 @@
     return _confirmBtn;
 }
 
+
+
 #pragma mark - textViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
@@ -406,7 +413,10 @@
 #pragma mark - senderAction -
 - (void)popAction:(UIButton *)sender
 {
+    [self.lineView removeFromSuperview];
+    self.statusBarView.backgroundColor = [UIColor clearColor];
     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)manSelect:(UIButton *)sender
@@ -444,6 +454,75 @@
 - (void)loginAction:(UIButton *)sender
 {
     NSLog(@"点击头像了");
+}
+
+
+
+#pragma mark - nav头部方法 -
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.bgScrollView) {
+        [self refreshNavigationBar];
+    }
+}
+
+
+
+- (void)refreshNavigationBar{
+    
+    // 示例中使用了webView
+    CGPoint offset = self.bgScrollView.contentOffset;
+    
+    // 通过offset.y与固定值300的比例来决定透明度
+    CGFloat alpha = MIN(1, fabs(offset.y/81.f));
+    if (offset.y < 0) {
+        alpha = 0;
+    }
+    
+    if (offset.y >= 81.f) {
+        [self setLeftItemBtnWithColor:[PTTool colorFromHexRGB:@"#282828"]];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#282828"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
+        self.isLight = NO;
+
+        [self.navigationController.navigationBar addSubview:self.lineView];
+        
+    }else{
+        [self setLeftItemBtnWithColor:[PTTool colorFromHexRGB:@"#ffffff"]];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#ffffff"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
+        
+        self.isLight = YES;
+        
+        [self.lineView removeFromSuperview];
+    }
+    
+    [self preferredStatusBarStyle];
+
+    
+    [self.navigationController.navigationBar setTranslucent:!(BOOL)(int)alpha];
+    
+    UIColor *realTimeColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:alpha];
+    
+    UIImage *realTimeImg = [self UINavigationBarImageWithColor:realTimeColor];
+    [self.navigationController.navigationBar setBackgroundImage:realTimeImg forBarMetrics:UIBarMetricsDefault];
+    // 消除阴影
+    //[self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.statusBarView.backgroundColor = realTimeColor;
+    
+}
+// 获取navigationBar和statusBar的总高度
+- (UIImage *)UINavigationBarImageWithColor:(UIColor *)aColor{
+    CGSize navigationBarSize = self.navigationController.navigationBar.frame.size;
+    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    return [self imageWithColor:aColor Size:CGSizeMake(navigationBarSize.width,navigationBarSize.height + statusBarSize.height)];
+}
+// 绘制纯色图
+- (UIImage *)imageWithColor:(UIColor *)aColor Size:(CGSize)aSize{
+    UIGraphicsBeginImageContextWithOptions(aSize, NO, 0);
+    [aColor set];
+    UIRectFill(CGRectMake(0, 0, aSize.width, aSize.height));
+    UIImage *renderedImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return renderedImg;
 }
 
 

@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)NSInteger pageSize;
 
 @property (nonatomic,strong)NSMutableArray *dataArr;
+@property (nonatomic,strong)UIView *lineView; //nav上边的那条线
+
 
 /** 设置返回按钮颜色 默认:#282828 黑色 */
 - (void)setLeftItemBtnWithColor:(UIColor *)color;

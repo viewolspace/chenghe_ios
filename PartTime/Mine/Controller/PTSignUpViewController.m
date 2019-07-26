@@ -8,7 +8,6 @@
 
 #import "PTSignUpViewController.h"
 #import "PTChoiceCell.h"
-#import "PTMyPartTimeModel.h"
 
 @interface PTSignUpViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -43,8 +42,8 @@
 - (void)createTabelView
 {
     CGFloat tabbarHieght = [PTManager shareManager].tabbarHeight;
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - tabbarHieght) style:UITableViewStyleGrouped];
+    CGFloat statusBarHeight = [PTManager shareManager].statusBarHeight;
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN - tabbarHieght - statusBarHeight) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
@@ -77,7 +76,8 @@
 #pragma mark ----tableViewDelegate----
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250.f;
+    PartTimeModel *model = self.dataArr[indexPath.row];
+    return model.havePicCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -112,14 +112,13 @@
 {
     
     __weak typeof(self)weakSelf = self;
-    [PTMyPartTimeModel requestMyPartTimeWithUserId:1 pageIndex:1 pageSize:5 completeBlock:^(id obj) {
+    [PTMyPartTimeModel requestMyPartTimeWithUserId:[PTUserUtil getUserId] pageIndex:1 pageSize:5 completeBlock:^(id obj) {
         
         [weakSelf setMyPartTimeData:(PTMyPartTimeModel *)obj];
         
     } faileBlock:^(id error) {
         
         [NewShowLabel setMessageContent:@"请求我的报名数据失败"];
-        NSLog(@"请求我的报名数据失败");
     }];
     
 }

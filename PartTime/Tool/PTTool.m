@@ -66,15 +66,41 @@
 
 @implementation PTUserUtil
 
-+ (NSString *)getUserId
-{
-    
-    return [[NSUserDefaults standardUserDefaults]stringForKey:PT_USER_ID];
++ (BOOL)loginStatus{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:PT_USER_LOGIN];
 }
 
-+ (void)setUserId:(NSString *)userId
++ (void)setLoginStatus:(BOOL)isLogin
 {
-    [[NSUserDefaults standardUserDefaults]setValue:userId forKey:PT_USER_ID];
+    [[NSUserDefaults standardUserDefaults]setBool:isLogin forKey:PT_USER_LOGIN];
 }
+
++ (NSInteger)getUserId
+{
+    
+    return [[NSUserDefaults standardUserDefaults] integerForKey:PT_USER_ID];
+}
+
++ (void)setUserId:(NSInteger)userId
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:userId forKey:PT_USER_ID];
+}
+
++ (void)setUserInfo:(id)userInfo
+{
+    NSData *data = [FastCoder dataWithRootObject:userInfo];
+    [[NSUserDefaults standardUserDefaults]setObject:data forKey:PT_USER_INFO];
+    
+}
+
++ (id)getUserInfo
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:PT_USER_INFO];
+    return [FastCoder objectWithData:data];
+}
+
+
+
+
 
 @end
