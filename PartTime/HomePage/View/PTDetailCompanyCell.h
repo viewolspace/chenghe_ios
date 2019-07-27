@@ -17,8 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *companyHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *companyImageView;
 
-- (void)setDataWithModel:(PartTimeModel *)model;
+- (void)setDataWithModel:(PartTimeModel *)model
+                comModel:(PartTimeDetailModel *)detailModel;
 
 @end
 

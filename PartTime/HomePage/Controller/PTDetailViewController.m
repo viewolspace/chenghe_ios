@@ -10,8 +10,14 @@
 #import "PTDetailTitleCell.h"
 #import "PTDetailContentCell.h"
 #import "PTDetailCompanyCell.h"
+#import "PTCopyThreeAlertView.h"
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
+/// iOS 9的新框架
+#import <ContactsUI/ContactsUI.h>
 
-@interface PTDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+#define Is_up_Ios_9    ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0)
+@interface PTDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
 {
     UITableView *_tableView;
 }
@@ -22,6 +28,7 @@
 @property (nonatomic,strong)PartTimeModel *model;
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,assign)BOOL isOpen;
+@property (nonatomic,strong)PartTimeDetailModel *detailModel;
 
 @end
 
@@ -87,6 +94,10 @@
 {
     PTDetailTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailTitleCell class])];
     [cell setDataWithModel:self.model];
+    __weak typeof(self)weakSelf = self;
+    [cell setCopyBlock:^(PartTimeModel * _Nonnull model) {
+        [weakSelf copyAction:model];
+    }];
     return cell;
 }
 
@@ -96,7 +107,7 @@
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailContentCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailContentCell class])];
-    cell.clipsToBounds = YES;
+    //cell.clipsToBounds = YES;
     [cell setDataWithModel:self.model];
     __weak typeof(self)weakSelf = self;
     [cell setOpenBlock:^(BOOL isOpen) {
@@ -112,7 +123,7 @@
                      indexPath:(NSIndexPath *)indexPath
 {
     PTDetailCompanyCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailCompanyCell class])];
-    [cell setDataWithModel:self.model];
+    [cell setDataWithModel:self.model comModel:self.detailModel];
     return cell;
 }
 
@@ -137,11 +148,11 @@
         }else if(indexPath.section == 1){
             
             //内容可能包含有展开信息
-            if (self.isOpen) {
+          //  if (self.isOpen) {
                 return self.model.detailContentRealCellHeight;
-            }else{
-                return self.model.detailContentCellHeight;
-            }
+//            }else{
+//                return self.model.detailContentCellHeight;
+//            }
             
         }else{
             return self.model.detailCompanyCellHeight;
@@ -229,7 +240,57 @@
 #pragma mark - senderAction -
 - (void)confirmAction:(UIButton *)sender
 {
-    NSLog(@"报名参加");
+    __weak typeof(self)weakSelf = self;
+    [PartTimeUserJoinModel requestJoinPartTimeWithUserId:[PTUserUtil getUserId] aid:self.ptId completeBlock:^(id obj) {
+        PartTimeUserJoinModel *model = (PartTimeUserJoinModel *)obj;
+        if ([model.status isEqualToString:@"0000"]) {
+            weakSelf.confirmBtn.backgroundColor = [PTTool colorFromHexRGB:@"#b2b2b2"];
+            weakSelf.confirmLabel.text = @"已报名";
+            [weakSelf.confirmLayer removeFromSuperlayer];
+            
+            [weakSelf copyAction:weakSelf.model];
+        }
+        
+    } faileBlock:^(id error) {
+        
+    }];
+
+}
+
+
+- (void)copyAction:(PartTimeModel *)model
+{
+    UIWindow *window = [PTManager shareManager].hightWindow;
+    PTCopyThreeAlertView *view = [PTCopyThreeAlertView initWithXib];
+    view.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
+    view.frame = CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN);
+    view.contactType = model.contactType;
+    [window addSubview:view];
+    window.hidden = NO;
+    
+    __weak typeof(self)weakSelf = self;
+    [view setPhoneBlock:^{
+        [weakSelf JudgeAddressBookPower];
+    }];
+
+    NSString *title = @"";
+    NSString *content = @"";
+    if (model.contactType == 1) {
+        title = @"已为您复制QQ号";
+        content = @"前往QQ添加>";
+    }else if(model.contactType == 2){
+        title = @"已为您复制微信号";
+        content = @"前往微信添加>";
+    }else{
+        title = @"已为您复制手机号>";
+        content = @"前往手机通讯录添加";
+    }
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = model.contact;
+    view.titleLabel.text = title;
+    view.btnLabel.text = content;
+    CAGradientLayer *confirmLayer = [PTTool customLayer:view haveCorner:YES];
+    [view.confirmBtn.layer addSublayer:confirmLayer];
 }
 
 #pragma mark - data -
@@ -238,7 +299,14 @@
     __weak typeof(self)weakSelf = self;
     [PartTimeDetailModel requestDetailPartTimeWithUserId:1 aid:self.ptId completeBlock:^(id obj) {
         
-        [weakSelf setDetailDataWithModel:(PartTimeDetailModel *)obj];
+        PartTimeDetailModel *model = (PartTimeDetailModel *)obj;
+        weakSelf.detailModel = model;
+        [weakSelf setDetailDataWithModel:model];
+        if (model.isJoin) {
+            weakSelf.confirmBtn.backgroundColor = [PTTool colorFromHexRGB:@"#b2b2b2"];
+            weakSelf.confirmLabel.text = @"已报名";
+            [weakSelf.confirmLayer removeFromSuperlayer];
+        }
         
     } faileBlock:^(id error) {
         
@@ -249,6 +317,103 @@
 {
     self.model = detailModel.model;
     [self.tableView reloadData];
+}
+
+#pragma mark ---- 调用系统通讯录
+- (void)JudgeAddressBookPower {
+    ///获取通讯录权限，调用系统通讯录
+    [self CheckAddressBookAuthorization:^(bool isAuthorized , bool isUp_ios_9) {
+        if (isAuthorized) {
+            [self callAddressBook:isUp_ios_9];
+        }else {
+            NSLog(@"请到设置>隐私>通讯录打开本应用的权限设置");
+        }
+    }];
+}
+
+- (void)CheckAddressBookAuthorization:(void (^)(bool isAuthorized , bool isUp_ios_9))block {
+    if (Is_up_Ios_9) {
+        CNContactStore * contactStore = [[CNContactStore alloc]init];
+        if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined) {
+            [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * __nullable error) {
+                if (error) {
+                    NSLog(@"Error: %@", error);
+                } else if (!granted) {
+                    block(NO,YES);
+                } else {
+                    block(YES,YES);
+                }
+            }];
+        } else if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized){
+            block(YES,YES);
+        } else {
+            NSLog(@"请到设置>隐私>通讯录打开本应用的权限设置");
+        }
+    }else {
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+        ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
+        
+        if (authStatus == kABAuthorizationStatusNotDetermined) {
+            ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error) {
+                        NSLog(@"Error: %@", (__bridge NSError *)error);
+                    } else if (!granted) {
+                        block(NO,NO);
+                    } else {
+                        block(YES,NO);
+                    }
+                });
+            });
+        }else if (authStatus == kABAuthorizationStatusAuthorized) {
+            block(YES,NO);
+        }else {
+            NSLog(@"请到设置>隐私>通讯录打开本应用的权限设置");
+        }
+    }
+}  
+
+- (void)callAddressBook:(BOOL)isUp_ios_9 {
+    if (isUp_ios_9) {
+        CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
+        contactPicker.delegate = self;
+        contactPicker.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+        [self presentViewController:contactPicker animated:YES completion:nil];
+    } else {
+        ABPeoplePickerNavigationController *peoplePicker = [[ABPeoplePickerNavigationController alloc] init];
+        peoplePicker.peoplePickerDelegate = self;
+        [self presentViewController:peoplePicker animated:YES completion:nil];
+    }
+}
+
+#pragma mark -- CNContactPickerDelegate  进入系统通讯录页面 --
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+    CNPhoneNumber *phoneNumber = (CNPhoneNumber *)contactProperty.value;
+    [self dismissViewControllerAnimated:YES completion:^{
+        /// 联系人
+        NSString *text1 = [NSString stringWithFormat:@"%@%@",contactProperty.contact.familyName,contactProperty.contact.givenName];
+        /// 电话
+        NSString *text2 = phoneNumber.stringValue;
+        //text2 = [text2 stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSLog(@"联系人：%@, 电话：%@",text1,text2);
+    }];
+}
+
+#pragma mark -- ABPeoplePickerNavigationControllerDelegate   进入系统通讯录页面 --
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    ABMultiValueRef valuesRef = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    CFIndex index = ABMultiValueGetIndexForIdentifier(valuesRef,identifier);
+    CFStringRef value = ABMultiValueCopyValueAtIndex(valuesRef,index);
+    CFStringRef anFullName = ABRecordCopyCompositeName(person);
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        /// 联系人
+        NSString *text1 = [NSString stringWithFormat:@"%@",anFullName];
+        /// 电话
+        NSString *text2 = (__bridge NSString*)value;
+        //text2 = [text2 stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSLog(@"联系人：%@, 电话：%@",text1,text2);
+    }];
 }
 
 @end

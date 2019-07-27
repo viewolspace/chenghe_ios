@@ -222,7 +222,7 @@
 - (void)requestChoiceDataAction
 {
     __weak typeof(self)weakSelf = self;
-    [PTHomePageModel requestHotOrChoiseWithId:2 pageIndex:self.choicePageIndex pageSize:self.choicePageSize completeBlock:^(id obj) {
+    [PTHomePageModel requestHotOrChoiseWithId:1 pageIndex:self.choicePageIndex pageSize:self.choicePageSize completeBlock:^(id obj) {
         
         PTHomePageModel *model = (PTHomePageModel *)obj;
         [weakSelf reloadChoiceDataWithModel:model];

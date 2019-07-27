@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (CAGradientLayer *)customLayer:(UIView *)superView
                       haveCorner:(BOOL)haveCorner;
 
-
+/** 更新时间 */
++ (NSString *)time_timestampToString:(NSInteger)timestamp;
 
 @end
 

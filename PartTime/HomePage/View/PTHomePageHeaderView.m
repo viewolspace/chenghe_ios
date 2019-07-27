@@ -118,13 +118,43 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:btn.bounds];
         [imageView sd_setImageWithURL:[NSURL URLWithString:adModel.adImageUrl] placeholderImage:[UIImage imageNamed:@""]];
-        imageView.backgroundColor = COLOR_RANDOM;
+        //imageView.backgroundColor = COLOR_RANDOM;
         [btn addSubview:imageView];
+        
+        imageView.image = [self drawLineOfDashByImageView:imageView];
     }
     
     [self.actionScrollView setContentSize:CGSizeMake(scrollSizeWidth, 0)];
     
     self.scrollModelArr = model.adModelArr;
+}
+
+- (UIImage *)drawLineOfDashByImageView:(UIImageView *)imageView {
+    // 开始划线 划线的frame
+    UIGraphicsBeginImageContext(imageView.frame.size);
+    
+    [imageView.image drawInRect:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height)];
+    
+    // 获取上下文
+    CGContextRef line = UIGraphicsGetCurrentContext();
+    
+    // 设置线条终点的形状
+    CGContextSetLineCap(line, kCGLineCapRound);
+    // 设置虚线的长度 和 间距
+    CGFloat lengths[] = {5,5};
+    
+    CGContextSetStrokeColorWithColor(line, [UIColor greenColor].CGColor);
+    // 开始绘制虚线
+    CGContextSetLineDash(line, 0, lengths, 2);
+    
+    CGContextMoveToPoint(line, 0.0, 2.0);
+    
+    CGContextAddLineToPoint(line, 300, 2.0);
+    
+    CGContextStrokePath(line);
+    
+    // UIGraphicsGetImageFromCurrentImageContext()返回的就是image
+    return UIGraphicsGetImageFromCurrentImageContext();
 }
 
 - (void)setTopThreeDataWithModel:(PartTimeAdModel *)model
@@ -145,7 +175,7 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:btn.bounds];
         [imageView sd_setImageWithURL:[NSURL URLWithString:adModel.adImageUrl] placeholderImage:[UIImage imageNamed:@""]];
-        imageView.backgroundColor = COLOR_RANDOM;
+        //imageView.backgroundColor = COLOR_RANDOM;
         [btn addSubview:imageView];
     }
     

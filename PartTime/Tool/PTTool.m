@@ -60,6 +60,22 @@
     return gl;
 }
 
+///时间戳转化为字符转0000-00-00 00:00
++ (NSString *)time_timestampToString:(NSInteger)timestamp{
+    
+    timestamp = timestamp / 1000.f;
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString* string=[dateFormat stringFromDate:confromTimesp];
+    
+    return string;
+    
+}
+
 @end
 
 

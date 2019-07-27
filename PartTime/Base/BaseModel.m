@@ -37,9 +37,10 @@
 - (void)calculateDetailContentHeight
 {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineSpacing = 5.f;
+    style.lineSpacing = 1.f;
     
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style};
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style,NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+    //NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style};
     
     //标题高度
     CGFloat titleHeight = 21.5;
@@ -47,7 +48,8 @@
     //内容高度
     CGFloat contentHeight = [self.content boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 14 * 2.0, 0) options:1 attributes:dic context:nil].size.height;
     
-    CGFloat btnHeight = 44.f;
+    //CGFloat btnHeight = 44.f;
+    CGFloat btnHeight = 0;
     //page
     CGFloat page = 22 + 22 + 20;
     
@@ -174,7 +176,7 @@
     CGFloat titleHeight = [self.title boundingRectWithSize:CGSizeMake(titleWidth, 0) options:1 attributes:dic context:nil].size.height;
     
     //sub高度
-    CGFloat subHeight = 30.f;
+    CGFloat subHeight = 35.f;
     
     //图片高度
     CGFloat picHeight = 93.f;
@@ -235,8 +237,8 @@
 {
     NSString *myPartTimeUrl = [NSString stringWithFormat:@"%@ad/queryAdList?categoryId=%@",PartTimeAddress,categoryId];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:myPartTimeUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -290,8 +292,9 @@
 {
     NSString *partTimeUrl = [NSString stringWithFormat:@"%@partTime/queryAll?keyWord=%@&pageIndex=%ld&pageSize=%ld",PartTimeAddress,keyWord,pageIndex,pageSize];
     partTimeUrl = [partTimeUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+   
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:partTimeUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -309,14 +312,13 @@
 @end
 
 
-@implementation PartTimeJoinModel
+@implementation PartTimeUserJoinModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
     [super jsonToObject:dic completeBlock:completeBlock];
-
-    NSLog(@"%@",dic);
+    completeBlock(self);
 }
 
 + (void)requestJoinPartTimeWithUserId:(NSInteger)userId
@@ -324,16 +326,17 @@
                         completeBlock:(CompleteBlock)completeBlock
                            faileBlock:(FaileBlock)faileBlock
 {
-    NSString *joinUrl = [NSString stringWithFormat:@"%@partTime/joinPartTime?id=%ld&userId=%ld",PartTimeAddress,aid,userId];
+    NSString *joinUrl = [NSString stringWithFormat:@"%@partTime/joinPartTime?id=%ld",PartTimeAddress,(long)aid];
+  
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:joinUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        PartTimeJoinModel *model = [PartTimeJoinModel new];
+        PartTimeUserJoinModel *model = [PartTimeUserJoinModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -350,7 +353,20 @@
        completeBlock:(CompleteBlock)completeBlock
 {
     [super jsonToObject:dic completeBlock:completeBlock];
-
+    
+    if ([dic[@"isJoin"]isEqualToString:@"0"]) {
+        self.isJoin = NO;
+    }else{
+        self.isJoin = YES;
+    }
+    
+    NSDictionary *comDic = dic[@"company"];
+    self.des = comDic[@"des"];
+    self.comId = [comDic[@"id"]intValue];
+    self.logo  = comDic[@"logo"];
+    self.name  = comDic[@"name"];
+    self.star  = [comDic[@"star"]intValue];
+    
     NSDictionary *resultDic = dic[@"result"];
     
     PartTimeModel *model = [PartTimeModel new];
@@ -370,10 +386,10 @@
                           completeBlock:(CompleteBlock)completeBlock
                              faileBlock:(FaileBlock)faileBlock
 {
-    NSString *joinUrl = [NSString stringWithFormat:@"%@partTime/getPartTime?id=%ld&userId=%ld",PartTimeAddress,aid,userId];
+    NSString *joinUrl = [NSString stringWithFormat:@"%@partTime/getPartTime?id=%ld",PartTimeAddress,aid];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:joinUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -419,10 +435,8 @@
 {
     NSString *myPartTimeUrl = [NSString stringWithFormat:@"%@partTime/queryMyPartTime?userId=%ld&pageIndex=%ld&pageSize=%ld",PartTimeAddress,userId,pageIndex,pageSize];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSString *userStr = [NSString stringWithFormat:@"%ld",userId];
-    [manager.requestSerializer setValue:userStr forHTTPHeaderField:@"userId"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:myPartTimeUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -472,8 +486,8 @@
 {
     NSString *hotUrl = [NSString stringWithFormat:@"%@partTime/queryRecommnet?recommend=%d&pageIndex=%ld&pageSize=%ld",PartTimeAddress,rId,pageIndex,pageSize];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     [manager GET:hotUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -482,6 +496,54 @@
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        faileBlock(error);
+    }];
+}
+
+@end
+
+@implementation PartTimeCategoryModel
+
+- (void)jsonToObject:(NSDictionary *)dic completeBlock:(CompleteBlock)completeBlock
+{
+    NSArray *resultArr = dic[@"result"];
+    NSDictionary *categoryDic = dic[@"category"];
+    self.name = categoryDic[@"name"];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:resultArr.count];
+    for (NSDictionary *resultDic in resultArr) {
+        PartTimeModel *model = [PartTimeModel new];
+        [model setValuesForKeysWithDictionary:resultDic];
+        [model calculateCellHeight];
+        [model calculateHaveImageCellHeight];
+        [arr addObject:model];
+    }
+    
+    _modelArr = arr;
+    
+    completeBlock(self);
+}
+
++ (void)requestPartTimeWithCategoryId:(NSString *)categoryId
+                            pageIndex:(NSInteger)pageIndex
+                             pageSize:(NSInteger)pageSize
+                        completeBlock:(CompleteBlock)completeBlock
+                           faileBlock:(FaileBlock)faileBlock
+{
+    NSString *tokenUrl = [NSString stringWithFormat:@"%@partTime/queryBycategoryId?categoryId=%@&pageIndex=%ld&pageSize=%ld",PartTimeAddress,categoryId,pageIndex,pageSize];
+    
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+    
+    
+    [manager GET:tokenUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        PartTimeCategoryModel *model = [PartTimeCategoryModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
         faileBlock(error);
     }];
 }
@@ -510,8 +572,8 @@
 {
     NSString *tokenUrl = [NSString stringWithFormat:@"%@user/getToken?phone=%@",PartTimeAddress,phone];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:tokenUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -547,10 +609,7 @@
 {
     NSString *tokenUrl = [NSString stringWithFormat:@"%@user/getRand?phone=%@",PartTimeAddress,phone];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-   
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     
     [manager GET:tokenUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -589,6 +648,9 @@
         [PTUserUtil setUserInfo:model];
         [PTUserUtil setUserId:model.userId];
         [PTUserUtil setLoginStatus:YES];
+        
+        //发送登录成功的通知
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
     }
   
 }
@@ -599,11 +661,8 @@
 {
     NSString *getUserUrl = [NSString stringWithFormat:@"%@user/getUser",PartTimeAddress];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString *userStr = [NSString stringWithFormat:@"%ld",userId];
-    [manager.requestSerializer setValue:userStr forHTTPHeaderField:@"userId"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:getUserUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -621,12 +680,13 @@
 @end
 
 
-@implementation PartTimeUpDateUserInfoModel
+@implementation PartTimeUserUpDateInfoModel
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSLog(@"%@",dic);
+    [super jsonToObject:dic completeBlock:completeBlock];
+    completeBlock(self);
 }
 
 + (void)requestUserWithImageStr:(NSString *)imageStr
@@ -635,32 +695,32 @@
                             exp:(NSString *)exp
                             des:(NSString *)des
                          userId:(NSInteger)userId
+                       realName:(NSString *)realName
                   completeBlock:(CompleteBlock)completeBlock
                      faileBlock:(FaileBlock)faileBlock
 {
-    NSString *expUrl = [NSString stringWithFormat:@"%@user/upDateUser",PartTimeAddress];
+    NSString *expUrl = [NSString stringWithFormat:@"%@user/updateUser",PartTimeAddress];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     NSDictionary *params = @{
-                             @"imageStr":imageStr ? imageStr : @"",
+                             @"imgStr":imageStr ? imageStr : @"",
                              @"sex":@(sex),
                              @"birthday":birthday ? birthday : @"",
                              @"exp":exp ? exp : @"",
                              @"des":des ? des : @"",
-                             @"userId":@(userId)
+                             @"realName":realName ? realName : @""
                              };
     
     [manager POST:expUrl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        PartTimeUpDateUserInfoModel *model = [PartTimeUpDateUserInfoModel new];
+        PartTimeUserUpDateInfoModel *model = [PartTimeUserUpDateInfoModel new];
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"%@",error);
     }];
     
 }
@@ -673,7 +733,7 @@
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
 {
-    NSLog(@"%@",dic);
+    completeBlock(self);
 }
 
 + (void)requestNickName:(NSString *)nickName
@@ -681,14 +741,13 @@
           completeBlock:(CompleteBlock)completeBlock
              faileBlock:(FaileBlock)faileBlock
 {
-    NSString *nameChangeUrl = [NSString stringWithFormat:@"%@user/upDateNickName",PartTimeAddress];
+    NSString *nameChangeUrl = [NSString stringWithFormat:@"%@user/updateNickName",PartTimeAddress];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     NSDictionary *params = @{
-                             @"nickName": nickName ? nickName : @"",
-                             @"userId":@(userId)
+                             @"nickName": nickName ? nickName : @""
                              };
     
     [manager POST:nameChangeUrl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -699,7 +758,7 @@
         [model jsonToObject:responseObject completeBlock:completeBlock];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"%@",error);
     }];
 }
 
@@ -720,8 +779,8 @@
     NSString *idfa = @"1";
     NSString *activeUrl = [NSString stringWithFormat:@"%@user/active?idfa=%@&os=1",PartTimeAddress,idfa];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:activeUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -758,7 +817,7 @@
     [PTUserUtil setLoginStatus:YES];
 
     //发送登录成功的通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationLogin object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
 
 }
 
@@ -772,8 +831,8 @@
     NSString *idfa = [SAMKeychain passwordForService:@"兼职圈" account:@""];;
     NSString *loginUrl = [NSString stringWithFormat:@"%@user/login?idfa=%@&phone=%@&rand=%@",PartTimeAddress,idfa,phone,rand];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+
     
     [manager GET:loginUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         

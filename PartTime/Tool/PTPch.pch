@@ -69,7 +69,7 @@ typedef void(^FaileBlock)(id error);
 
 //****** 通知相关 ******//
 //登录
-#define kNotificationLogin @"kNotificationLogin"
+#define kNotificationUserInfoChange @"kNotificationUserInfoChange"
 //退出
 #define kNotificationLogout @"kNotificationLogout"
 
@@ -91,6 +91,7 @@ typedef void(^FaileBlock)(id error);
 #import "UIView+viewCategory.h"
 #import "UINavigationController+ClickAdCategory.h"
 #import <FastCoder.h>
+#import "CZHDatePickerView.h"
 
 /* 接口 */
 #define PartTimeAddress @"http://112.126.97.144:8080/chengheWeb/"

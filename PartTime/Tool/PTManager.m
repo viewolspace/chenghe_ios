@@ -25,4 +25,15 @@ static PTManager *manager = nil;
     return [PTManager shareManager];
 }
 
+
++ (AFHTTPSessionManager *)shareAFManager
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSString *userStr = [NSString stringWithFormat:@"%ld",[PTUserUtil getUserId]];
+    [manager.requestSerializer setValue:userStr forHTTPHeaderField:@"userId"];
+    
+    return manager;
+}
+
 @end

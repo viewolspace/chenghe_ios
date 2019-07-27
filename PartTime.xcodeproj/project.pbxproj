@@ -112,6 +112,11 @@
 		04D05A6522EAE1C9001E4C04 /* 兼职圈logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6222EAE1C9001E4C04 /* 兼职圈logo@2x.png */; };
 		04D05A6622EAE1C9001E4C04 /* 兼职圈logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6322EAE1C9001E4C04 /* 兼职圈logo@3x.png */; };
 		04D05A6722EAE1C9001E4C04 /* 兼职圈logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A6422EAE1C9001E4C04 /* 兼职圈logo.png */; };
+		04D05A7A22EB49D7001E4C04 /* CZHDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7322EB49D7001E4C04 /* CZHDatePickerView.m */; };
+		04D05A7B22EB49D7001E4C04 /* UIView+CZHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7622EB49D7001E4C04 /* UIView+CZHExtension.m */; };
+		04D05A7C22EB49D7001E4C04 /* UIButton+CZHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7722EB49D7001E4C04 /* UIButton+CZHExtension.m */; };
+		04D05A7F22EC4E9B001E4C04 /* PTCopyThreeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7E22EC4E9B001E4C04 /* PTCopyThreeAlertView.m */; };
+		04D05A8122EC4EB5001E4C04 /* PTCopyThreeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A8022EC4EB5001E4C04 /* PTCopyThreeAlertView.xib */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
 		04E8C35422E5459900B4FF6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35322E5459900B4FF6D /* Assets.xcassets */; };
@@ -292,6 +297,16 @@
 		04D05A6222EAE1C9001E4C04 /* 兼职圈logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo@2x.png"; sourceTree = "<group>"; };
 		04D05A6322EAE1C9001E4C04 /* 兼职圈logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo@3x.png"; sourceTree = "<group>"; };
 		04D05A6422EAE1C9001E4C04 /* 兼职圈logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "兼职圈logo.png"; sourceTree = "<group>"; };
+		04D05A7322EB49D7001E4C04 /* CZHDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZHDatePickerView.m; sourceTree = "<group>"; };
+		04D05A7422EB49D7001E4C04 /* CZHDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZHDatePickerView.h; sourceTree = "<group>"; };
+		04D05A7522EB49D7001E4C04 /* DatePickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerHeader.h; sourceTree = "<group>"; };
+		04D05A7622EB49D7001E4C04 /* UIView+CZHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CZHExtension.m"; sourceTree = "<group>"; };
+		04D05A7722EB49D7001E4C04 /* UIButton+CZHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CZHExtension.m"; sourceTree = "<group>"; };
+		04D05A7822EB49D7001E4C04 /* UIButton+CZHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZHExtension.h"; sourceTree = "<group>"; };
+		04D05A7922EB49D7001E4C04 /* UIView+CZHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CZHExtension.h"; sourceTree = "<group>"; };
+		04D05A7D22EC4E9B001E4C04 /* PTCopyThreeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTCopyThreeAlertView.h; sourceTree = "<group>"; };
+		04D05A7E22EC4E9B001E4C04 /* PTCopyThreeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCopyThreeAlertView.m; sourceTree = "<group>"; };
+		04D05A8022EC4EB5001E4C04 /* PTCopyThreeAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTCopyThreeAlertView.xib; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -464,6 +479,20 @@
 			path = AD;
 			sourceTree = "<group>";
 		};
+		04D05A7222EB49BC001E4C04 /* DatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				04D05A7422EB49D7001E4C04 /* CZHDatePickerView.h */,
+				04D05A7322EB49D7001E4C04 /* CZHDatePickerView.m */,
+				04D05A7522EB49D7001E4C04 /* DatePickerHeader.h */,
+				04D05A7822EB49D7001E4C04 /* UIButton+CZHExtension.h */,
+				04D05A7722EB49D7001E4C04 /* UIButton+CZHExtension.m */,
+				04D05A7922EB49D7001E4C04 /* UIView+CZHExtension.h */,
+				04D05A7622EB49D7001E4C04 /* UIView+CZHExtension.m */,
+			);
+			path = DatePickerView;
+			sourceTree = "<group>";
+		};
 		04E8C33E22E5459900B4FF6D = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +583,7 @@
 		04E8C37522E549C300B4FF6D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				04D05A7222EB49BC001E4C04 /* DatePickerView */,
 				0418F45222E6E5F600B50063 /* UMMobClick.framework */,
 				04AD20DE22E823E20004421E /* NewShowLabel.h */,
 				04AD20DD22E823E20004421E /* NewShowLabel.m */,
@@ -733,6 +763,9 @@
 				0418F3F322E69DC100B50063 /* PTHomePageHeaderView.m */,
 				0418F3E222E692AE00B50063 /* PTSearchView.h */,
 				0418F3E322E692AE00B50063 /* PTSearchView.m */,
+				04D05A7D22EC4E9B001E4C04 /* PTCopyThreeAlertView.h */,
+				04D05A7E22EC4E9B001E4C04 /* PTCopyThreeAlertView.m */,
+				04D05A8022EC4EB5001E4C04 /* PTCopyThreeAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -901,6 +934,7 @@
 				0418F43122E6BA3400B50063 /* 高薪日结@2x.png in Resources */,
 				04BB3FEF22E7E6700019800D /* 默认头像.png in Resources */,
 				04BB3FF222E7E6700019800D /* 报名@2x.png in Resources */,
+				04D05A8122EC4EB5001E4C04 /* PTCopyThreeAlertView.xib in Resources */,
 				04E8C35422E5459900B4FF6D /* Assets.xcassets in Resources */,
 				04BB401322E7F3D00019800D /* 男_up@2x.png in Resources */,
 				04BB401522E7F3D00019800D /* 女-up.png in Resources */,
@@ -1036,12 +1070,15 @@
 				04A4F3A022E94F9C00C8B449 /* BaseModel.m in Sources */,
 				04E8C3F122E5ADAC00B4FF6D /* PTDetailContentCell.m in Sources */,
 				0418F40422E6AAC500B50063 /* PTChoiceViewController.m in Sources */,
+				04D05A7B22EB49D7001E4C04 /* UIView+CZHExtension.m in Sources */,
+				04D05A7C22EB49D7001E4C04 /* UIButton+CZHExtension.m in Sources */,
 				04D05A5C22EAB219001E4C04 /* UINavigationController+ClickAdCategory.m in Sources */,
 				04D05A5922EAAB39001E4C04 /* UIView+viewCategory.m in Sources */,
 				04D05A5622EAA24E001E4C04 /* PTWebViewController.m in Sources */,
 				0418F40722E6AC6100B50063 /* PTChoiceHeaderView.m in Sources */,
 				04E8C3E122E5AB3100B4FF6D /* PTMineCell.m in Sources */,
 				04E8C3EC22E5AC8900B4FF6D /* PTDetailTitleCell.m in Sources */,
+				04D05A7F22EC4E9B001E4C04 /* PTCopyThreeAlertView.m in Sources */,
 				0418F3EB22E694A500B50063 /* PTManager.m in Sources */,
 				04E8C3D022E5A91600B4FF6D /* PTHomePageCell.m in Sources */,
 				0418F41522E6B66000B50063 /* PTWholeHeaderView.m in Sources */,
@@ -1054,6 +1091,7 @@
 				04E8C3BC22E5924B00B4FF6D /* NSString+validate.m in Sources */,
 				0418F41222E6B62F00B50063 /* PTWholeViewController.m in Sources */,
 				0418F40B22E6B07D00B50063 /* PTChoiceCell.m in Sources */,
+				04D05A7A22EB49D7001E4C04 /* CZHDatePickerView.m in Sources */,
 				04E8C3E422E5AB3800B4FF6D /* PTMineViewController.m in Sources */,
 				0418F3F422E69DC100B50063 /* PTHomePageHeaderView.m in Sources */,
 				04AD20DF22E823E20004421E /* NewShowLabel.m in Sources */,

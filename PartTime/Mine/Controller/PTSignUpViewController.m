@@ -8,6 +8,7 @@
 
 #import "PTSignUpViewController.h"
 #import "PTChoiceCell.h"
+#import "PTDetailViewController.h"
 
 @interface PTSignUpViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -24,9 +25,21 @@
     [super viewDidLoad];
   
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"我的报名";
+   
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#282828"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
     [self createTabelView];
+    
+    [self requestMyPartTimeData];
+   
+    if (self.categoryId) {
+        [self requestCategoryData];
+    }else{
+        self.title = @"我的报名";
+        [self requestMyPartTimeData];
+    }
+    
+    [self setMjFooterView:self.tableView];
+    [self setMJHeaderView:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -35,7 +48,6 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.clipsToBounds = NO;
-    [self requestMyPartTimeData];
 }
 
 
@@ -102,17 +114,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.dataArr.count != 0) {
+        PartTimeModel *model = self.dataArr[indexPath.row];
+        self.hidesBottomBarWhenPushed = YES;
+        PTDetailViewController *vc = [[PTDetailViewController alloc] init];
+        vc.ptId = model.aId;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 #pragma mark - setter and getter -
 
 #pragma mark - data -
+- (void)headerReoladAction
+{
+    self.pageIndex = 1;
+    [self.dataArr removeAllObjects];
+    if (self.categoryId) {
+        [self requestCategoryData];
+    }else{
+        [self requestMyPartTimeData];
+    }
+}
+
+- (void)footerReloadAction
+{
+    if (self.categoryId) {
+        [self requestCategoryData];
+    }else{
+        [self requestMyPartTimeData];
+    }
+}
+
+//我的报名
 - (void)requestMyPartTimeData
 {
-    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     __weak typeof(self)weakSelf = self;
-    [PTMyPartTimeModel requestMyPartTimeWithUserId:[PTUserUtil getUserId] pageIndex:1 pageSize:5 completeBlock:^(id obj) {
+    [PTMyPartTimeModel requestMyPartTimeWithUserId:[PTUserUtil getUserId] pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
         
         [weakSelf setMyPartTimeData:(PTMyPartTimeModel *)obj];
         
@@ -123,14 +165,54 @@
     
 }
 
+//协议
+- (void)requestCategoryData{
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    __weak typeof(self)weakSelf = self;
+    
+    [PartTimeCategoryModel requestPartTimeWithCategoryId:self.categoryId pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+        [weakSelf setCategoryPartTimeData:(PartTimeCategoryModel *)obj];
+
+    } faileBlock:^(id error) {
+        [NewShowLabel setMessageContent:@"请求报名数据失败"];
+    }];
+    
+    [PTMyPartTimeModel requestMyPartTimeWithUserId:[PTUserUtil getUserId] pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
+        
+        [weakSelf setMyPartTimeData:(PTMyPartTimeModel *)obj];
+        
+    } faileBlock:^(id error) {
+        
+        [NewShowLabel setMessageContent:@"请求我的报名数据失败"];
+    }];
+}
+
+
+- (void)setCategoryPartTimeData:(PartTimeCategoryModel *)model
+{
+    if (model.modelArr.count == 0) {
+        self.title = model.name;
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    
+    self.title = model.name;
+    self.pageIndex ++;
+    [self.dataArr addObjectsFromArray:model.modelArr];
+    [self.tableView reloadData];
+    
+}
 
 - (void)setMyPartTimeData:(PTMyPartTimeModel *)model
 {
     if (model.modelArr.count == 0) {
         
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
     
+    self.pageIndex ++;
     [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
     

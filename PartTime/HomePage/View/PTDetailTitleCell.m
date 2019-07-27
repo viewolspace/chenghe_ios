@@ -17,6 +17,13 @@
     [self.ptCopyBtn.layer addSublayer:layer];
 }
 
+- (IBAction)copyAction:(UIButton *)sender {
+    
+    if (self.copyBlock) {
+        self.copyBlock(self.model);
+    }
+}
+
 
 - (void)setDataWithModel:(PartTimeModel *)model
 {
@@ -24,6 +31,7 @@
         return;
     }
     
+    self.model = model;
     //标题
     self.ptTitleLabel.text = model.title;
     
@@ -53,7 +61,7 @@
     
     CGFloat labelPage = 5.f;
     CGFloat textPage = 9.f;
-    NSArray *subLabels = [model.lable componentsSeparatedByString:@" "];
+    NSArray *subLabels = [model.lable componentsSeparatedByString:@","];
     UIFont *font = [UIFont systemFontOfSize:13.f];
     CGFloat right = 0;
     CGFloat top   = 2;
@@ -94,6 +102,11 @@
         contactStr = [NSString stringWithFormat:@"点击复制联系方式    手机:%@",model.contact];
     }
     [self.ptCopyBtn setTitle:contactStr forState:UIControlStateNormal];
+    
+    
+    //更新时间
+    NSString *timeStr = [PTTool time_timestampToString:model.cTime];
+    self.ptUpDateLabel.text = [NSString stringWithFormat:@"更新时间：%@",timeStr];
 }
 
 

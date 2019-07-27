@@ -25,17 +25,23 @@
 - (void)setDataWithModel:(PartTimeModel *)model
 {
     if (model.content) {
-        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-        style.lineSpacing = 5.f;
+      
+      //  NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565; } p:last-of-type { margin: 5; }</style>";
+        NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565; margin: 5px;}</style>";
         
-        NSAttributedString *str = [[NSAttributedString alloc] initWithString:model.content attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style}];
+        NSString *styledHtml = [NSString stringWithFormat:@"%@%@", styleS, model.content];
+        NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[styledHtml dataUsingEncoding:NSUnicodeStringEncoding] options:dic
+                                                             documentAttributes:nil error:nil];
         
-        self.contentLabel.attributedText = str;
+      
+   
+        self.contentLabel.attributedText = attrStr;
     }
   
    
-        self.showMoreBtn.hidden = model.isHiddenContent;
-    self.lineView.hidden = model.isHiddenContent;
+//        self.showMoreBtn.hidden = model.isHiddenContent;
+//    self.lineView.hidden = model.isHiddenContent;
     
 }
 

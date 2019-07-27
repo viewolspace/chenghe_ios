@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong)UIWindow *hightWindow;  //最上层window,在状态栏之上
 @property (nonatomic,strong)UIWindow *highestWindow; //最高级，主要用于显示 prompt
 
++ (AFHTTPSessionManager *)shareAFManager;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

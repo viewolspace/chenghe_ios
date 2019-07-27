@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 工作地点 */
 @property (nonatomic,copy)NSString *workAddress;
 /** 创建、更新时间 */
-@property (nonatomic,copy)NSString *cTime;
+@property (nonatomic,assign)NSInteger cTime;
 /** 精选列表图片 */
 @property (nonatomic,copy)NSString *pic;
 
@@ -129,7 +129,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface PartTimeJoinModel : BaseModel
+@interface PartTimeCategoryModel : BaseModel
+
+@property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
+@property (nonatomic,copy)NSString *name;
+/** 根据广告id查询内容 */
++ (void)requestPartTimeWithCategoryId:(NSString *)categoryId
+                            pageIndex:(NSInteger)pageIndex
+                             pageSize:(NSInteger)pageSize
+                        completeBlock:(CompleteBlock)completeBlock
+                           faileBlock:(FaileBlock)faileBlock;
+
+@end
+
+
+@interface PartTimeUserJoinModel : BaseModel
 
 /** 参加兼职 */
 + (void)requestJoinPartTimeWithUserId:(NSInteger)userId
@@ -160,6 +174,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PartTimeDetailModel : BaseModel
 
 @property (nonatomic,strong)PartTimeModel *model;
+@property (nonatomic,assign)BOOL isJoin; //0 未报名 1 已报名
+@property (nonatomic,assign)int star; //星星数量
+@property (nonatomic,copy)NSString *logo; //公司logo
+@property (nonatomic,copy)NSString *qq;
+@property (nonatomic,copy)NSString *wx;
+@property (nonatomic,copy)NSString *phone;
+@property (nonatomic,assign)int comId; //公司id
+@property (nonatomic,copy)NSString *des; //公司描述
+@property (nonatomic,copy)NSString *name; //公司名称
+
 
 
 + (void)requestDetailPartTimeWithUserId:(NSInteger)userId
@@ -266,7 +290,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface PartTimeUpDateUserInfoModel : BaseModel
+@interface PartTimeUserUpDateInfoModel : BaseModel
 /**
  完善简历
 
@@ -280,6 +304,7 @@ NS_ASSUME_NONNULL_BEGIN
                             exp:(NSString *)exp
                             des:(NSString *)des
                          userId:(NSInteger)userId
+                       realName:(NSString *)realName
                   completeBlock:(CompleteBlock)completeBlock
                      faileBlock:(FaileBlock)faileBlock;
 

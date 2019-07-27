@@ -13,10 +13,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self setStarsLight:3];
     self.companyBgView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.companyBgView.layer.shadowOffset = CGSizeMake(0, 0);
     self.companyBgView.layer.shadowOpacity = 0.1;
+    self.companyImageView.layer.masksToBounds = YES;
+    self.companyImageView.layer.cornerRadius = self.companyImageView.height / 2.0;
+    self.companyImageView.backgroundColor = [PTTool colorFromHexRGB:@"#f6f6f6"];
 }
 
 - (void)setStarsLight:(NSInteger)lightStar
@@ -32,19 +34,26 @@
 }
 
 - (void)setDataWithModel:(PartTimeModel *)model
+                comModel:(PartTimeDetailModel *)detailModel
 {
     if (!model) {
         return;
     }
     
-    self.companyNameLabel.text = model.title;
-   
+    self.companyNameLabel.text = detailModel.name;
+    
+    [self setStarsLight:detailModel.star];
+    
+    [self.companyImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.logo] placeholderImage:[UIImage imageNamed:@""]];
+    
     CGFloat companyNameHeight = [model.title boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 80 - 94, 0) options:1 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.f]} context:nil].size.height;
     if (companyNameHeight > 20.f ) {
         self.companyHeightConstraint.constant = 79  + companyNameHeight - 20;
     }else{
         self.companyHeightConstraint.constant = 79.f;
     }
+    
+    
 }
 
 @end

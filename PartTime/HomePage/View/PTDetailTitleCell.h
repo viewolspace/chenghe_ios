@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *ptWorkTimelabel;
 @property (weak, nonatomic) IBOutlet UILabel *ptWorkAddress;
 @property (weak, nonatomic) IBOutlet UIView *subLabelView;
+@property (nonatomic,copy)void (^copyBlock)(PartTimeModel *model);
+@property (nonatomic,strong)PartTimeModel *model;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subLabelViewHeightConstraint;
 - (void)setDataWithModel:(PartTimeModel *)model;

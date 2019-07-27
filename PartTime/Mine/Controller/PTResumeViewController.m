@@ -8,7 +8,7 @@
 
 #import "PTResumeViewController.h"
 
-@interface PTResumeViewController ()<UIScrollViewDelegate,UITextViewDelegate,UITextFieldDelegate>
+@interface PTResumeViewController ()<UIScrollViewDelegate,UITextViewDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,strong)UIScrollView *bgScrollView;
 @property (nonatomic,strong)UIButton *manBtn;
@@ -32,6 +32,20 @@
 @property (nonatomic,assign)NSInteger introduceTag; //编辑介绍
 @property (nonatomic,assign)CGFloat keyBoardHeight;
 @property (nonatomic,assign)BOOL isLight;
+
+//需要上传的字段,必传
+/** 头像字符串 */
+@property (nonatomic,strong)NSString *pic64Str;
+/** 名字 */
+@property (nonatomic,copy)NSString *realName;
+/** 性别 1男2女 */
+@property (nonatomic,copy)NSString *sex;
+/** 工作经验 */
+@property (nonatomic,copy)NSString *exp;
+/** 自我介绍 */
+@property (nonatomic,copy)NSString *des;
+/** 出生日期 */
+@property (nonatomic,copy)NSString *birthday;
 
 @end
 
@@ -81,8 +95,6 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    
-    
     [self womanBtn];
     
     [self confirmBtn];
@@ -108,6 +120,44 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.bgScrollView addGestureRecognizer:tap];
 
+    [self.userNameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    [self manSelect:self.manBtn];
+    //初始化用户信息
+    [self initUserInfo];
+}
+
+- (void)initUserInfo
+{
+    self.exp = @"";
+    self.des = @"";
+    self.birthday = @"";
+    self.realName = @"";
+    
+    if ([PTUserUtil loginStatus]) {
+        
+        UserModel *model = [PTUserUtil getUserInfo];
+        
+        self.exp = model.exp;
+        self.des = model.des;
+        self.realName = model.realName;
+        
+        self.exeTextField.text = self.exp;
+        self.introduceTextField.text = self.des;
+        self.userNameTextField.text = self.realName;
+        [self.userHeaderView sd_setImageWithURL:[NSURL URLWithString:model.headPic] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        if ([model.birthday isKindOfClass:[NSString class]]) {
+            [self.bornBtn setTitle:model.birthday forState:UIControlStateNormal];
+            self.birthday = model.birthday;
+        }
+        
+        if (model.sex == 1) {
+            [self manSelect:self.manBtn];
+        }else{
+            [self womanSelect:self.womanBtn];
+        }
+        
+    }
 }
 
 - (void)addObserver
@@ -254,8 +304,10 @@
 - (UIImageView *)userHeaderView
 {
     if (!_userHeaderView) {
+        
+        UserModel *model = [PTUserUtil getUserInfo];
         _userHeaderView = [[UIImageView alloc] initWithFrame:self.loginBtn.bounds];
-        [_userHeaderView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [_userHeaderView sd_setImageWithURL:[NSURL URLWithString:model.headPic] placeholderImage:[UIImage imageNamed:@"默认头像"]];
     }
     
     return _userHeaderView;
@@ -302,8 +354,10 @@
         [self.bornView addSubview:arrow];
         
         _bornBtn = [[UIButton alloc] initWithFrame:CGRectMake(arrow.left - 100, 0, 100, self.bornView.height)];
-        [_bornBtn setTitle:@"1988.6.13" forState:UIControlStateNormal];
+        [_bornBtn setTitle:@"请选择您的生日" forState:UIControlStateNormal];
+        [_bornBtn setTitleColor:[PTTool colorFromHexRGB:@"#656565"] forState:UIControlStateNormal];
         [_bornBtn addTarget:self action:@selector(bornAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_bornBtn.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
         [self.bornView addSubview:_bornBtn];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bornView.height - 1, self.bornView.width, 1)];
@@ -403,12 +457,19 @@
 {
     if (textView.tag == self.exeTag) {
         [self.bgScrollView setContentOffset:CGPointMake(0, 0 + self.keyBoardHeight)];
+        self.exp = textView.text;
     }else{
         [self.bgScrollView setContentOffset:CGPointMake(0, 0 + self.keyBoardHeight + 120)];
+        self.des = textView.text;
 
     }
 }
 
+#pragma mark - textFieldDelegate
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    self.realName = textField.text;
+}
 
 #pragma mark - senderAction -
 - (void)popAction:(UIButton *)sender
@@ -421,10 +482,11 @@
 
 - (void)manSelect:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     if (sender.selected) {
         return;
     }
-    
+    self.sex = @"1";
     _manBtn.selected = YES;
     _womanBtn.selected = NO;
     
@@ -432,10 +494,11 @@
 
 - (void)womanSelect:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     if (sender.selected) {
         return;
     }
-    
+    self.sex = @"2";
     _manBtn.selected = NO;
     _womanBtn.selected = YES;
     
@@ -444,15 +507,89 @@
 - (void)bornAction:(UIButton *)sender
 {
     NSLog(@"设置年龄");
+    __weak typeof(self)weakSelf = self;
+    NSString *date = @"";
+    if (![self.bornBtn.titleLabel.text isEqualToString:@"请选择您的生日"] && [PTUserUtil loginStatus]) {
+       
+        UserModel *model = [PTUserUtil getUserInfo];
+        if ([model.birthday isKindOfClass:[NSString class]]) {
+            NSArray *dateArr = [model.birthday componentsSeparatedByString:@"."];
+            NSMutableString *str = [NSMutableString string];
+            for (int i = 0; i < dateArr.count; i ++) {
+                NSString *dateS = dateArr[i];
+                [str appendString:[NSString stringWithFormat:@"%@-",dateS]];
+            }
+            
+            date = [NSString stringWithFormat:@"%@",[str substringWithRange:NSMakeRange(0, str.length - 1)]];
+        }
+        
+    }
+    
+
+    
+    [CZHDatePickerView sharePickerViewWithCurrentDate:date DateBlock:^(NSString *dateString) {
+        NSArray *dateArr = [dateString componentsSeparatedByString:@"-"];
+        NSMutableString *birthday = [NSMutableString string];
+        for (int i = 0; i < dateArr.count; i ++) {
+            NSString *str = dateArr[i];
+            [birthday appendString:[NSString stringWithFormat:@"%@.",str]];
+        }
+        weakSelf.birthday = [NSString stringWithFormat:@"%@",[birthday substringWithRange:NSMakeRange(0, birthday.length - 1)]];
+        [weakSelf.bornBtn setTitle:weakSelf.birthday forState:UIControlStateNormal];
+    }];
 }
 
 - (void)confirmAction:(UIButton *)sender
 {
-    NSLog(@"保存");
+    [self.view endEditing:YES];
+    if ([self.exp isEqualToString:@""]) {
+        [NewShowLabel setMessageContent:@"请输入您的工作经验"];
+        return;
+    }
+    
+    if ([self.des isEqualToString:@""]) {
+        [NewShowLabel setMessageContent:@"请输入您的自我介绍"];
+        return;
+    }
+    
+    if ([self.realName isEqualToString:@""]) {
+        [NewShowLabel setMessageContent:@"请输入您的昵称"];
+        return;
+    }
+    
+    if ([self.birthday isEqualToString:@""]) {
+        [NewShowLabel setMessageContent:@"请选择您的出生日期"];
+        return;
+    }
+
+    __weak typeof(self)weakSelf = self;
+    [PartTimeUserUpDateInfoModel requestUserWithImageStr:self.pic64Str sex:[self.sex integerValue] birthday:self.birthday exp:self.exp des:self.des userId:[PTUserUtil getUserId] realName:self.realName completeBlock:^(id obj) {
+        
+        PartTimeUserUpDateInfoModel *model = (PartTimeUserUpDateInfoModel *)obj;
+        if ([model.status isEqualToString:@"0000"]) {
+            [PartTimeUserGetInfoModel requestUserWithUserId:[PTUserUtil getUserId] completeBlock:^(id obj) {
+                
+                PartTimeUserGetInfoModel *infoModel = (PartTimeUserGetInfoModel *)obj;
+                if ([infoModel.status isEqualToString:@"0000"]) {
+                    [NewShowLabel setMessageContent:@"保存成功"];
+                    [weakSelf popAction:[UIButton new]];
+                }
+                
+            } faileBlock:^(id error) {
+                
+            }];
+        }
+        
+    } faileBlock:^(id error) {
+        
+    }];
+    
+ 
 }
 
 - (void)loginAction:(UIButton *)sender
 {
+    [self pic];
     NSLog(@"点击头像了");
 }
 
@@ -525,6 +662,49 @@
     return renderedImg;
 }
 
+#pragma mark 访问相机
+- (void)photo{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    NSUInteger sourceType = 0;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerController.delegate = self; //设置代理
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = sourceType; //图片来源
+        
+        //拍照
+        sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePickerController.sourceType = sourceType;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:imagePickerController animated:YES completion:NULL];
+        });
+    }
+}
 
+#pragma mark 访问相册
+- (void)pic{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    NSUInteger sourceType = 0;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerController.delegate = self; //设置代理
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = sourceType; //图片来源
+        
+        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage]; //通过key值获取到图片
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
+    self.pic64Str = [imageData base64EncodedStringWithOptions:0];
+    
+    [self.userHeaderView setImage:image];
+    NSLog(@"%@",image);
+}
 
 @end

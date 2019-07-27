@@ -38,7 +38,7 @@
 {
     if (!_choiceLabel) {
         _choiceLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, self.bannerScrollView.bottom + 35, WIDTH_OF_SCREEN - 14 - 14, 18)];
-        _choiceLabel.text = @"热门";
+        _choiceLabel.text = @"今日精选";
         _choiceLabel.textColor = [PTTool colorFromHexRGB:@"#282828"];
         _choiceLabel.font = [UIFont systemFontOfSize:19.f];
         [self addSubview:_choiceLabel];

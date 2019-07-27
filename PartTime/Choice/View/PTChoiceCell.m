@@ -38,6 +38,7 @@
     if (model.haveImage) {
         self.imageHeightConstraint.constant = 93;
         self.noImageChangeTopConstraint.constant = 24.f;
+        [self.ptImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@""]];
     }else{
         self.imageHeightConstraint.constant = 0;
         self.noImageChangeTopConstraint.constant = 10.f;
@@ -45,7 +46,7 @@
     
     
     //小标题
-    NSString *subTitleStr = [model.lable stringByReplacingOccurrencesOfString:@" " withString:@" | "];
+    NSString *subTitleStr = [model.lable stringByReplacingOccurrencesOfString:@"," withString:@" | "];
     self.ptSubTitleLabel.text = subTitleStr;
     
     //0 小时 1 天 2 周 3 月 4 季度
@@ -59,6 +60,7 @@
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:payStr attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#db6d70"]}];
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23.f] range:NSMakeRange(0, money.length)];
     self.ptPayLabel.attributedText = str;
+    
     
 }
 

@@ -102,7 +102,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginNotificationAction:) name:kNotificationLogin object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginNotificationAction:) name:kNotificationUserInfoChange object:nil];
    
 }
 
@@ -212,6 +212,7 @@
                 self.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed = NO;
+                
             }else if(indexPath.row == 2){
                 //修改昵称
                 [self showAlertView];
@@ -249,6 +250,7 @@
             [weakSelf.changeNameView removeFromSuperview];
             weakSelf.changeNameView = nil;
             window.hidden = YES;
+            [weakSelf requestChangeNameAction:text];
         }else{
             [NewShowLabel setMessageContent:@"请输入昵称"];
         }
@@ -345,6 +347,24 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+#pragma mark - data -
+- (void)requestChangeNameAction:(NSString *)name
+{
+    [PartTimeUserChangeNameModel requestNickName:name userId:[PTUserUtil getUserId] completeBlock:^(id obj) {
+        PartTimeUserChangeNameModel *model = (PartTimeUserChangeNameModel *)obj;
+      
+        if ([model.status isEqualToString:@"0000"]) {
+            [PartTimeUserGetInfoModel requestUserWithUserId:[PTUserUtil getUserId] completeBlock:^(id obj) {
+                
+            } faileBlock:^(id error) {
+                
+            }];
+        }
+       
+    } faileBlock:^(id error) {
+        
+    }];
+}
 
 
 @end
