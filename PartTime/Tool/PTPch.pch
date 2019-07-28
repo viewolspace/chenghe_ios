@@ -11,6 +11,14 @@
 
 
 /* 宏定义 */
+//是否为iPhoneX
+#define IS_IPHONEX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size)||CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)) : NO)
+//页面底部有操作条，操作条距底部间距
+#define BOTTOM_OPERATION_BAR_MARIN (IS_IPHONEX ? 34.f : 0.f)
+
+//页面顶部间距
+#define TOP_MARIN (IS_IPHONEX ? 22.f : 0.f)
+
 // screen的宽度
 #define WIDTH_OF_SCREEN [[UIScreen mainScreen] bounds].size.width
 // screen的高度

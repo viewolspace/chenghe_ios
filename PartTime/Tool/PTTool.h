@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 更新时间 */
 + (NSString *)time_timestampToString:(NSInteger)timestamp;
 
+
+/** 设置一圈虚线 */
++ (void)setDash:(UIView *)superView;
+
 @end
 
 

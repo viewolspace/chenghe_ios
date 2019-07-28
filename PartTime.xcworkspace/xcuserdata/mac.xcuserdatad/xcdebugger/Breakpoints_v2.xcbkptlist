@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartTime/Base/BaseModel.m"
-            timestampString = "585925524.135933"
+            timestampString = "585977279.767091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
             landmarkName = "-jsonToObject:completeBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartTime/Base/BaseModel.m"
-            timestampString = "585925524.1363471"
+            timestampString = "585977279.767163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
             landmarkName = "-jsonToObject:completeBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartTime/HomePage/View/PTHomePageHeaderView.m"
-            timestampString = "585925524.1364239"
+            timestampString = "585977279.767223"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"

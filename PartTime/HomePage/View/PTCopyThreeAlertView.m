@@ -16,7 +16,7 @@
     view.alertView.layer.cornerRadius = 10.f;
     view.alertView.layer.masksToBounds = YES;
     view.confirmBtn.layer.masksToBounds = YES;
-    view.confirmBtn.layer.cornerRadius = view.confirmBtn.height / 2.0;
+    view.confirmBtn.layer.cornerRadius = 44 / 2.0;
     return view;
 }
 
@@ -26,12 +26,6 @@
     UIWindow *window = [PTManager shareManager].hightWindow;
     window.hidden = YES;
     [self removeFromSuperview];
-    
-    if (self.phoneBlock) {
-        self.phoneBlock();
-    }
-    
-    return;
     
     if (self.contactType == 1) {
         //qq

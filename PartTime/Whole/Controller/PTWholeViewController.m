@@ -9,7 +9,7 @@
 #import "PTWholeViewController.h"
 #import "PTWholeHeaderView.h"
 #import "PTDetailViewController.h"
-#import "PTHomePageCell.h"
+#import "PTChoiceCell.h"
 
 @interface PTWholeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -66,14 +66,14 @@
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_tableView];
     
-    [_tableView registerNib:[UINib nibWithNibName:@"PTHomePageCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass([PTHomePageCell class])];
+    [_tableView registerNib:[UINib nibWithNibName:@"PTChoiceCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass([PTChoiceCell class])];
 }
 
 #pragma mark ----tableViewDataSource----
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PTHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTHomePageCell class])];
+    PTChoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTChoiceCell class])];
     [cell setDataWithModel:self.dataArr[indexPath.row]];
     return cell;
 }
@@ -94,7 +94,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PartTimeModel *model = self.dataArr[indexPath.row];
-    return model.homePageCellHeight;
+    return model.havePicCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

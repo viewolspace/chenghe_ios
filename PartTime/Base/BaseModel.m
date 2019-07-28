@@ -32,39 +32,47 @@
     }
 }
 
+- (NSAttributedString *)attributedStringWithHTMLString:(NSString *)htmlString
+
+{
+    
+    NSDictionary *options = @{ NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType,
+                               
+                               NSCharacterEncodingDocumentAttribute :@(NSUTF8StringEncoding) ,NSFontAttributeName:[UIFont systemFontOfSize:16.f]};
+    NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565;}</style>";
+    NSString *html = [NSString stringWithFormat:@"%@%@",styleS,htmlString];
+    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
+    
+}
 
 /** 详情页 内容高度 */
 - (void)calculateDetailContentHeight
 {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.lineSpacing = 1.f;
-    
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style,NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
-    //NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSParagraphStyleAttributeName:style};
-    
-    //标题高度
-    CGFloat titleHeight = 21.5;
+   
+    NSAttributedString *str = [self attributedStringWithHTMLString:self.content];
+   
+   
     
     //内容高度
-    CGFloat contentHeight = [self.content boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 14 * 2.0, 0) options:1 attributes:dic context:nil].size.height;
+    CGFloat contentHeight = [str boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 14 * 2.0, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.height;
     
     //CGFloat btnHeight = 44.f;
     CGFloat btnHeight = 0;
     //page
-    CGFloat page = 22 + 22 + 20;
+    CGFloat page = 22 + 22;
     
-    self.detailContentRealCellHeight = page + titleHeight + contentHeight + btnHeight;
+    self.detailContentRealCellHeight = page + contentHeight + btnHeight;
     self.detailContentCellHeight = self.detailContentRealCellHeight;
     
-    if (self.detailContentCellHeight > 336.f) {
-        self.detailContentCellHeight = 336.f;
-        self.isHiddenContent = NO;
-    }else{
+//    if (self.detailContentCellHeight > 336.f) {
+//        self.detailContentCellHeight = 336.f;
+//        self.isHiddenContent = NO;
+//    }else{
         //减去按钮的高度，隐藏按钮
-        self.detailContentCellHeight -= btnHeight;
-        self.detailContentRealCellHeight -= btnHeight;
         self.isHiddenContent = YES;
-    }
+//    }
     
     
     

@@ -29,7 +29,7 @@
 {
     self.ptTitleLabel.text = model.title;
    
-    NSString *subTitleStr = [model.lable stringByReplacingOccurrencesOfString:@" " withString:@" | "];
+    NSString *subTitleStr = [model.lable stringByReplacingOccurrencesOfString:@"," withString:@" | "];
     self.ptSubTitleLabel.text = subTitleStr;
 
     //0 小时 1 天 2 周 3 月 4 季度

@@ -22,21 +22,28 @@
     }
 }
 
+- (NSAttributedString *)attributedStringWithHTMLString:(NSString *)htmlString
+
+{
+    
+    NSDictionary *options = @{ NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType,
+                               
+                               NSCharacterEncodingDocumentAttribute :@(NSUTF8StringEncoding) };
+    
+    NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
+    
+}
+
 - (void)setDataWithModel:(PartTimeModel *)model
 {
     if (model.content) {
       
       //  NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565; } p:last-of-type { margin: 5; }</style>";
-        NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565; margin: 5px;}</style>";
-        
-        NSString *styledHtml = [NSString stringWithFormat:@"%@%@", styleS, model.content];
-        NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#656565"],NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[styledHtml dataUsingEncoding:NSUnicodeStringEncoding] options:dic
-                                                             documentAttributes:nil error:nil];
-        
-      
-   
-        self.contentLabel.attributedText = attrStr;
+        NSString *styleS = @"<style> body { font-family: Avenir; font-size: 16px; color: #656565;}</style>";
+        NSString *html = [NSString stringWithFormat:@"%@%@",styleS,model.content];
+        self.contentLabel.attributedText = [self attributedStringWithHTMLString:html];
     }
   
    

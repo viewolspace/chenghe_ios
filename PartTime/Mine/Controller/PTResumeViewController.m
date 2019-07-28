@@ -465,6 +465,18 @@
     }
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.tag == self.exeTag) {
+        [self.bgScrollView setContentOffset:CGPointMake(0, 0 + self.keyBoardHeight)];
+        self.exp = textView.text;
+    }else{
+        [self.bgScrollView setContentOffset:CGPointMake(0, 0 + self.keyBoardHeight + 120)];
+        self.des = textView.text;
+        
+    }
+}
+
 #pragma mark - textFieldDelegate
 - (void)textFieldDidChange:(UITextField *)textField
 {

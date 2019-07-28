@@ -215,7 +215,7 @@
         
         CGFloat barHeight = [PTManager shareManager].navigationBarHeight;
         CGFloat statusBarHeight = [PTManager shareManager].statusBarHeight;
-        _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(46, (barHeight - 29) / 2.0 + statusBarHeight, WIDTH_OF_SCREEN - 46 -14, 29)];
+        _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(46, (barHeight - 29) / 2.0 + statusBarHeight - TOP_MARIN, WIDTH_OF_SCREEN - 46 -14, 29)];
         _searchTextField.backgroundColor = [PTTool colorFromHexRGB:@"#e9e9e9"];
         _searchTextField.layer.cornerRadius = 29 / 2.0;
         _searchTextField.layer.masksToBounds = YES;

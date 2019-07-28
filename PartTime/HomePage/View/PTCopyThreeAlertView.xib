@@ -36,7 +36,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="前往QQ添加&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3u5-F9-fOj">
                             <rect key="frame" x="37" y="107" width="280" height="44"/>
-                            <color key="backgroundColor" red="0.031372549020000001" green="0.45098039220000002" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="9tn-Eq-zxU"/>
                             </constraints>

@@ -289,7 +289,7 @@
     pasteboard.string = model.contact;
     view.titleLabel.text = title;
     view.btnLabel.text = content;
-    CAGradientLayer *confirmLayer = [PTTool customLayer:view haveCorner:YES];
+    CAGradientLayer *confirmLayer = [PTTool customLayer:view.confirmBtn haveCorner:YES];
     [view.confirmBtn.layer addSublayer:confirmLayer];
 }
 
