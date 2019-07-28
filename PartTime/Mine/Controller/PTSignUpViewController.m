@@ -131,7 +131,6 @@
 - (void)headerReoladAction
 {
     self.pageIndex = 1;
-    [self.dataArr removeAllObjects];
     if (self.categoryId) {
         [self requestCategoryData];
     }else{
@@ -151,8 +150,7 @@
 //我的报名
 - (void)requestMyPartTimeData
 {
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+   
     __weak typeof(self)weakSelf = self;
     [PTMyPartTimeModel requestMyPartTimeWithUserId:[PTUserUtil getUserId] pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
         
@@ -167,8 +165,8 @@
 
 //协议
 - (void)requestCategoryData{
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+    
+   
     __weak typeof(self)weakSelf = self;
     
     [PartTimeCategoryModel requestPartTimeWithCategoryId:self.categoryId pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
@@ -196,9 +194,17 @@
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
+ 
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     
     self.title = model.name;
     self.pageIndex ++;
+    
+    if (self.isHeaderLoad) {
+        self.isHeaderLoad = NO;
+        [self.dataArr removeAllObjects];
+    }
     [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
     
@@ -212,7 +218,14 @@
         return;
     }
     
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     self.pageIndex ++;
+    
+    if (self.isHeaderLoad) {
+        self.isHeaderLoad = NO;
+        [self.dataArr removeAllObjects];
+    }
     [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
     

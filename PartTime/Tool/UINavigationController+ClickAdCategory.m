@@ -35,18 +35,18 @@
         NSLog(@"跳转到列表页");
         PTSignUpViewController *vc = [PTSignUpViewController new];
         vc.categoryId = dic[@"categoryId"];
-        self.hidesBottomBarWhenPushed = YES;
+        chileVC.hidesBottomBarWhenPushed = YES;
         [self pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
+        chileVC.hidesBottomBarWhenPushed = NO;
         
     }else if([host isEqualToString:@"jzq"] && [path isEqualToString:@"/detail"]){
         NSLog(@"跳转到具体详情页");
         int ptId = [dic[@"id"]intValue];
-        self.hidesBottomBarWhenPushed = YES;
+        chileVC.hidesBottomBarWhenPushed = YES;
         PTDetailViewController *vc = [[PTDetailViewController alloc] init];
         vc.ptId = ptId;
         [self pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
+        chileVC.hidesBottomBarWhenPushed = NO;
     }
 }
 

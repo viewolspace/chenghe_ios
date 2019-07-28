@@ -44,7 +44,7 @@
     
     [self setStarsLight:detailModel.star];
     
-    [self.companyImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.logo] placeholderImage:[UIImage imageNamed:@""]];
+    [self.companyImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.logo] placeholderImage:[UIImage imageNamed:@"公司信息默认logo"]];
     
 //    CGFloat companyNameHeight = [model.title boundingRectWithSize:CGSizeMake(WIDTH_OF_SCREEN - 80 - 94, 0) options:1 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.f]} context:nil].size.height;
 //    if (companyNameHeight > 20.f ) {

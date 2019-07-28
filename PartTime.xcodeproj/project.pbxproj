@@ -117,6 +117,9 @@
 		04D05A7C22EB49D7001E4C04 /* UIButton+CZHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7722EB49D7001E4C04 /* UIButton+CZHExtension.m */; };
 		04D05A7F22EC4E9B001E4C04 /* PTCopyThreeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D05A7E22EC4E9B001E4C04 /* PTCopyThreeAlertView.m */; };
 		04D05A8122EC4EB5001E4C04 /* PTCopyThreeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D05A8022EC4EB5001E4C04 /* PTCopyThreeAlertView.xib */; };
+		04E1438422ED4F0600840A3E /* 公司信息默认logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1438122ED4F0500840A3E /* 公司信息默认logo@3x.png */; };
+		04E1438522ED4F0600840A3E /* 公司信息默认logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1438222ED4F0600840A3E /* 公司信息默认logo.png */; };
+		04E1438622ED4F0600840A3E /* 公司信息默认logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1438322ED4F0600840A3E /* 公司信息默认logo@2x.png */; };
 		04E8C34C22E5459900B4FF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8C34B22E5459900B4FF6D /* AppDelegate.m */; };
 		04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35022E5459900B4FF6D /* Main.storyboard */; };
 		04E8C35422E5459900B4FF6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C35322E5459900B4FF6D /* Assets.xcassets */; };
@@ -307,6 +310,9 @@
 		04D05A7D22EC4E9B001E4C04 /* PTCopyThreeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTCopyThreeAlertView.h; sourceTree = "<group>"; };
 		04D05A7E22EC4E9B001E4C04 /* PTCopyThreeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCopyThreeAlertView.m; sourceTree = "<group>"; };
 		04D05A8022EC4EB5001E4C04 /* PTCopyThreeAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PTCopyThreeAlertView.xib; sourceTree = "<group>"; };
+		04E1438122ED4F0500840A3E /* 公司信息默认logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司信息默认logo@3x.png"; sourceTree = "<group>"; };
+		04E1438222ED4F0600840A3E /* 公司信息默认logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司信息默认logo.png"; sourceTree = "<group>"; };
+		04E1438322ED4F0600840A3E /* 公司信息默认logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司信息默认logo@2x.png"; sourceTree = "<group>"; };
 		04E8C34722E5459900B4FF6D /* PartTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E8C34A22E5459900B4FF6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E8C34B22E5459900B4FF6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -607,6 +613,9 @@
 		04E8C37722E55C1400B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				04E1438222ED4F0600840A3E /* 公司信息默认logo.png */,
+				04E1438322ED4F0600840A3E /* 公司信息默认logo@2x.png */,
+				04E1438122ED4F0500840A3E /* 公司信息默认logo@3x.png */,
 				04AD210B22E85D8A0004421E /* 返回@2x.png */,
 				04AD210A22E85D8A0004421E /* 返回@3x.png */,
 				04AD210522E8571A0004421E /* 搜索_默认无状态图.png */,
@@ -924,12 +933,14 @@
 				04BB3FDF22E7E34F0019800D /* 登录背景@2x.png in Resources */,
 				04BB3FF022E7E6700019800D /* 我们@3x.png in Resources */,
 				04E8C3A222E5710200B4FF6D /* 我的选中@2x.png in Resources */,
+				04E1438522ED4F0600840A3E /* 公司信息默认logo.png in Resources */,
 				04AD210822E8571A0004421E /* 搜索_默认无状态图.png in Resources */,
 				04AD20FA22E848FC0004421E /* 星星_未点亮@2x.png in Resources */,
 				04BB3FFB22E7E6700019800D /* 昵称@2x.png in Resources */,
 				0418F42C22E6BA3400B50063 /* 简单易做@2x.png in Resources */,
 				04E8C35722E5459900B4FF6D /* LaunchScreen.storyboard in Resources */,
 				04E8C3FD22E5B83800B4FF6D /* 认证图标@2x.png in Resources */,
+				04E1438622ED4F0600840A3E /* 公司信息默认logo@2x.png in Resources */,
 				04E8C39322E55D0700B4FF6D /* 我的@2x.png in Resources */,
 				0418F43122E6BA3400B50063 /* 高薪日结@2x.png in Resources */,
 				04BB3FEF22E7E6700019800D /* 默认头像.png in Resources */,
@@ -992,6 +1003,7 @@
 				04BB3FF922E7E6700019800D /* 我们@2x.png in Resources */,
 				04AD210C22E85D8A0004421E /* 返回@3x.png in Resources */,
 				04BB3FFA22E7E6700019800D /* 昵称@3x.png in Resources */,
+				04E1438422ED4F0600840A3E /* 公司信息默认logo@3x.png in Resources */,
 				04BB401F22E7F3D00019800D /* 男_down.png in Resources */,
 				04E8C3A322E5710200B4FF6D /* 我的选中@3x.png in Resources */,
 				04E8C3ED22E5AC8900B4FF6D /* PTDetailTitleCell.xib in Resources */,

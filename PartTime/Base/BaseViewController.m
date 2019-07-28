@@ -55,6 +55,7 @@
 {
     __weak typeof(self)weakSelf = self;
     MJRefreshNormalHeader *headerView = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.isHeaderLoad = YES;
         [weakSelf headerReoladAction];
     }];
     
