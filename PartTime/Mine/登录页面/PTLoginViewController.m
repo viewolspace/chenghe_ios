@@ -51,6 +51,13 @@
     [self.secondTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 导航栏透明
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+}
+
 - (void)dealloc
 {
     NSLog(@"%@ 销毁了",[self class]);

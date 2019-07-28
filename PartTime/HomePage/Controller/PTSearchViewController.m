@@ -15,6 +15,7 @@
     
 }
 @property (nonatomic,strong)UIImageView *noDataImageView;
+@property (nonatomic,strong)UILabel *noDataLabel;
 @property (nonatomic,strong)UITextField *searchTextField;
 @property (nonatomic,strong)UITableView *tableView;
 
@@ -177,7 +178,6 @@
     vc.ptId = model.aId;
     [self.navigationController.view endEditing:YES];
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -188,6 +188,7 @@
         [self.dataArr removeAllObjects];
         self.tableView.hidden = YES;
         self.noDataImageView.hidden = NO;
+        self.noDataLabel.hidden = NO;
         [self.tableView reloadData];
         return;
     }
@@ -204,6 +205,14 @@
         _noDataImageView = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_OF_SCREEN - width) / 2.0, (HEIGHT_OF_SCREEN - width) / 2.0 - [PTManager shareManager].statusBarHeight, width, width)];
         _noDataImageView.image = [UIImage imageNamed:@"搜索_默认无状态图"];
         [self.view addSubview:_noDataImageView];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, _noDataImageView.bottom - 70, WIDTH_OF_SCREEN, 20)];
+        label.text = @"无搜索内容";
+        label.textColor = [PTTool colorFromHexRGB:@"#1d1d1d"];
+        label.font = [UIFont systemFontOfSize:16.f];
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:label];
+        self.noDataLabel = label;
     }
     
     return _noDataImageView;
@@ -287,9 +296,11 @@
     if (self.dataArr.count == 0) {
         self.tableView.hidden = YES;
         self.noDataImageView.hidden = NO;
+        self.noDataLabel.hidden = NO;
     }else{
         self.tableView.hidden = NO;
         self.noDataImageView.hidden = YES;
+        self.noDataLabel.hidden = YES;
     }
     
     [self.tableView reloadData];

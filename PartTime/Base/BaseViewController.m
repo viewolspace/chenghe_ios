@@ -33,6 +33,13 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回"] style:UIBarButtonItemStylePlain target:self action:@selector(popAction:)];
     [leftItem setTintColor:color];
     self.navigationItem.leftBarButtonItem = leftItem;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES ;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES ;
 }
 
 - (void)popAction:(UIButton *)sender

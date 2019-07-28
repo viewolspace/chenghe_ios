@@ -15,6 +15,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 /// iOS 9的新框架
 #import <ContactsUI/ContactsUI.h>
+#import "PTLoginViewController.h"
 
 #define Is_up_Ios_9    ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0)
 @interface PTDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
@@ -65,6 +66,7 @@
     [self registerAction];
     
     _tableView.estimatedRowHeight = 0;
+
     
 }
 
@@ -98,6 +100,7 @@
     [cell setCopyBlock:^(PartTimeModel * _Nonnull model) {
         [weakSelf copyAction:model];
     }];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -114,6 +117,8 @@
         weakSelf.isOpen = isOpen;
         [weakSelf.tableView reloadData];
     }];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
@@ -124,6 +129,8 @@
 {
     PTDetailCompanyCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PTDetailCompanyCell class])];
     [cell setDataWithModel:self.model comModel:self.detailModel];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
@@ -240,20 +247,27 @@
 #pragma mark - senderAction -
 - (void)confirmAction:(UIButton *)sender
 {
-    __weak typeof(self)weakSelf = self;
-    [PartTimeUserJoinModel requestJoinPartTimeWithUserId:[PTUserUtil getUserId] aid:self.ptId completeBlock:^(id obj) {
-        PartTimeUserJoinModel *model = (PartTimeUserJoinModel *)obj;
-        if ([model.status isEqualToString:@"0000"]) {
-            weakSelf.confirmBtn.backgroundColor = [PTTool colorFromHexRGB:@"#b2b2b2"];
-            weakSelf.confirmLabel.text = @"已报名";
-            [weakSelf.confirmLayer removeFromSuperlayer];
+    if ([PTUserUtil loginStatus]) {
+        __weak typeof(self)weakSelf = self;
+        [PartTimeUserJoinModel requestJoinPartTimeWithUserId:[PTUserUtil getUserId] aid:self.ptId completeBlock:^(id obj) {
+            PartTimeUserJoinModel *model = (PartTimeUserJoinModel *)obj;
+            if ([model.status isEqualToString:@"0000"]) {
+                weakSelf.confirmBtn.backgroundColor = [PTTool colorFromHexRGB:@"#b2b2b2"];
+                weakSelf.confirmLabel.text = @"已报名";
+                [weakSelf.confirmLayer removeFromSuperlayer];
+                
+                [weakSelf copyAction:weakSelf.model];
+            }
             
-            [weakSelf copyAction:weakSelf.model];
-        }
-        
-    } faileBlock:^(id error) {
-        
-    }];
+        } faileBlock:^(id error) {
+            
+        }];
+    }else{
+        PTLoginViewController *loginVC = [[PTLoginViewController alloc] init];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+   
 
 }
 
