@@ -16,6 +16,7 @@
 /// iOS 9的新框架
 #import <ContactsUI/ContactsUI.h>
 #import "PTLoginViewController.h"
+#import "PTLoginViewController.h"
 
 #define Is_up_Ios_9    ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0)
 @interface PTDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
@@ -274,37 +275,45 @@
 
 - (void)copyAction:(PartTimeModel *)model
 {
-    UIWindow *window = [PTManager shareManager].hightWindow;
-    PTCopyThreeAlertView *view = [PTCopyThreeAlertView initWithXib];
-    view.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
-    view.frame = CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN);
-    view.contactType = model.contactType;
-    [window addSubview:view];
-    window.hidden = NO;
-    
-    __weak typeof(self)weakSelf = self;
-    [view setPhoneBlock:^{
-        [weakSelf JudgeAddressBookPower];
-    }];
-
-    NSString *title = @"";
-    NSString *content = @"";
-    if (model.contactType == 1) {
-        title = @"已为您复制QQ号";
-        content = @"前往QQ添加>";
-    }else if(model.contactType == 2){
-        title = @"已为您复制微信号";
-        content = @"前往微信添加>";
+    if ([PTUserUtil loginStatus]) {
+        UIWindow *window = [PTManager shareManager].hightWindow;
+        PTCopyThreeAlertView *view = [PTCopyThreeAlertView initWithXib];
+        view.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
+        view.frame = CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN);
+        view.contactType = model.contactType;
+        [window addSubview:view];
+        window.hidden = NO;
+        
+        __weak typeof(self)weakSelf = self;
+        [view setPhoneBlock:^{
+            [weakSelf JudgeAddressBookPower];
+        }];
+        
+        NSString *title = @"";
+        NSString *content = @"";
+        if (model.contactType == 1) {
+            title = @"已为您复制QQ号";
+            content = @"前往QQ添加>";
+        }else if(model.contactType == 2){
+            title = @"已为您复制微信号";
+            content = @"前往微信添加>";
+        }else{
+            title = @"已为您复制手机号>";
+            content = @"前往手机通讯录添加";
+        }
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = model.contact;
+        view.titleLabel.text = title;
+        view.btnLabel.text = content;
+        CAGradientLayer *confirmLayer = [PTTool customLayer:view.confirmBtn haveCorner:YES];
+        [view.confirmBtn.layer addSublayer:confirmLayer];
     }else{
-        title = @"已为您复制手机号>";
-        content = @"前往手机通讯录添加";
+        PTLoginViewController *loginVC = [[PTLoginViewController alloc] init];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
     }
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = model.contact;
-    view.titleLabel.text = title;
-    view.btnLabel.text = content;
-    CAGradientLayer *confirmLayer = [PTTool customLayer:view.confirmBtn haveCorner:YES];
-    [view.confirmBtn.layer addSublayer:confirmLayer];
+    
+    
 }
 
 #pragma mark - data -

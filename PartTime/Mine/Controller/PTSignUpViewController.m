@@ -29,7 +29,6 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#282828"],NSFontAttributeName:[UIFont systemFontOfSize:19.f]}];
     [self createTabelView];
     
-    [self requestMyPartTimeData];
    
     if (self.categoryId) {
         [self requestCategoryData];
@@ -215,6 +214,8 @@
     if (model.modelArr.count == 0) {
         
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+
         return;
     }
     

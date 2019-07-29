@@ -152,7 +152,6 @@
 - (void)headerReoladAction
 {
     self.pageIndex = 1;
-    [self.dataArr removeAllObjects];
     [self requestAllData];
 }
 
@@ -205,12 +204,20 @@
         return;
     }
     
-    [self.tableView.mj_footer endRefreshing];
     [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     
-    self.pageIndex ++;
+    if (self.isHeaderLoad) {
+        self.isHeaderLoad = NO;
+        [self.dataArr removeAllObjects];
+    }
+    
     [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
+    
+    self.pageIndex ++;
+    
+ 
 }
 
 @end

@@ -158,8 +158,6 @@
 - (void)headerReoladAction
 {
     NSLog(@"上拉刷新");
-    self.pageIndex = 1;
-    [self.dataArr removeAllObjects];
     [self requestChoiceAction];
 }
 - (void)footerReloadAction
@@ -182,8 +180,7 @@
 
 - (void)requestChoiceAction
 {
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+  
 
     __weak typeof(self)weakSelf = self;
     [PTHomePageModel requestHotOrChoiseWithId:2 pageIndex:self.pageIndex pageSize:self.pageSize completeBlock:^(id obj) {
@@ -199,8 +196,17 @@
 {
     if (model.modelArr.count == 0) {
         //没有请求到数据，页面保持不变
+        [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
         return;
+    }
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    
+    if (self.isHeaderLoad) {
+        self.isHeaderLoad = NO;
+        [self.dataArr removeAllObjects];
     }
     
     self.pageIndex ++;

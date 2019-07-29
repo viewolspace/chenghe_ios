@@ -186,7 +186,6 @@
 
 - (void)headerReoladAction
 {
-    [self.dataArr removeAllObjects];
     
    // self.hotPageIndex = 1;
     self.choicePageIndex = 1;
@@ -205,7 +204,7 @@
     }];
 }
 
-/** 请求热门数据 */
+/** 请求滚动banner数据 */
 - (void)requestHotDataAction
 {
     __weak typeof(self)weakSelf = self;
@@ -246,11 +245,19 @@
         return;
     }
     
-    [self.tableView.mj_footer endRefreshing];
-    [self.tableView.mj_header endRefreshing];
+    
+    if (self.isHeaderLoad) {
+        self.isHeaderLoad = NO;
+        [self.dataArr removeAllObjects];
+    }
     
     [self.dataArr addObjectsFromArray:model.modelArr];
     [self.tableView reloadData];
+    
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
+   
     
     self.choicePageIndex ++;
 }
