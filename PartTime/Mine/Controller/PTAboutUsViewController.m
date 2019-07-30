@@ -131,7 +131,7 @@
     if (!_bottomBtn) {
         //44
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(44.f, self.whiteBgView.bottom - 27 - 44, WIDTH_OF_SCREEN - 44 * 2.0, 44)];
-        [btn setTitle:@"客服QQ：010123456" forState:UIControlStateNormal];
+        [btn setTitle:@"客服QQ：9685719" forState:UIControlStateNormal];
         [btn setTitleColor:[PTTool colorFromHexRGB:@"#939393"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(bottomAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
