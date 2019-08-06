@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *ptSubTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ptPayLabel;
 @property (weak, nonatomic) IBOutlet UIButton *lookBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *verImageView;
 
 - (void)setDataWithModel:(PartTimeModel *)model;
 

@@ -107,6 +107,13 @@
     //更新时间
     NSString *timeStr = [PTTool time_timestampToString:model.cTime];
     self.ptUpDateLabel.text = [NSString stringWithFormat:@"更新时间：%@",timeStr];
+    
+    //是否认证
+    if (model.verify == 1) {
+        self.verImageView.hidden = NO;
+    }else{
+        self.verImageView.hidden = YES;
+    }
 }
 
 

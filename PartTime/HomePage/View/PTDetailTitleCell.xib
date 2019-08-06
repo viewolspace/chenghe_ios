@@ -69,6 +69,13 @@
                             <action selector="copyAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WzI-gw-LMy"/>
                         </connections>
                     </button>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已认证.png" translatesAutoresizingMaskIntoConstraints="NO" id="qv8-1O-BR2">
+                        <rect key="frame" x="313" y="56" width="46" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="DKK-U6-xRR"/>
+                            <constraint firstAttribute="height" constant="41" id="Lve-n6-DD2"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jqY-O0-rug" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="0OU-GD-c2P"/>
@@ -85,6 +92,7 @@
                     <constraint firstItem="ga2-cO-eUF" firstAttribute="top" secondItem="I4Q-tk-Gcv" secondAttribute="bottom" constant="26" id="ISL-vD-RCm"/>
                     <constraint firstAttribute="trailing" secondItem="9Pa-om-B7J" secondAttribute="trailing" constant="14" id="KEE-SW-lQk"/>
                     <constraint firstItem="9s8-AF-4oP" firstAttribute="top" secondItem="w7q-4f-GMM" secondAttribute="bottom" constant="15" id="V7g-Kb-2Xt"/>
+                    <constraint firstAttribute="trailing" secondItem="qv8-1O-BR2" secondAttribute="trailing" constant="16" id="Vya-5u-Mch"/>
                     <constraint firstItem="f9y-Lm-S4c" firstAttribute="top" secondItem="9Pa-om-B7J" secondAttribute="bottom" constant="21" id="XtH-KX-mPx"/>
                     <constraint firstItem="9s8-AF-4oP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="YJz-40-YkS"/>
                     <constraint firstAttribute="trailing" secondItem="ga2-cO-eUF" secondAttribute="trailing" constant="14" id="czZ-vM-qgc"/>
@@ -92,6 +100,7 @@
                     <constraint firstAttribute="trailing" secondItem="w7q-4f-GMM" secondAttribute="trailing" constant="14" id="glN-ch-JkY"/>
                     <constraint firstItem="f9y-Lm-S4c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="go6-Tc-E0V"/>
                     <constraint firstAttribute="trailing" secondItem="I4Q-tk-Gcv" secondAttribute="trailing" constant="14" id="hpu-Ym-M7H"/>
+                    <constraint firstItem="qv8-1O-BR2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="56" id="rA8-Nm-w3r"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -104,8 +113,12 @@
                 <outlet property="ptWorkTimelabel" destination="ga2-cO-eUF" id="pHK-4M-ToO"/>
                 <outlet property="subLabelView" destination="I4Q-tk-Gcv" id="ZKg-19-X3T"/>
                 <outlet property="subLabelViewHeightConstraint" destination="nAs-Tg-S5E" id="SpP-wi-rxi"/>
+                <outlet property="verImageView" destination="qv8-1O-BR2" id="H4u-kG-aoI"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="121.54017857142857"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="已认证.png" width="46" height="41"/>
+    </resources>
 </document>

@@ -31,7 +31,19 @@
     style.lineSpacing = 5.f;
     
     NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:17.f],NSForegroundColorAttributeName:[PTTool colorFromHexRGB:@"#2a2a2a"],NSParagraphStyleAttributeName:style};
-    NSAttributedString *titleStr = [[NSAttributedString alloc] initWithString:model.title attributes:dic];
+    
+    //是否认证
+    NSString *title = @"";
+    if (model.verify == 1) {
+        //把认证的空间留出来.....奇淫技巧。。。
+        title = [NSString stringWithFormat:@"          %@",model.title];
+        self.verImageView.hidden = NO;
+    }else{
+        title = model.title;
+        self.verImageView.hidden = YES;
+    }
+    
+    NSAttributedString *titleStr = [[NSAttributedString alloc] initWithString:title attributes:dic];
   
     //标题
     self.ptTitleLabel.attributedText = titleStr;
@@ -62,7 +74,7 @@
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23.f] range:NSMakeRange(0, money.length)];
     self.ptPayLabel.attributedText = str;
     
-    
+   
 }
 
 @end

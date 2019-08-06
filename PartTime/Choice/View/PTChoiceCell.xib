@@ -61,6 +61,13 @@
                             <constraint firstAttribute="height" constant="1" id="XS8-bY-AWX"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="认证图标.png" translatesAutoresizingMaskIntoConstraints="NO" id="YuE-dh-bOU">
+                        <rect key="frame" x="14" y="26" width="38" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="Cfk-5t-xfx"/>
+                            <constraint firstAttribute="height" constant="15" id="uRE-CG-Goz"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="veO-ep-n4s" secondAttribute="trailing" constant="14" id="1hq-O1-3fO"/>
@@ -77,6 +84,8 @@
                     <constraint firstItem="orf-Tp-UDX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vwZ-F4-U5o" secondAttribute="trailing" constant="20" id="lZK-Z0-1vm"/>
                     <constraint firstItem="veO-ep-n4s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="mR9-fO-HhC"/>
                     <constraint firstItem="zeF-cQ-9Rp" firstAttribute="top" secondItem="veO-ep-n4s" secondAttribute="bottom" constant="13" id="n8S-Nj-9Nb"/>
+                    <constraint firstItem="YuE-dh-bOU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="pdP-IA-Iln"/>
+                    <constraint firstItem="YuE-dh-bOU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="tcu-hO-ztm"/>
                     <constraint firstAttribute="trailing" secondItem="iS7-ws-6fQ" secondAttribute="trailing" constant="14" id="u5m-fQ-vd4"/>
                     <constraint firstItem="vwZ-F4-U5o" firstAttribute="top" secondItem="zeF-cQ-9Rp" secondAttribute="bottom" constant="24" id="yRU-pr-Hcm"/>
                 </constraints>
@@ -90,11 +99,13 @@
                 <outlet property="ptPayLabel" destination="orf-Tp-UDX" id="MW8-9V-AGX"/>
                 <outlet property="ptSubTitleLabel" destination="vwZ-F4-U5o" id="XyX-NF-W8D"/>
                 <outlet property="ptTitleLabel" destination="veO-ep-n4s" id="hcV-KH-MgL"/>
+                <outlet property="verImageView" destination="YuE-dh-bOU" id="tPy-x4-FLy"/>
             </connections>
             <point key="canvasLocation" x="136.95652173913044" y="150.66964285714286"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="立即查看按钮.png" width="89" height="45"/>
+        <image name="认证图标.png" width="37.5" height="15"/>
     </resources>
 </document>

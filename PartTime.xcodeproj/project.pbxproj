@@ -169,6 +169,9 @@
 		04E8C3FC22E5B83800B4FF6D /* 认证图标@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3F922E5B83700B4FF6D /* 认证图标@3x.png */; };
 		04E8C3FD22E5B83800B4FF6D /* 认证图标@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E8C3FA22E5B83800B4FF6D /* 认证图标@2x.png */; };
 		30EBA0BC06BC86DBD4997BD2 /* libPods-PartTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47F2C2593B8D5660AD24D1 /* libPods-PartTime.a */; };
+		430A21EB22F98D7900F1DF19 /* 已认证.png in Resources */ = {isa = PBXBuildFile; fileRef = 430A21E822F98D7800F1DF19 /* 已认证.png */; };
+		430A21EC22F98D7900F1DF19 /* 已认证@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 430A21E922F98D7800F1DF19 /* 已认证@3x.png */; };
+		430A21ED22F98D7900F1DF19 /* 已认证@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 430A21EA22F98D7900F1DF19 /* 已认证@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -376,6 +379,9 @@
 		04E8C3F822E5B83700B4FF6D /* 认证图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "认证图标.png"; sourceTree = "<group>"; };
 		04E8C3F922E5B83700B4FF6D /* 认证图标@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "认证图标@3x.png"; sourceTree = "<group>"; };
 		04E8C3FA22E5B83800B4FF6D /* 认证图标@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "认证图标@2x.png"; sourceTree = "<group>"; };
+		430A21E822F98D7800F1DF19 /* 已认证.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已认证.png"; sourceTree = "<group>"; };
+		430A21E922F98D7800F1DF19 /* 已认证@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已认证@3x.png"; sourceTree = "<group>"; };
+		430A21EA22F98D7900F1DF19 /* 已认证@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已认证@2x.png"; sourceTree = "<group>"; };
 		663C119ACC8EA769B911CC10 /* Pods-PartTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-PartTime/Pods-PartTime.release.xcconfig"; sourceTree = "<group>"; };
 		69078A046E71ECD11CD7531B /* Pods-PartTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartTime/Pods-PartTime.debug.xcconfig"; sourceTree = "<group>"; };
 		6B47F2C2593B8D5660AD24D1 /* libPods-PartTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PartTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -613,6 +619,9 @@
 		04E8C37722E55C1400B4FF6D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				430A21E822F98D7800F1DF19 /* 已认证.png */,
+				430A21EA22F98D7900F1DF19 /* 已认证@2x.png */,
+				430A21E922F98D7800F1DF19 /* 已认证@3x.png */,
 				04E1438222ED4F0600840A3E /* 公司信息默认logo.png */,
 				04E1438322ED4F0600840A3E /* 公司信息默认logo@2x.png */,
 				04E1438122ED4F0500840A3E /* 公司信息默认logo@3x.png */,
@@ -961,6 +970,7 @@
 				0418F3F122E697D100B50063 /* 搜索图标@2x.png in Resources */,
 				04AD20FE22E848FC0004421E /* 星星_未点亮.png in Resources */,
 				04AD20DC22E80C780004421E /* PTChangeNameView.xib in Resources */,
+				430A21ED22F98D7900F1DF19 /* 已认证@2x.png in Resources */,
 				04E8C36822E547BD00B4FF6D /* PTTabbarViewController.xib in Resources */,
 				04BB401A22E7F3D00019800D /* 男_down@2x.png in Resources */,
 				0418F43822E6BAE400B50063 /* 精选_down.png in Resources */,
@@ -970,6 +980,7 @@
 				04BB401822E7F3D00019800D /* 圆角按钮@3x.png in Resources */,
 				04BB3FF322E7E6700019800D /* 简历@3x.png in Resources */,
 				04E8C38622E55CCE00B4FF6D /* 精选@2x.png in Resources */,
+				430A21EB22F98D7900F1DF19 /* 已认证.png in Resources */,
 				04BB401D22E7F3D00019800D /* 男_down@3x.png in Resources */,
 				04E8C3B322E586D500B4FF6D /* PTLoginViewController.xib in Resources */,
 				04D05A6522EAE1C9001E4C04 /* 兼职圈logo@2x.png in Resources */,
@@ -1019,6 +1030,7 @@
 				04E8C35222E5459900B4FF6D /* Main.storyboard in Resources */,
 				04E8C37C22E55C2F00B4FF6D /* 首页@2x.png in Resources */,
 				04AD20F722E848FC0004421E /* 展开.png in Resources */,
+				430A21EC22F98D7900F1DF19 /* 已认证@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

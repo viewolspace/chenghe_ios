@@ -60,7 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)NSInteger cTime;
 /** 精选列表图片 */
 @property (nonatomic,copy)NSString *pic;
-
+/** 是否认证 */
+@property (nonatomic ,assign)int verify;
 
 /** 详情页 如果内容过多，隐藏一部分 */
 @property (nonatomic,assign)BOOL isHiddenContent;
