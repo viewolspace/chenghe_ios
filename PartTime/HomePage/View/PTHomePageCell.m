@@ -23,6 +23,7 @@
 
 - (IBAction)lookAction:(UIButton *)sender {
     NSLog(@"查看");
+    //哈哈
 }
 
 
