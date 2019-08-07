@@ -401,7 +401,7 @@
 {
     if (!_introduceLabel) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.exeTextField.left, self.exeTextField.bottom + 18.f, 100, 16)];
-        label.text = @"自我介绍";
+        label.text = @"微信(QQ)";
         label.textColor = [PTTool colorFromHexRGB:@"#0d0d0d"];
         label.font = [UIFont systemFontOfSize:16.f];
         [self.bgScrollView addSubview:label];
