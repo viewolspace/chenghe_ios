@@ -215,7 +215,7 @@
             [weakSelf closeAction:nil];
         }
         
-        [NewShowLabel setMessageContent:model.message];
+        //[NewShowLabel setMessageContent:model.message];
 
 
     } faileBlock:^(id error) {

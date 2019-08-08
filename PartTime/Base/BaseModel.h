@@ -146,6 +146,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PartTimeUserJoinModel : BaseModel
 
+@property (nonatomic ,assign)int flag;
+
+
 /** 参加兼职 */
 + (void)requestJoinPartTimeWithUserId:(NSInteger)userId
                                   aid:(NSInteger)aid

@@ -17,6 +17,7 @@
 #import <ContactsUI/ContactsUI.h>
 #import "PTLoginViewController.h"
 #import "PTLoginViewController.h"
+#import "PTResumeViewController.h"
 
 #define Is_up_Ios_9    ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0)
 @interface PTDetailViewController ()<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,CNContactPickerDelegate>
@@ -256,8 +257,15 @@
                 weakSelf.confirmBtn.backgroundColor = [PTTool colorFromHexRGB:@"#b2b2b2"];
                 weakSelf.confirmLabel.text = @"已报名";
                 [weakSelf.confirmLayer removeFromSuperlayer];
+                if (![weakSelf.model.contact isEqualToString:@""] && weakSelf.model.contact) {
+                    [weakSelf copyAction:weakSelf.model];
+                }else if(model.flag == 1){
+                    NSLog(@"前往完善简历");
+                    [weakSelf goToResume:weakSelf.model];
+                }else if(model.flag == 0){
+                    [NewShowLabel setMessageContent:@"报名成功"];
+                }
                 
-                [weakSelf copyAction:weakSelf.model];
             }
             
         } faileBlock:^(id error) {
@@ -272,6 +280,34 @@
 
 }
 
+//完善简历
+- (void)goToResume:(PartTimeModel *)model
+{
+    UIWindow *window = [PTManager shareManager].hightWindow;
+    PTCopyThreeAlertView *view = [PTCopyThreeAlertView initWithXib];
+    view.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
+    view.frame = CGRectMake(0, 0, WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN);
+    view.contactType = 4;
+    [window addSubview:view];
+    window.hidden = NO;
+ 
+    __weak typeof(self)weakSelf = self;
+    [view setResumeBlock:^{
+        PTResumeViewController *vc = [PTResumeViewController new];
+        weakSelf.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        weakSelf.hidesBottomBarWhenPushed = NO;
+    }];
+    NSString *title = @"您的简历还未完善";
+    NSString *content = @"前往完善简历>";
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = model.contact;
+    view.titleLabel.text = title;
+    view.btnLabel.text = content;
+    CAGradientLayer *confirmLayer = [PTTool customLayer:view.confirmBtn haveCorner:YES];
+    [view.confirmBtn.layer addSublayer:confirmLayer];
+}
 
 - (void)copyAction:(PartTimeModel *)model
 {

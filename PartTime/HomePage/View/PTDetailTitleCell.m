@@ -103,6 +103,16 @@
     }
     [self.ptCopyBtn setTitle:contactStr forState:UIControlStateNormal];
     
+    if ([model.contact isEqualToString:@""] || !model.contact) {
+        
+        self.ptCopyBtn.hidden = YES;
+        self.ptCopyBtnHeight.constant = 0;
+    }else{
+        
+        self.ptCopyBtn.hidden = NO;
+        self.ptCopyBtnHeight.constant = 40;
+
+    }
     
     //更新时间
     NSString *timeStr = [PTTool time_timestampToString:model.cTime];

@@ -145,6 +145,10 @@
     
     //按钮高度
     CGFloat btnHeight = 40.f;
+    if ([self.contact isEqualToString:@""] || !self.contact) {
+        //减去btn的page
+        btnHeight = -21.f;
+    }
     
     //page
     CGFloat page = 22.f + 11.f + 15.f + 15.f + 26.f + 16.f + 21.f + 21.f;
@@ -324,7 +328,7 @@
 
 - (void)jsonToObject:(NSDictionary *)dic
        completeBlock:(CompleteBlock)completeBlock
-{
+{   self.flag = [dic[@"flag"]intValue];
     [super jsonToObject:dic completeBlock:completeBlock];
     completeBlock(self);
 }

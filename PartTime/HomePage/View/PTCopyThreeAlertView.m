@@ -35,10 +35,15 @@
         //wechat
         [self openWechat];
 
-    }else{
+    }else if(self.contactType == 3){
         //手机
         if (self.phoneBlock) {
             self.phoneBlock();
+        }
+    }else{
+        //简历
+        if (self.resumeBlock) {
+            self.resumeBlock();
         }
     }
     

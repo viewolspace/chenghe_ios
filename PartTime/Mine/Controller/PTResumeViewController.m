@@ -415,7 +415,7 @@
 - (UITextView *)introduceTextField
 {
     if (!_introduceTextField) {
-        _introduceTextField = [[UITextView alloc] initWithFrame:CGRectMake(self.introduceLabel.left, self.introduceLabel.bottom + 11.f, self.bornView.width, 120)];
+        _introduceTextField = [[UITextView alloc] initWithFrame:CGRectMake(self.introduceLabel.left, self.introduceLabel.bottom + 11.f, self.bornView.width, 30)];
         _introduceTextField.backgroundColor = [PTTool colorFromHexRGB:@"#f6f6f6"];
         _introduceTextField.delegate = self;
         _introduceTextField.tag = self.introduceTag;

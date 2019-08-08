@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *alertView;
-@property (nonatomic,copy)void (^phoneBlock)();
-/** 联系方式类型 1 qq 2 微信 3 手机 */
+@property (nonatomic,copy)void (^phoneBlock)(void);
+@property (nonatomic,copy)void (^resumeBlock)(void);
+
+/** 联系方式类型 1 qq 2 微信 3 手机 4 完善简历*/
 @property (nonatomic,assign)int contactType;
 @end
 
