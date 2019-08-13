@@ -817,19 +817,25 @@
 {
     [super jsonToObject:dic completeBlock:completeBlock];
 
-    NSDictionary *resultDic = dic[@"result"];
-    UserModel *model = [UserModel new];
-    [model setValuesForKeysWithDictionary:resultDic];
-    self.model = model;
-    completeBlock(self);
+    if ([dic[@"status"]isEqualToString:@"0000"]) {
+        NSDictionary *resultDic = dic[@"result"];
+        UserModel *model = [UserModel new];
+        [model setValuesForKeysWithDictionary:resultDic];
+        self.model = model;
+        completeBlock(self);
+        
+        //存储用户信息到本地
+        [PTUserUtil setUserInfo:model];
+        [PTUserUtil setUserId:model.userId];
+        [PTUserUtil setLoginStatus:YES];
+        
+        //发送登录成功的通知
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
+    }else{
+        completeBlock(self);
+    }
     
-    //存储用户信息到本地
-    [PTUserUtil setUserInfo:model];
-    [PTUserUtil setUserId:model.userId];
-    [PTUserUtil setLoginStatus:YES];
-
-    //发送登录成功的通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
+   
 
 }
 
