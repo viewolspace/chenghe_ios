@@ -343,6 +343,13 @@
         view.btnLabel.text = content;
         CAGradientLayer *confirmLayer = [PTTool customLayer:view.confirmBtn haveCorner:YES];
         [view.confirmBtn.layer addSublayer:confirmLayer];
+        
+        [PartTimeCopyModel requestTokenWithId:model.aId completeBlock:^(id obj) {
+            NSLog(@"%@",obj);
+        } faileBlock:^(id error) {
+            
+        }];
+        
     }else{
         PTLoginViewController *loginVC = [[PTLoginViewController alloc] init];
         self.hidesBottomBarWhenPushed = YES;

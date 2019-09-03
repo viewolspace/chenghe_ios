@@ -217,8 +217,6 @@
             [NewShowLabel setMessageContent:model.message];
         }
         
-
-
     } faileBlock:^(id error) {
         
     }];

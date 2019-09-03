@@ -266,6 +266,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/** copy 调用接口 */
+@interface PartTimeCopyModel : BaseModel
+
++ (void)requestTokenWithId:(NSInteger)aId
+             completeBlock:(CompleteBlock)completeBlock
+                faileBlock:(FaileBlock)faileBlock;
+
+@end
+
 
 /** 获取验证码 (getRand)*/
 @interface PartTimeUserGetRandModel : BaseModel

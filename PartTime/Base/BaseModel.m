@@ -874,3 +874,35 @@
     
 }
 @end
+
+
+@implementation PartTimeCopyModel
+
+- (void)jsonToObject:(NSDictionary *)dic completeBlock:(CompleteBlock)completeBlock
+{
+    completeBlock(self);
+}
+
++ (void)requestTokenWithId:(NSInteger)aId
+             completeBlock:(CompleteBlock)completeBlock
+                faileBlock:(FaileBlock)faileBlock
+{
+    NSString *loginUrl = [NSString stringWithFormat:@"%@partTime/copyPartTime?id=%ld",PartTimeAddress,(long)aId];
+    
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+    
+    
+    [manager GET:loginUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+       
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+       
+        PartTimeCopyModel *model = [PartTimeCopyModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+    
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        faileBlock(error);
+    }];
+}
+
+@end
