@@ -270,6 +270,38 @@
 
 
 
+@implementation PartTimeAdClickModel
+
+- (void)jsonToObject:(NSDictionary *)dic
+       completeBlock:(CompleteBlock)completeBlock
+{
+    NSLog(@"%@",dic);
+}
+
++ (void)requestClickADWithAdId:(int)adId
+                 completeBlock:(CompleteBlock)completeBlock
+                    faileBlock:(FaileBlock)faileBlock
+{
+    NSString *expUrl = [NSString stringWithFormat:@"%@ad/adStat?adId=%d",PartTimeAddress,adId];
+    
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+    
+   
+    
+    [manager POST:expUrl parameters:@{} progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        PartTimeAdClickModel *model = [PartTimeAdClickModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+@end
+
 
 
 #pragma mark -------- 根据关键词查询兼职内容 --------

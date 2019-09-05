@@ -48,6 +48,13 @@
         [self pushViewController:vc animated:YES];
         chileVC.hidesBottomBarWhenPushed = NO;
     }
+    
+    //广告点击
+    [PartTimeAdClickModel requestClickADWithAdId:model.adId completeBlock:^(id obj) {
+        
+    } faileBlock:^(id error) {
+        
+    }];
 }
 
 -(NSDictionary *)queryComponents:(NSURL *)url{

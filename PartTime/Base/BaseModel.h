@@ -116,6 +116,19 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+
+/** 点击广告 */
+@interface PartTimeAdClickModel : BaseModel
+
++ (void)requestClickADWithAdId:(int)adId
+                 completeBlock:(CompleteBlock)completeBlock
+                    faileBlock:(FaileBlock)faileBlock;
+
+@end
+
+
+
+
 @interface PartTimeQueryModel : BaseModel
 
 @property (nonatomic,copy)NSArray <PartTimeModel *>*modelArr;
