@@ -213,11 +213,10 @@
         PartTimeUserLoginModel *model = (PartTimeUserLoginModel *)obj;
         if ([model.status isEqualToString:@"0000"]) {
             [weakSelf closeAction:nil];
+        }else{
+            [NewShowLabel setMessageContent:model.message];
         }
         
-        //[NewShowLabel setMessageContent:model.message];
-
-
     } faileBlock:^(id error) {
         
     }];

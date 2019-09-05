@@ -817,19 +817,25 @@
 {
     [super jsonToObject:dic completeBlock:completeBlock];
 
-    NSDictionary *resultDic = dic[@"result"];
-    UserModel *model = [UserModel new];
-    [model setValuesForKeysWithDictionary:resultDic];
-    self.model = model;
-    completeBlock(self);
+    if ([dic[@"status"]isEqualToString:@"0000"]) {
+        NSDictionary *resultDic = dic[@"result"];
+        UserModel *model = [UserModel new];
+        [model setValuesForKeysWithDictionary:resultDic];
+        self.model = model;
+        completeBlock(self);
+        
+        //存储用户信息到本地
+        [PTUserUtil setUserInfo:model];
+        [PTUserUtil setUserId:model.userId];
+        [PTUserUtil setLoginStatus:YES];
+        
+        //发送登录成功的通知
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
+    }else{
+        completeBlock(self);
+    }
     
-    //存储用户信息到本地
-    [PTUserUtil setUserInfo:model];
-    [PTUserUtil setUserId:model.userId];
-    [PTUserUtil setLoginStatus:YES];
-
-    //发送登录成功的通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserInfoChange object:nil];
+   
 
 }
 
@@ -867,4 +873,36 @@
 {
     
 }
+@end
+
+
+@implementation PartTimeCopyModel
+
+- (void)jsonToObject:(NSDictionary *)dic completeBlock:(CompleteBlock)completeBlock
+{
+    completeBlock(self);
+}
+
++ (void)requestTokenWithId:(NSInteger)aId
+             completeBlock:(CompleteBlock)completeBlock
+                faileBlock:(FaileBlock)faileBlock
+{
+    NSString *loginUrl = [NSString stringWithFormat:@"%@partTime/copyPartTime?id=%ld",PartTimeAddress,(long)aId];
+    
+    AFHTTPSessionManager *manager = [PTManager shareAFManager];
+    
+    
+    [manager GET:loginUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+       
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+       
+        PartTimeCopyModel *model = [PartTimeCopyModel new];
+        [model jsonToObject:responseObject completeBlock:completeBlock];
+    
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        faileBlock(error);
+    }];
+}
+
 @end
