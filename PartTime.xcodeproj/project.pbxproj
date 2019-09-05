@@ -1272,7 +1272,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S29974T3DW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1293,11 +1293,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xunwu.parttime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE_SPECIFIER = wudong_jianzhiquan;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = jianzhiquanDevelopment;
->>>>>>> 3f904c60f0f5301a2e3e0f13f4e6edbbda3d6a0f
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1307,8 +1303,8 @@
 			baseConfigurationReference = 663C119ACC8EA769B911CC10 /* Pods-PartTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S29974T3DW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1324,11 +1320,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xunwu.parttime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE_SPECIFIER = wudong_jianzhiquan;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = jianzhiquanDistrbution;
->>>>>>> 3f904c60f0f5301a2e3e0f13f4e6edbbda3d6a0f
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
